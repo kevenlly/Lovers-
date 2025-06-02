@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Feliz dia dos namorados, meu Levi💗</title>
+  <style>
+    @font-face {
+      font-family: 'Nocaut';
+      src: url('fontes/NOCAUTE.ttf');
+    }
+    @font-face {
+      font-family: 'Beauty';
+      src: url('fontes/BEAUTY.ttf');
+    }
+    body {
+      margin: 0;
+      font-family: 'Beauty', sans-serif;
+      background: linear-gradient(135deg, #fffafc, #ffe4e1);
+      color: #333;
+      text-align: center;
+      overflow-x: hidden;
+      padding: 20px;
+    }
+    h1 {
+      font-family: 'Nocaut', sans-serif;
+      font-size: 3em;
+      color: #e60073;
+      margin-top: 20px;
+      text-shadow: 1px 1px 4px #fff0f5;
+    }
+    #contador {
+      font-size: 1.4em;
+      margin: 20px;
+      color: #cc3366;
+    }
+    #mensagem, #mensagemInterativa {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 0 20px;
+      font-size: 1.3em;
+      color: #6e0634;
+      font-weight: 600;
+      min-height: 80px;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    #mensagem.show, #mensagemInterativa.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .galeria {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      padding: 20px;
+    }
+    .galeria img {
+      width: 300px;
+      border-radius: 15px;
+      box-shadow: 0 0 10px #aaa;
+    }
+    .coracao {
+      position: fixed;
+      top: -50px;
+      font-size: 24px;
+      animation: cair 6s linear infinite;
+      color: #ff4d6d;
+      user-select: none;
+      pointer-events: none;
+      z-index: 9999;
+    }
+    @keyframes cair {
+      0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+    }
+
+    /* Botões interativos das declarações */
+    button {
+      background-color: #ff416c;
+      color: white;
+      border: none;
+      padding: 16px 36px;
+      margin: 12px 8px;
+      font-size: 20px;
+      border-radius: 12px;
+      cursor: pointer;
+      box-shadow: 0 6px #cc3451;
+      transition: background-color 0.3s, transform 0.2s;
+    }
+    button:hover {
+      background-color: #ff1e50;
+    }
+    button:active {
+      transform: scale(0.95);
+      box-shadow: 0 3px #a82c40;
+    }
+    /* Pulsar animado no botão */
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+        box-shadow: 0 6px #cc3451;
+      }
+      50% {
+        transform: scale(1.1);
+        box-shadow: 0 10px #ff6384;
+      }
+      100% {
+        transform: scale(1);
+        box-shadow: 0 6px #cc3451;
+      }
+    }
+    button.pulse {
+      animation: pulse 0.6s ease;
+    }
+
+    /* Botão para controlar a música fixo */
+    #btnSom {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      padding: 10px 15px;
+      font-size: 16px;
+      border-radius: 8px;
+      border: none;
+      background: #ff416c;
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 4px #cc3451;
+      z-index: 1000;
+      user-select: none;
+      transition: background-color 0.3s ease;
+    }
+    #btnSom:hover {
+      background-color: #ff1e50;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Feliz dia dos namorados, meu Levi💗</h1>
+  <div id="contador">Carregando tempo...</div>
+
+  <div id="mensagem" class="show">
+    Marcos Levi, eu te desejo feliz dia dos namorados!🤍 Obrigada por ter entrado na minha vida,
+    sou extremamente grata a Deus por ter feito nossos caminhos colidirem, obrigada por ser essa pessoa incrível
+    do sorriso mais encantador, obrigada por me fazer feliz e me completar.
+    Eu quero construir um futuro junto com você meu amor, quero te fazer feliz, quero casar com você
+    e formar nossa futura família!🥹🤍 Eu te quero comigo sempre e EU AMO VOCÊ IMENSAMENTE,
+    viveremos e nos teremos juntos até Jesus voltar.🤍
+  </div>
+
+  <div>
+    <button onclick="mostrarMensagem(this, 'Você é a razão do meu sorriso todos os dias ❤️')">Declaração 1</button>
+    <button onclick="mostrarMensagem(this, 'Meu coração bate mais forte só de pensar em você 💖')">Declaração 2</button>
+    <button onclick="mostrarMensagem(this, 'Com você, encontrei o meu para sempre 💞')">Declaração 3</button>
+  </div>
+
+  <div id="mensagemInterativa"></div>
+
+  <div class="galeria">
+    <img src="imagens/foto1.jpg" alt="Foto 1">
+    <img src="imagens/foto2.jpg" alt="Foto 2">
+    <img src="imagens/foto3.jpg" alt="Foto 3">
+    <img src="imagens/foto4.jpg" alt="Foto 4">
+    <img src="imagens/foto5.jpg" alt="Foto 5">
+    <img src="imagens/foto6.jpg" alt="Foto 6">
+    <img src="imagens/foto7.jpg" alt="Foto 7">
+    <img src="imagens/foto8.jpg" alt="Foto 8">
+    <img src="imagens/foto9.jpg" alt="Foto 9">
+    <img src="imagens/foto10.jpg" alt="Foto 10">
+    <img src="imagens/foto11.jpg" alt="Foto 11">
+    <img src="imagens/foto12.jpg" alt="Foto 12">
+    <img src="imagens/foto13.jpg" alt="Foto 13">
+    <img src="imagens/foto14.jpg" alt="Foto 14">
+  </div>
+
+  <!-- Música de fundo -->
+  <audio id="musicaFundo" src="all_of_me.mp3" autoplay loop></audio>
+
+  <!-- Botão para controlar música -->
+  <button id="btnSom" onclick="toggleSom()">🔈 Pausar Música</button>
+
+  <script>
+    // Contador de tempo juntos
+    const inicio = new Date("2025-02-01T00:00:00");
+    function atualizarContador() {
+      const agora = new Date();
+      const diff = agora - inicio;
+      const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const horas = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutos = Math.floor((diff / (1000 * 60)) % 60);
+      const segundos = Math.floor((diff / 1000) % 60);
+      document.getElementById("contador").textContent =
+        `Estamos juntos há: ${dias} dias, ${horas}h ${minutos}min ${segundos}s`;
+    }
+    setInterval(atualizarContador, 1000);
+    atualizarContador();
+
+    // Corações caindo
+    function criarCoracao() {
+      const coracao = document.createElement("div");
+      coracao.className = "coracao";
+      coracao.style.left = Math.random() * 100 + "vw";
+      coracao.textContent = "💖";
+      document.body.appendChild(coracao);
+      setTimeout(() => coracao.remove(), 6000);
+    }
+    setInterval(criarCoracao, 400);
+
+    // Botões interativos: mostrar declaração animada
+    function mostrarMensagem(botao, texto) {
+      const divMensagem = document.getElementById('mensagemInterativa');
+      
+      divMensagem.classList.remove('show');
+      void divMensagem.offsetWidth; // força reflow para reiniciar animação
+
+      divMensagem.textContent = texto;
+      divMensagem.classList.add('show');
+
+      botao.classList.add('pulse');
+      setTimeout(() => {
+        botao.classList.remove('pulse');
+      }, 600);
+    }
+
+    // Controle de música
+    const musica = document.getElementById('musicaFundo');
+    const btnSom = document.getElementById('btnSom');
+
+    function toggleSom() {
+      if (musica.paused) {
+        musica.play();
+        btnSom.textContent = '🔈 Pausar Música';
+      } else {
+        musica.pause();
+        btnSom.textContent = '🔇 Tocar Música';
+      }
+    }
+  </script>
+</body>
+</html>
