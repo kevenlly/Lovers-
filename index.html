@@ -1,0 +1,184 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <title>Feliz dia dos namorados, meu Levi💗</title>
+  <style>
+    @font-face {
+      font-family: 'Nocaut';
+      src: url('fontes/NOCAUTE.ttf');
+    }
+    @font-face {
+      font-family: 'Beauty';
+      src: url('fontes/BEAUTY.ttf');
+    }
+    body {
+      margin: 0;
+      font-family: 'Beauty', sans-serif;
+      background: linear-gradient(135deg, #fffafc, #ffe4e1);
+      color: #333;
+      text-align: center;
+      overflow-x: hidden;
+    }
+    h1 {
+      font-family: 'Nocaut', sans-serif;
+      font-size: 3em;
+      color: #e60073;
+      margin-top: 20px;
+    }
+    #contador {
+      font-size: 1.4em;
+      margin: 20px;
+      color: #cc3366;
+    }
+    #mensagemInicial {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 0 20px;
+      font-size: 1.3em;
+    }
+    .galeria {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      padding: 20px;
+    }
+    .galeria img {
+      width: 300px;
+      border-radius: 15px;
+      box-shadow: 0 0 10px #aaa;
+    }
+    .coracao {
+      position: fixed;
+      top: -50px;
+      font-size: 24px;
+      animation: cair 6s linear infinite;
+      color: #ff4d6d;
+    }
+    @keyframes cair {
+      0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+    }
+    button {
+      background-color: #ff416c;
+      color: white;
+      border: none;
+      padding: 16px 36px;
+      margin: 12px;
+      font-size: 20px;
+      border-radius: 12px;
+      cursor: pointer;
+      box-shadow: 0 6px #cc3451;
+      transition: background-color 0.3s, transform 0.2s;
+    }
+    button:hover {
+      background-color: #ff1e50;
+    }
+    button:active {
+      transform: scale(0.95);
+      box-shadow: 0 3px #a82c40;
+    }
+    #mensagem {
+      margin-top: 30px;
+      font-size: 22px;
+      min-height: 70px;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    #mensagem.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    #btnSom {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      padding: 10px 15px;
+      font-size: 16px;
+      border-radius: 8px;
+      border: none;
+      background: #ff416c;
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 4px #cc3451;
+      z-index: 1000;
+    }
+  </style>
+</head>
+<body>
+  <h1>Feliz dia dos namorados, meu Levi💗</h1>
+  <div id="contador">Carregando tempo...</div>
+  <div id="mensagemInicial">
+    Marcos Levi, eu te desejo feliz dia dos namorados!🤍 Obrigada por ter entrado na minha vida,
+    sou extremamente grata a Deus por ter feito nossos caminhos colidirem, obrigada por ser essa pessoa incrível
+    do sorriso mais encantador, obrigada por me fazer feliz e me completar.
+    Eu quero construir um futuro junto com você meu amor, quero te fazer feliz, quero casar com você
+    e formar nossa futura família!🥹🤍 Eu te quero comigo sempre e EU AMO VOCÊ IMENSAMENTE,
+    viveremos e nos teremos juntos até Jesus voltar.🤍
+  </div>
+  <div class="galeria">
+    <img src="imagens/foto1.jpg" alt="Foto 1">
+    <img src="imagens/foto2.jpg" alt="Foto 2">
+    <img src="imagens/foto3.jpg" alt="Foto 3">
+  </div>
+  <button onclick="mostrarMensagem('Você é a razão do meu sorriso todos os dias ❤️')">Declaração 1</button>
+  <button onclick="mostrarMensagem('Meu coração bate mais forte só de pensar em você 💖')">Declaração 2</button>
+  <button onclick="mostrarMensagem('Com você, encontrei o meu para sempre 💞')">Declaração 3</button>
+  <div id="mensagem"></div>
+
+  <audio id="musicaFundo" autoplay loop>
+    <source src="audio/all_of_me.mp3" type="audio/mpeg">
+    Seu navegador não suporta áudio.
+  </audio>
+  <button id="btnSom" onclick="toggleSom()">🔈 Ativar Som</button>
+
+  <script>
+    const inicio = new Date("2025-02-01T00:00:00");
+    function atualizarContador() {
+      const agora = new Date();
+      const diff = agora - inicio;
+      const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const horas = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutos = Math.floor((diff / (1000 * 60)) % 60);
+      const segundos = Math.floor((diff / 1000) % 60);
+      document.getElementById("contador").textContent =
+        `Estamos juntos há: ${dias} dias, ${horas}h ${minutos}min ${segundos}s`;
+    }
+    setInterval(atualizarContador, 1000);
+    atualizarContador();
+
+    function criarCoracao() {
+      const coracao = document.createElement("div");
+      coracao.className = "coracao";
+      coracao.style.left = Math.random() * 100 + "vw";
+      coracao.textContent = "💖";
+      document.body.appendChild(coracao);
+      setTimeout(() => coracao.remove(), 6000);
+    }
+    setInterval(criarCoracao, 400);
+
+    function mostrarMensagem(texto) {
+      const divMensagem = document.getElementById('mensagem');
+      divMensagem.classList.remove('show');
+      void divMensagem.offsetWidth; 
+      divMensagem.textContent = texto;
+      divMensagem.classList.add('show');
+    }
+
+    const musica = document.getElementById('musicaFundo');
+    const btnSom = document.getElementById('btnSom');
+    function toggleSom() {
+      if (musica.paused) {
+        musica.play();
+        btnSom.textContent = '🔈 Pausar Música';
+      } else {
+        musica.pause();
+        btnSom.textContent = '🔇 Tocar Música';
+      }
+    }
+  </script>
+</body>
+</html>
