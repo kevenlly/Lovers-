@@ -1,172 +1,492 @@
-<!DOCTYPE html><html lang="pt-BR">
+<!DOCTYPE html>
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nosso Amor</title>
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Roboto', sans-serif;
-      background: linear-gradient(to bottom, #ffdce0, #fff0f5);
-      color: #4a0033;
-      overflow-x: hidden;
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Nosso Amor Completo ❤️</title>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Quicksand&display=swap" rel="stylesheet">
+<style>
+  /* Reset básico */
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0; padding: 0;
+    background: #fff0f5;
+    font-family: 'Quicksand', sans-serif;
+    color: #333;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  header {
+    background-color: #ffccdd;
+    width: 100%;
+    text-align: center;
+    padding: 30px 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  }
+  header h1 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 3rem;
+    color: #c71585;
+    margin: 0;
+    user-select: none;
+  }
+  .contador-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px;
+    margin: 30px 0 40px 0;
+    width: 90%;
+    max-width: 900px;
+  }
+  .contador-box {
+    background: rgba(255, 192, 203, 0.15);
+    border: 2px solid #ff99cc;
+    border-radius: 20px;
+    padding: 20px 30px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(255, 192, 203, 0.4);
+    flex: 1 1 300px;
+  }
+  .contador-box h2 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.7rem;
+    color: #ff4d88;
+    margin-bottom: 12px;
+    user-select: none;
+  }
+  .contador {
+    font-size: 1.2rem;
+    color: #333;
+    font-weight: 700;
+    font-family: 'Courier New', monospace;
+  }
+  /* Música custom */
+  .audio-container {
+    margin: 20px auto 40px auto;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+  }
+  #btnPlayPause {
+    background: #ff69b4;
+    border: none;
+    color: white;
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.3rem;
+    padding: 10px 25px;
+    border-radius: 15px;
+    cursor: pointer;
+    user-select: none;
+    box-shadow: 0 5px 8px rgba(255, 105, 180, 0.6);
+    transition: background-color 0.3s ease;
+  }
+  #btnPlayPause:hover {
+    background-color: #e0559b;
+  }
+  /* Galeria de fotos */
+  .foto-galeria {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(180px,1fr));
+    gap: 20px;
+    padding: 20px;
+    width: 90%;
+    max-width: 1000px;
+  }
+  .foto-box {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    background: white;
+    user-select: none;
+  }
+  .foto-box img {
+    width: 100%;
+    display: block;
+    border-radius: 20px;
+    transition: transform 0.4s ease;
+  }
+  .foto-box:hover img {
+    transform: scale(1.08);
+  }
+  .mensagem {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    right: 10px;
+    background: rgba(255, 192, 203, 0.85);
+    color: #c71585;
+    font-family: 'Dancing Script', cursive;
+    font-size: 1rem;
+    text-align: center;
+    padding: 8px 10px;
+    border-radius: 12px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+    user-select: none;
+  }
+  .foto-box:hover .mensagem {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  /* Datas especiais */
+  .datas-especiais {
+    margin: 40px auto 60px auto;
+    width: 90%;
+    max-width: 600px;
+  }
+  .data-box {
+    background: #ffe6f0;
+    border: 2px dashed #ff99cc;
+    border-radius: 20px;
+    padding: 20px;
+    margin-bottom: 25px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(255, 192, 203, 0.4);
+    user-select: none;
+  }
+  .data-box h3 {
+    margin: 0 0 15px;
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.8rem;
+    color: #c71585;
+  }
+  .btn-declarar {
+    background-color: #ff69b4;
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.3rem;
+    user-select: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 5px 10px rgba(255,105,180,0.6);
+    transition: background-color 0.3s ease;
+  }
+  .btn-declarar:hover {
+    background-color: #e0559b;
+  }
+  .declaracao {
+    margin-top: 15px;
+    font-style: italic;
+    color: #cc0066;
+    font-size: 1.1rem;
+    min-height: 50px;
+    user-select: text;
+    white-space: pre-wrap;
+  }
+  /* Modal para foto ampliada */
+  #modalFoto {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.75);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    z-index: 1000;
+  }
+  #modalFoto.mostrar {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  #modalFoto img {
+    max-width: 90vw;
+    max-height: 80vh;
+    border-radius: 20px;
+    box-shadow: 0 0 15px #ff69b4;
+    user-select: none;
+  }
+  #modalFoto .fechar {
+    position: absolute;
+    top: 20px; right: 30px;
+    font-size: 3rem;
+    color: white;
+    cursor: pointer;
+    user-select: none;
+    font-family: 'Arial Black', sans-serif;
+    font-weight: 900;
+  }
+  /* Efeito digitação */
+  @keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+  }
+  .digitando {
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 3px solid #c71585;
+    animation: typing 2s steps(30, end) forwards;
+  }
+  /* Responsividade */
+  @media (max-width: 600px) {
+    header h1 {
+      font-size: 2.4rem;
     }
-    header {
-      text-align: center;
-      padding: 2rem;
-      font-family: 'Great Vibes', cursive;
-      font-size: 3rem;
-      color: #d6336c;
+    .contador-box {
+      flex: 1 1 100%;
     }
-    .gallery {
-      display: flex;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      gap: 1rem;
-      padding: 1rem;
+    .btn-declarar {
+      font-size: 1.1rem;
+      padding: 10px 18px;
     }
-    .gallery img {
-      width: 100%;
-      max-width: 400px;
-      border-radius: 1rem;
-      scroll-snap-align: center;
-      cursor: pointer;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-      transition: transform 0.3s;
-    }
-    .gallery img:hover {
-      transform: scale(1.05);
-    }
-    .caption {
-      text-align: center;
-      font-size: 1.25rem;
-      margin-top: 0.5rem;
-    }
-    .special-date {
-      text-align: center;
-      margin: 2rem auto;
-      max-width: 600px;
-      background: #fff8fb;
-      padding: 1rem;
-      border-radius: 1rem;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    }
-    .special-date button {
-      margin-top: 0.5rem;
-      padding: 0.5rem 1rem;
-      font-size: 1rem;
-      border: none;
-      border-radius: 1rem;
-      background-color: #ff99bb;
-      color: white;
-      cursor: pointer;
-    }
-    .popup {
-      display: none;
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background-color: white;
-      padding: 1.5rem;
-      border-radius: 1rem;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-      z-index: 999;
-    }
-    .popup.active {
-      display: block;
-    }
-    .countdown {
-      text-align: center;
-      font-size: 1.5rem;
-      margin-top: 2rem;
-      color: #b30059;
-    }
-    .audio-control {
-      position: fixed;
-      bottom: 20px;
-      left: 20px;
-      background-color: #ffccdd;
-      padding: 0.5rem 1rem;
-      border-radius: 1rem;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
-    }
-  </style>
+  }
+</style>
 </head>
 <body>
-  <header>Nosso Amor</header>  <div class="gallery">
-    <!-- Fotos com frases -->
-    <div>
-      <img src="foto1.jpg" alt="foto1" onclick="showPopup('Cada momento com você é mágico 💖')">
-      <div class="caption">Cada momento com você é mágico 💖</div>
-    </div>
-    <div>
-      <img src="foto2.jpg" alt="foto2" onclick="showPopup('Seu sorriso ilumina minha vida 🌟')">
-      <div class="caption">Seu sorriso ilumina minha vida 🌟</div>
-    </div>
-    <!-- Adicione até foto14.jpg seguindo o mesmo padrão -->
-  </div>  <!-- Datas Especiais -->  <div class="special-date">
-    <h2>11/08/2024 - Nosso Primeiro Beijo</h2>
-    <button onclick="showPopup('Jamais esquecerei aquele momento em que nossos lábios se tocaram pela primeira vez. 💋')">Ver declaração</button>
-  </div>
-  <div class="special-date">
-    <h2>18/01/2025 - Nosso Primeiro Encontro</h2>
-    <button onclick="showPopup('Foi nesse dia que eu percebi que meu coração tinha encontrado o lar. 💘')">Ver declaração</button>
-  </div>
-  <div class="special-date">
-    <h2>01/02/2025 - Pedido de Namoro</h2>
-    <button onclick="showPopup('Dizer sim foi o começo da nossa linda história de amor. 💍')">Ver declaração</button>
-  </div>
-  <div class="special-date">
-    <h2>02/03/2025 - Viagem ao Sítio</h2>
-    <button onclick="showPopup('Compartilhar essa viagem com você foi como viver um sonho. 🏞️')">Ver declaração</button>
-  </div>
-  <div class="special-date">
-    <h2>01/04/2025 - Entrega das Alianças</h2>
-    <button onclick="showPopup('Prometemos amor eterno com as alianças, e meu coração é seu para sempre. 💑')">Ver declaração</button>
-  </div>  <!-- Contadores -->  <div class="countdown" id="counter1"></div>
-  <div class="countdown" id="counter2"></div>  <!-- Música -->  <div class="audio-control">
-    <button onclick="toggleMusic()">Tocar/Pausar Música</button>
-  </div>
-  <audio id="bgMusic" loop>
-    <source src="all_of_me.mp3" type="audio/mpeg">
-    Seu navegador não suporta áudio.
-  </audio>  <!-- Pop-up -->  <div class="popup" id="popup"></div>  <script>
-    function showPopup(message) {
-      const popup = document.getElementById('popup');
-      popup.innerHTML = `<p>${message}</p><br><button onclick=\"popup.classList.remove('active')\">Fechar</button>`;
-      popup.classList.add('active');
-    }
 
-    function toggleMusic() {
-      const music = document.getElementById("bgMusic");
-      if (music.paused) {
-        music.play();
-      } else {
-        music.pause();
+<header>
+  <h1>Nosso Amor em Cada Momento ❤️</h1>
+</header>
+
+<div class="contador-container">
+  <div class="contador-box">
+    <h2>Desde o nosso primeiro beijo 💋</h2>
+    <div id="contador-beijo" class="contador">Carregando...</div>
+  </div>
+  <div class="contador-box">
+    <h2>Desde o nosso namoro oficial 💑</h2>
+    <div id="contador-namoro" class="contador">Carregando...</div>
+  </div>
+</div>
+
+<div class="audio-container">
+  <button id="btnPlayPause" aria-label="Tocar / Pausar música">▶️ Ouvir música</button>
+  <audio id="musica" src="all_of_me.mp3" preload="auto"></audio>
+</div>
+
+<section class="foto-galeria" aria-label="Galeria de fotos do casal">
+  <!-- Fotos com frases interativas -->
+</section>
+
+<section class="datas-especiais" aria-label="Datas especiais do casal">
+  <!-- Datas especiais com declarações -->
+</section>
+
+<!-- Modal foto ampliada -->
+<div id="modalFoto" role="dialog" aria-modal="true" aria-label="Foto ampliada">
+  <span class="fechar" aria-label="Fechar modal" tabindex="0">&times;</span>
+  <img src="" alt="Foto ampliada" />
+</div>
+
+<script>
+  // Dados para fotos: frase para cada foto
+  const fotos = [
+    { src: "foto1.jpg", frase: "Você é meu tudo!" },
+    { src: "foto2.jpg", frase: "Cada dia ao seu lado é uma nova poesia." },
+    { src: "foto3.jpg", frase: "Nosso amor é o meu lugar favorito." },
+    { src: "foto4.jpg", frase: "Com você, tudo faz sentido." },
+    { src: "foto5.jpg", frase: "Te amo mais do que palavras podem dizer." },
+    { src: "foto6.jpg", frase: "Meu sorriso começa com você." },
+    { src: "foto7.jpg", frase: "Você ilumina meu mundo." },
+    { src: "foto8.jpg", frase: "Nosso carinho é o meu refúgio." },
+    { src: "foto9.jpg", frase: "Juntos somos invencíveis." },
+    { src: "foto10.jpg", frase: "Você é meu sonho realizado." },
+    { src: "foto11.jpg", frase: "No seu abraço encontro paz." },
+    { src: "foto12.jpg", frase: "Nosso amor é infinito." },
+    { src: "foto13.jpg", frase: "Com você, a vida é mais doce." },
+    { src: "foto14.jpg", frase: "Eternamente seu." }
+  ];
+
+  // Dados das datas especiais
+  const datasEspeciais = [
+    {
+      data: "11/08/2024",
+      titulo: "Nosso primeiro beijo 💋",
+      declaracao: "Nunca esquecerei aquele momento mágico em que nossos lábios se tocaram.",
+      poema: "No silêncio dos nossos lábios,\nO mundo inteiro parou.\nUm beijo eterno e suave,\nQue pra sempre ficou."
+    },
+    {
+      data: "18/01/2025",
+      titulo: "Primeiro date 🍰",
+      declaracao: "Nosso primeiro encontro foi o início da mais doce das histórias.",
+      poema: "Entre sorrisos e doces sabores,\nNasceu a chama do nosso amor.\nCada olhar, um segredo,\nCada toque, um calor."
+    },
+    {
+      data: "01/02/2025",
+      titulo: "Pedido de namoro oficial 💑",
+      declaracao: "Hoje prometo estar sempre ao seu lado, em cada passo da vida.",
+      poema: "De mãos dadas caminhamos,\nJuntos a vida inteira.\nNo teu olhar encontrei meu lar,\nMinha alma inteira."
+    },
+    {
+      data: "02/03/2025",
+      titulo: "Primeira viagem ao sítio com a família 🌳",
+      declaracao: "Aquele fim de semana ficou guardado no meu coração para sempre.",
+      poema: "Sob o céu azul do campo,\nNosso amor floresceu.\nRisadas, histórias e sonhos,\nQue a vida nos prometeu."
+    },
+    {
+      data: "01/04/2025",
+      titulo: "Entrega das alianças 💍",
+      declaracao: "Este símbolo sela nossa união e nosso compromisso eterno.",
+      poema: "Anéis de ouro e esperança,\nPromessas de amor sem fim.\nNa eternidade do nosso pacto,\nSerás sempre meu jardim."
+    }
+  ];
+
+  // Função para criar a galeria de fotos
+  function criarGaleria() {
+    const galeria = document.querySelector('.foto-galeria');
+    fotos.forEach(({src, frase}, i) => {
+      const box = document.createElement('div');
+      box.className = 'foto-box';
+      box.setAttribute('tabindex', '0');
+      box.setAttribute('aria-label', `Foto ${i + 1} com frase: ${frase}`);
+
+      const img = document.createElement('img');
+      img.src = src;
+      img.alt = `Foto do casal número ${i + 1}`;
+      box.appendChild(img);
+
+      const msg = document.createElement('div');
+      msg.className = 'mensagem';
+      msg.textContent = frase;
+      box.appendChild(msg);
+
+      // Abrir modal no clique
+      box.addEventListener('click', () => abrirModal(src, frase));
+      box.addEventListener('keydown', e => {
+        if(e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          abrirModal(src, frase);
+        }
+      });
+
+      galeria.appendChild(box);
+    });
+  }
+
+  // Função para criar as datas especiais na seção
+  function criarDatas() {
+    const container = document.querySelector('.datas-especiais');
+    datasEspeciais.forEach(({data, titulo, declaracao, poema}, i) => {
+      const box = document.createElement('div');
+      box.className = 'data-box';
+
+      const h3 = document.createElement('h3');
+      h3.textContent = `${data} - ${titulo}`;
+      box.appendChild(h3);
+
+      const btn = document.createElement('button');
+      btn.className = 'btn-declarar';
+      btn.innerHTML = '❤️ Mostrar declaração e poema';
+      btn.setAttribute('aria-expanded', 'false');
+      btn.setAttribute('aria-controls', `decl-${i}`);
+      btn.addEventListener('click', () => {
+        const decl = box.querySelector('.declaracao');
+        const expanded = btn.getAttribute('aria-expanded') === 'true';
+        if(expanded) {
+          decl.style.display = 'none';
+          btn.setAttribute('aria-expanded', 'false');
+        } else {
+          decl.style.display = 'block';
+          btn.setAttribute('aria-expanded', 'true');
+        }
+      });
+      box.appendChild(btn);
+
+      const decl = document.createElement('div');
+      decl.className = 'declaracao';
+      decl.id = `decl-${i}`;
+      decl.style.display = 'none';
+      decl.innerHTML = `<strong>Declaração:</strong> ${declaracao}<br><br><strong>Poema:</strong><br><pre>${poema}</pre>`;
+      box.appendChild(decl);
+
+      container.appendChild(box);
+    });
+  }
+
+  // Contador para o primeiro beijo (11/08/2024)
+  function contadorDesde(dataString, idElemento) {
+    const elemento = document.getElementById(idElemento);
+    const dataAlvo = new Date(dataString.split('/').reverse().join('-') + 'T00:00:00');
+    function atualizar() {
+      const agora = new Date();
+      let diff = agora - dataAlvo;
+      if(diff < 0) {
+        elemento.textContent = "Ainda não aconteceu.";
+        return;
       }
+      const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
+      diff -= dias * (1000 * 60 * 60 * 24);
+      const horas = Math.floor(diff / (1000 * 60 * 60));
+      diff -= horas * (1000 * 60 * 60);
+      const minutos = Math.floor(diff / (1000 * 60));
+      diff -= minutos * (1000 * 60);
+      const segundos = Math.floor(diff / 1000);
+
+      elemento.textContent = `${dias} dias, ${horas} horas, ${minutos} minutos, ${segundos} segundos`;
     }
+    atualizar();
+    setInterval(atualizar, 1000);
+  }
 
-    function updateCountdowns() {
-      const format = (ms) => {
-        const d = Math.floor(ms / (1000 * 60 * 60 * 24));
-        const h = Math.floor((ms / (1000 * 60 * 60)) % 24);
-        const m = Math.floor((ms / (1000 * 60)) % 60);
-        const s = Math.floor((ms / 1000) % 60);
-        return `${d} dias, ${h}h, ${m}m, ${s}s`;
-      }
+  // Modal para foto ampliada
+  const modal = document.getElementById('modalFoto');
+  const modalImg = modal.querySelector('img');
+  const fecharBtn = modal.querySelector('.fechar');
 
-      const date1 = new Date("2024-08-11T00:00:00");
-      const date2 = new Date("2025-02-01T00:00:00");
-      const now = new Date();
+  function abrirModal(src, alt) {
+    modal.classList.add('mostrar');
+    modalImg.src = src;
+    modalImg.alt = alt;
+    fecharBtn.focus();
+  }
+  function fecharModal() {
+    modal.classList.remove('mostrar');
+    modalImg.src = '';
+    modalImg.alt = '';
+  }
 
-      const el1 = document.getElementById("counter1");
-      const el2 = document.getElementById("counter2");
-      el1.textContent = `Desde o primeiro beijo: ${format(now - date1)}`;
-      el2.textContent = `Desde o início do namoro: ${format(now - date2)}`;
+  fecharBtn.addEventListener('click', fecharModal);
+  fecharBtn.addEventListener('keydown', e => {
+    if(e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      fecharModal();
     }
+  });
 
-    setInterval(updateCountdowns, 1000);
-  </script></body>
+  modal.addEventListener('click', e => {
+    if(e.target === modal) fecharModal();
+  });
+
+  // Música fundo controle
+  const musica = document.getElementById('musica');
+  const btnPlayPause = document.getElementById('btnPlayPause');
+
+  btnPlayPause.addEventListener('click', () => {
+    if(musica.paused) {
+      musica.play();
+      btnPlayPause.textContent = '⏸️ Pausar música';
+    } else {
+      musica.pause();
+      btnPlayPause.textContent = '▶️ Ouvir música';
+    }
+  });
+
+  musica.addEventListener('ended', () => {
+    btnPlayPause.textContent = '▶️ Ouvir música';
+  });
+
+  // Iniciar montagem
+  criarGaleria();
+  criarDatas();
+
+  // Iniciar contadores
+  contadorDesde('11/08/2024', 'contador-beijo');
+  contadorDesde('01/02/2025', 'contador-namoro');
+</script>
+
+</body>
 </html>
