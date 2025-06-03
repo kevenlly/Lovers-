@@ -17,115 +17,79 @@
       font-family: 'Beauty', sans-serif;
       background: linear-gradient(135deg, #fffafc, #ffe4e1);
       color: #333;
-      text-align: center;
       overflow-x: hidden;
     }
     h1 {
       font-family: 'Nocaut', sans-serif;
       font-size: 3em;
       color: #e60073;
+      text-align: center;
       margin-top: 20px;
     }
     #contador {
-      font-size: 1.4em;
+      font-size: 1.6em;
       margin: 20px;
+      text-align: center;
       color: #cc3366;
-    }
-    #mensagemInicial {
-      max-width: 800px;
-      margin: 20px auto;
-      padding: 0 20px;
-      font-size: 1.3em;
     }
     .galeria {
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 30px;
-      padding: 20px;
+      gap: 50px;
+      padding: 40px 0;
     }
     .galeria img {
-      width: 80%;
-      border-radius: 15px;
-      box-shadow: 0 0 10px #aaa;
-      transition: transform 0.5s ease;
+      width: 90%;
+      max-width: 600px;
+      border-radius: 20px;
+      box-shadow: 0 0 15px #888;
+      transition: transform 1s ease;
     }
-    .galeria img:hover {
-      transform: scale(1.02);
-    }
-    .coracao {
-      position: fixed;
-      top: -50px;
-      font-size: 24px;
-      animation: cair 6s linear infinite;
-      color: #ff4d6d;
-    }
-    @keyframes cair {
-      0% { transform: translateY(0) rotate(0deg); opacity: 1; }
-      100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
-    }
-    .botao-interativo {
-      font-size: 22px;
-      font-family: 'Nocaut', sans-serif;
-      margin: 12px auto;
-      padding: 16px 28px;
-      background-color: #ff5e88;
-      color: white;
-      border: none;
-      border-radius: 12px;
-      box-shadow: 0 5px #d14b6e;
-      cursor: pointer;
-      display: block;
-      transition: transform 0.3s, background-color 0.3s;
-    }
-    .botao-interativo:hover {
-      background-color: #ff3970;
-      transform: scale(1.05);
-    }
-    .botao-evento {
-      margin-top: 8px;
-      padding: 10px 20px;
-      background-color: #ffc2d1;
-      font-family: 'Beauty', sans-serif;
-      font-size: 18px;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      color: #8a2c50;
-      box-shadow: 0 3px #b98595;
-      transition: background-color 0.3s;
-    }
-    .botao-evento:hover {
-      background-color: #ffb3c6;
+    .frase-foto {
+      font-size: 1.4em;
+      color: #b30059;
+      margin-top: 10px;
+      text-align: center;
+      font-family: 'Beauty', cursive;
     }
     .data-evento {
-      margin-bottom: 30px;
+      background: #ffe6f0;
+      padding: 15px;
+      border-left: 5px solid #ff4d94;
+      margin: 10px auto;
+      width: fit-content;
+      font-size: 1.2em;
+      font-family: 'Beauty';
+      color: #cc3366;
+    }
+    .botao-interativo {
+      display: block;
+      margin: 25px auto;
+      background: #ff4d88;
+      color: white;
+      font-size: 22px;
+      padding: 18px 40px;
+      border: none;
+      border-radius: 14px;
+      box-shadow: 0 6px #b30047;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-family: 'Beauty';
+    }
+    .botao-interativo:hover {
+      background: #ff0066;
+      transform: scale(1.05);
     }
     #mensagem {
-      margin-top: 30px;
-      font-size: 22px;
-      min-height: 70px;
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
+      text-align: center;
+      font-size: 1.5em;
+      margin: 30px auto;
+      color: #b30059;
+      max-width: 700px;
     }
-    #mensagem.show {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    #btnSom {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      padding: 10px 15px;
-      font-size: 16px;
-      border-radius: 8px;
-      border: none;
-      background: #ff416c;
-      color: white;
-      cursor: pointer;
-      box-shadow: 0 4px #cc3451;
-      z-index: 1000;
+    audio {
+      display: none;
     }
   </style>
 </head>
@@ -133,7 +97,8 @@
   <h1>Feliz dia dos namorados, meu Levi💗</h1>
   <div id="contador">Carregando tempo...</div>
 
-  <div id="mensagemInicial">
+  <!-- Texto original da usuária -->
+  <div id="mensagem">
     Marcos Levi, eu te desejo feliz dia dos namorados!🤍 Obrigada por ter entrado na minha vida,
     sou extremamente grata a Deus por ter feito nossos caminhos colidirem, obrigada por ser essa pessoa incrível
     do sorriso mais encantador, obrigada por me fazer feliz e me completar.
@@ -142,63 +107,37 @@
     viveremos e nos teremos juntos até Jesus voltar.🤍
   </div>
 
-  <div style="margin: 40px auto;">
-    <button onclick="mostrarMensagem('Você é a razão do meu sorriso todos os dias ❤️')" class="botao-interativo">✨ Declaração 1 ✨</button>
-    <button onclick="mostrarMensagem('Meu coração bate mais forte só de pensar em você 💖')" class="botao-interativo">🌸 Declaração 2 🌸</button>
-    <button onclick="mostrarMensagem('Com você, encontrei o meu para sempre 💞')" class="botao-interativo">💍 Declaração 3 💍</button>
-  </div>
+  <!-- Datas com interações -->
+  <div class="data-evento">11/08/2024 - Primeiro Beijo 💋 <button class="botao-interativo" onclick="mostrarMensagem('Nunca esquecerei o dia em que nossos lábios se encontraram pela primeira vez. 💖')">Relembrar</button></div>
+  <div class="data-evento">18/01/2025 - Primeiro Date 🍓 <button class="botao-interativo" onclick="mostrarMensagem('Nosso primeiro date foi só o começo da nossa linda história. 💑')">Relembrar</button></div>
+  <div class="data-evento">01/02/2025 - Pedido de Namoro 💍 <button class="botao-interativo" onclick="mostrarMensagem('Aquele sim foi o mais fácil e mais certo da minha vida! ❤️')">Relembrar</button></div>
+  <div class="data-evento">02/03/2025 - Viagem ao sítio 🏞️ <button class="botao-interativo" onclick="mostrarMensagem('Foi tão especial compartilhar esse momento com você e minha família! 🥰')">Relembrar</button></div>
+  <div class="data-evento">01/04/2025 - Entrega das Alianças 💞 <button class="botao-interativo" onclick="mostrarMensagem('A entrega das alianças selou nosso compromisso eterno. 💘')">Relembrar</button></div>
 
-  <div class="data-evento">
-    <strong>11/08/2024 - Primeiro beijo</strong><br />
-    <button onclick="mostrarMensagem('Nosso primeiro beijo... o início de tudo 💋')" class="botao-evento">💖 Relembrar</button>
-  </div>
-  <div class="data-evento">
-    <strong>18/01/2025 - Primeiro date</strong><br />
-    <button onclick="mostrarMensagem('Nosso primeiro encontro, meu coração acelerava só de te ver 🥰')" class="botao-evento">💌 Relembrar</button>
-  </div>
-  <div class="data-evento">
-    <strong>01/02/2025 - Pedido de namoro</strong><br />
-    <button onclick="mostrarMensagem('Você me pediu em namoro... foi o dia mais feliz da minha vida 💍')" class="botao-evento">💞 Relembrar</button>
-  </div>
-  <div class="data-evento">
-    <strong>02/03/2025 - Primeira viagem ao sítio</strong><br />
-    <button onclick="mostrarMensagem('Nossa primeira aventura juntos em família 🌄')" class="botao-evento">🌳 Relembrar</button>
-  </div>
-  <div class="data-evento">
-    <strong>01/04/2025 - Entrega das alianças</strong><br />
-    <button onclick="mostrarMensagem('Trocamos alianças... símbolo do nosso amor eterno 💞')" class="botao-evento">💍 Relembrar</button>
-  </div>
-
-  <!-- Galeria de fotos -->
+  <!-- Galeria com transições -->
   <div class="galeria">
-    <img src="imagens/foto1.jpg" alt="Foto 1">
-    <img src="imagens/foto2.jpg" alt="Foto 2">
-    <img src="imagens/foto3.jpg" alt="Foto 3">
-    <img src="imagens/foto4.jpg" alt="Foto 4">
-    <img src="imagens/foto5.jpg" alt="Foto 5">
-    <img src="imagens/foto6.jpg" alt="Foto 6">
-    <img src="imagens/foto7.jpg" alt="Foto 7">
-    <img src="imagens/foto8.jpg" alt="Foto 8">
-    <img src="imagens/foto9.jpg" alt="Foto 9">
-    <img src="imagens/foto10.jpg" alt="Foto 10">
-    <img src="imagens/foto11.jpg" alt="Foto 11">
-    <img src="imagens/foto12.jpg" alt="Foto 12">
-    <img src="imagens/foto13.jpg" alt="Foto 13">
-    <img src="imagens/foto14.jpg" alt="Foto 14">
+    <div>
+      <img src="imagens/foto1.jpg" alt="Foto 1" />
+      <div class="frase-foto">"Seu sorriso é meu lugar favorito."</div>
+    </div>
+    <div>
+      <img src="imagens/foto2.jpg" alt="Foto 2" />
+      <div class="frase-foto">"Com você, a vida é mais bonita."</div>
+    </div>
+    <!-- Repita para foto3 até foto14 -->
   </div>
 
-  <!-- Poema -->
-  <button onclick="mostrarMensagem('Entre mil sorrisos, o teu é meu lar.\nNa dança da vida, é contigo que quero bailar.\nSe o mundo acabar, quero estar do teu lado.\nMeu amor por ti será sempre sagrado. 💖')" class="botao-interativo">📜 Clique aqui para ver um poema 📜</button>
-
-  <!-- Exibição das mensagens -->
-  <div id="mensagem"></div>
+  <!-- Botões interativos com declarações -->
+  <button class="botao-interativo" onclick="mostrarMensagem('Você é a razão do meu sorriso todos os dias ❤️')">Declaração 1</button>
+  <button class="botao-interativo" onclick="mostrarMensagem('Meu coração bate mais forte só de pensar em você 💖')">Declaração 2</button>
+  <button class="botao-interativo" onclick="mostrarMensagem('Com você, encontrei o meu para sempre 💞')">Declaração 3</button>
+  <button class="botao-interativo" onclick="mostrarMensagem('Cada segundo contigo é meu instante favorito 💘')">Declaração 4</button>
+  <button class="botao-interativo" onclick="mostrarMensagem('Você é meu sonho que virou realidade 💌')">Declaração 5</button>
 
   <!-- Música de fundo -->
   <audio id="musicaFundo" autoplay loop>
-    <source src="audio/all_of_me.mp3" type="audio/mpeg">
-    Seu navegador não suporta áudio.
+    <source src="audio/all_of_me.mp3" type="audio/mpeg" />
   </audio>
-  <button id="btnSom" onclick="toggleSom()">🔈 Pausar Música</button>
 
   <script>
     const inicio = new Date("2025-02-01T00:00:00");
@@ -215,34 +154,9 @@
     setInterval(atualizarContador, 1000);
     atualizarContador();
 
-    function criarCoracao() {
-      const coracao = document.createElement("div");
-      coracao.className = "coracao";
-      coracao.style.left = Math.random() * 100 + "vw";
-      coracao.textContent = "💖";
-      document.body.appendChild(coracao);
-      setTimeout(() => coracao.remove(), 6000);
-    }
-    setInterval(criarCoracao, 400);
-
     function mostrarMensagem(texto) {
       const divMensagem = document.getElementById('mensagem');
-      divMensagem.classList.remove('show');
-      void divMensagem.offsetWidth;
-      divMensagem.textContent = texto;
-      divMensagem.classList.add('show');
-    }
-
-    const musica = document.getElementById('musicaFundo');
-    const btnSom = document.getElementById('btnSom');
-    function toggleSom() {
-      if (musica.paused) {
-        musica.play();
-        btnSom.textContent = '🔈 Pausar Música';
-      } else {
-        musica.pause();
-        btnSom.textContent = '🔇 Tocar Música';
-      }
+      divMensagem.innerText = texto;
     }
   </script>
 </body>
