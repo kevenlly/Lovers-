@@ -12,10 +12,6 @@
       font-family: 'Beauty';
       src: url('fontes/BEAUTY.ttf');
     }
-    @font-face {
-      font-family: 'Romantic';
-      src: url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap');
-    }
     body {
       margin: 0;
       font-family: 'Beauty', sans-serif;
@@ -31,7 +27,7 @@
       margin-top: 20px;
     }
     #contador {
-      font-size: 1.4em;
+      font-size: 1.6em;
       margin: 20px;
       color: #cc3366;
     }
@@ -39,10 +35,7 @@
       max-width: 800px;
       margin: 20px auto;
       padding: 0 20px;
-      font-size: 1.3em;
-      font-family: 'Romantic', cursive;
-      color: #b3346c;
-      text-shadow: 1px 1px 2px #f9cbd6;
+      font-size: 1.4em;
     }
     .galeria {
       display: flex;
@@ -52,15 +45,10 @@
       padding: 20px;
     }
     .galeria img {
-      width: 400px; max-width: 90vw;
+      width: 400px;
+      max-width: 90vw;
       border-radius: 15px;
       box-shadow: 0 0 10px #aaa;
-      transition: transform 0.3s ease;
-      cursor: pointer;
-    }
-    .galeria img:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 15px #e60073;
     }
     .coracao {
       position: fixed;
@@ -68,8 +56,6 @@
       font-size: 24px;
       animation: cair 6s linear infinite;
       color: #ff4d6d;
-      user-select: none;
-      pointer-events: none;
     }
     @keyframes cair {
       0% { transform: translateY(0) rotate(0deg); opacity: 1; }
@@ -79,15 +65,13 @@
       background-color: #ff416c;
       color: white;
       border: none;
-      padding: 20px 50px;
+      padding: 16px 36px;
       margin: 12px;
       font-size: 22px;
       border-radius: 12px;
       cursor: pointer;
       box-shadow: 0 6px #cc3451;
       transition: background-color 0.3s, transform 0.2s;
-      font-family: 'Nocaut', sans-serif;
-      user-select: none;
     }
     button:hover {
       background-color: #ff1e50;
@@ -103,8 +87,6 @@
       opacity: 0;
       transform: translateY(20px);
       transition: opacity 0.6s ease, transform 0.6s ease;
-      font-family: 'Romantic', cursive;
-      color: #d03b6a;
     }
     #mensagem.show {
       opacity: 1;
@@ -115,7 +97,7 @@
       bottom: 20px;
       right: 20px;
       padding: 10px 15px;
-      font-size: 18px;
+      font-size: 16px;
       border-radius: 8px;
       border: none;
       background: #ff416c;
@@ -123,107 +105,12 @@
       cursor: pointer;
       box-shadow: 0 4px #cc3451;
       z-index: 1000;
-      user-select: none;
-      font-family: 'Nocaut', sans-serif;
-    }
-    #linhaDoTempo {
-      max-width: 800px;
-      margin: 20px auto 40px;
-      text-align: left;
-      font-family: 'Beauty', cursive;
-      color: #a30052;
-      background: #ffe4e1aa;
-      border-radius: 15px;
-      padding: 15px 30px;
-      box-shadow: 0 0 10px #ff99b3;
-    }
-    #linhaDoTempo h2 {
-      text-align: center;
-      font-family: 'Nocaut', sans-serif;
-      font-size: 2em;
-      margin-bottom: 15px;
-      color: #e60073;
-    }
-    .evento {
-      margin: 15px 0;
-      padding: 10px;
-      border-left: 5px solid #ff416c;
-      cursor: pointer;
-      transition: background-color 0.3s;
-    }
-    .evento:hover {
-      background-color: #ffcee3;
-    }
-    .descricaoEvento {
-      margin-top: 5px;
-      font-size: 1em;
-      font-family: 'Romantic', cursive;
-      color: #b3346c;
-      display: none;
-    }
-    #poema {
-      max-width: 700px;
-      margin: 40px auto;
-      font-family: 'Romantic', cursive;
-      font-size: 1.5em;
-      line-height: 1.6em;
-      color: #cc3366;
-      background: #ffe4e1aa;
-      padding: 20px 30px;
-      border-radius: 15px;
-      box-shadow: 0 0 15px #ff99b3;
-      user-select: none;
-    }
-    /* Mini jogo do amor */
-    #miniJogo {
-      max-width: 700px;
-      margin: 40px auto 80px;
-      background: #fff0f5cc;
-      padding: 25px 30px;
-      border-radius: 20px;
-      box-shadow: 0 0 15px #ff416c;
-      font-family: 'Beauty', cursive;
-      color: #a30052;
-    }
-    #miniJogo h2 {
-      font-family: 'Nocaut', sans-serif;
-      font-size: 2em;
-      margin-bottom: 15px;
-      color: #e60073;
-    }
-    .pergunta {
-      margin: 20px 0 10px;
-      font-weight: bold;
-      font-size: 1.2em;
-    }
-    .opcoes button {
-      margin: 8px 8px 0 0;
-      padding: 10px 20px;
-      font-size: 16px;
-      border-radius: 10px;
-      border: 2px solid #ff416c;
-      background: white;
-      color: #e60073;
-      cursor: pointer;
-      transition: background-color 0.3s, color 0.3s;
-      user-select: none;
-    }
-    .opcoes button:hover {
-      background-color: #ff416c;
-      color: white;
-    }
-    #resultadoMiniJogo {
-      margin-top: 25px;
-      font-size: 1.3em;
-      color: #d03b6a;
-      font-family: 'Romantic', cursive;
-      min-height: 50px;
-      user-select: none;
     }
   </style>
 </head>
 <body>
   <h1>Feliz dia dos namorados, meu Levi💗</h1>
+
   <div id="contador">Carregando tempo...</div>
 
   <div id="mensagemInicial">
@@ -235,78 +122,28 @@
     viveremos e nos teremos juntos até Jesus voltar.🤍
   </div>
 
-  <div class="galeria" id="galeria">
+  <div class="galeria">
     <img src="imagens/foto1.jpg" alt="Foto 1">
     <img src="imagens/foto2.jpg" alt="Foto 2">
     <img src="imagens/foto3.jpg" alt="Foto 3">
     <img src="imagens/foto4.jpg" alt="Foto 4">
     <img src="imagens/foto5.jpg" alt="Foto 5">
     <img src="imagens/foto6.jpg" alt="Foto 6">
-    <img src="imagens/foto7.jpg" alt="Foto 7">
+    <img src="imagens/foto7.jpg" alt="Foto 7">   
     <img src="imagens/foto8.jpg" alt="Foto 8">
     <img src="imagens/foto9.jpg" alt="Foto 9">
-    <img src="imagens/foto10.jpg" alt="Foto 10">
-    <img src="imagens/foto11.jpg" alt="Foto 11">
+    <img src="imagens/foto10.jpg" alt="Foto 10">     
+    <img src="imagens/foto11.jpg" alt="Foto 11"> 
     <img src="imagens/foto12.jpg" alt="Foto 12">
     <img src="imagens/foto13.jpg" alt="Foto 13">
     <img src="imagens/foto14.jpg" alt="Foto 14">
   </div>
 
-  <div style="margin: 40px 0;">
-    <button onclick="mostrarMensagem('Você é a razão do meu sorriso todos os dias ❤️')">Declaração 1</button>
-    <button onclick="mostrarMensagem('Meu coração bate mais forte só de pensar em você 💖')">Declaração 2</button>
-    <button onclick="mostrarMensagem('Com você, encontrei o meu para sempre 💞')">Declaração 3</button>
-  </div>
+  <button onclick="mostrarMensagem('Você é a razão do meu sorriso todos os dias ❤️')">Declaração 1</button>
+  <button onclick="mostrarMensagem('Meu coração bate mais forte só de pensar em você 💖')">Declaração 2</button>
+  <button onclick="mostrarMensagem('Com você, encontrei o meu para sempre 💞')">Declaração 3</button>
 
   <div id="mensagem"></div>
-
-  <section id="linhaDoTempo">
-    <h2>Nossos Momentos Inesquecíveis</h2>
-    <div class="evento" onclick="toggleDescricao('desc1')">
-      <strong>11/08/2024:</strong> Primeiro Beijo
-      <div class="descricaoEvento" id="desc1">Foi mágico, nosso primeiro beijo selou nosso amor para sempre. 💋</div>
-    </div>
-    <div class="evento" onclick="toggleDescricao('desc2')">
-      <strong>18/01/2025:</strong> Primeiro Date
-      <div class="descricaoEvento" id="desc2">Nosso primeiro encontro, cheio de sorrisos e borboletas no estômago. 🥰</div>
-    </div>
-    <div class="evento" onclick="toggleDescricao('desc3')">
-      <strong>01/02/2025:</strong> Pedido de Namoro Oficial
-      <div class="descricaoEvento" id="desc3">O dia que comecei oficialmente a chamar você de meu amor. 💍</div>
-    </div>
-    <div class="evento" onclick="toggleDescricao('desc4')">
-      <strong>02/03/2025:</strong> Primeira Viagem ao Sítio com a Família
-      <div class="descricaoEvento" id="desc4">Momentos incríveis e muita diversão na natureza com sua família. 🌳🌞</div>
-    </div>
-    <div class="evento" onclick="toggleDescricao('desc5')">
-      <strong>01/04/2025:</strong> Entrega das Alianças
-      <div class="descricaoEvento" id="desc5">O símbolo da nossa união e compromisso eterno. 💞</div>
-    </div>
-  </section>
-
-  <section id="poema">
-    <p>Meu amor, estrela que guia meu coração,<br>
-    Em teus braços encontro a mais doce canção.<br>
-    Cada olhar, um universo em expansão,<br>
-    Contigo, vivi a mais linda emoção.<br><br>
-
-    Nos caminhos que a vida traçou para nós,<br>
-    És o abrigo que conforta a minha voz.<br>
-    E mesmo quando a distância insiste em ficar,<br>
-    Sei que o amor nos faz sempre se encontrar.<br><br>
-
-    Que sejamos sempre um só caminho a andar,<br>
-    Um sonho real a se eternizar.<br>
-    Meu Levi, contigo quero caminhar,<br>
-    Hoje, sempre, para todo o sempre amar.</p>
-  </section>
-
-  <section id="miniJogo">
-    <h2>Mini Jogo do Amor ❤️</h2>
-    <div id="perguntaAtual"></div>
-    <div class="opcoes" id="opcoes"></div>
-    <div id="resultadoMiniJogo"></div>
-  </section>
 
   <audio id="musicaFundo" autoplay loop>
     <source src="audio/all_of_me.mp3" type="audio/mpeg">
@@ -315,22 +152,34 @@
   <button id="btnSom" onclick="toggleSom()">🔈 Pausar Música</button>
 
   <script>
-    // Contador do tempo juntos
-    const inicio = new Date("2025-02-01T00:00:00");
-    function atualizarContador() {
-      const agora = new Date();
-      const diff = agora - inicio;
-      const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const horas = Math.floor((diff / (1000 * 60 * 60)) % 24);
-      const minutos = Math.floor((diff / (1000 * 60)) % 60);
-      const segundos = Math.floor((diff / 1000) % 60);
-      document.getElementById("contador").textContent =
-        `Estamos juntos há: ${dias} dias, ${horas}h ${minutos}min ${segundos}s`;
-    }
-    setInterval(atualizarContador, 1000);
-    atualizarContador();
+    // Atualiza contador desde o início do namoro
+    document.addEventListener("DOMContentLoaded", function () {
+      const inicio = new Date("2025-02-01T00:00:00");
+      const contador = document.getElementById("contador");
 
-    // Corações caindo animados
+      function atualizarContador() {
+        const agora = new Date();
+        const diff = agora - inicio;
+
+        if (diff < 0) {
+          contador.textContent = "Ainda não começamos a contar o tempo!";
+          return;
+        }
+
+        const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const horas = Math.floor((diff / (1000 * 60 * 60)) % 24);
+        const minutos = Math.floor((diff / (1000 * 60)) % 60);
+        const segundos = Math.floor((diff / 1000) % 60);
+
+        contador.textContent =
+          `Estamos juntos há: ${dias} dias, ${horas}h ${minutos}min ${segundos}s`;
+      }
+
+      atualizarContador();
+      setInterval(atualizarContador, 1000);
+    });
+
+    // Corações caindo
     function criarCoracao() {
       const coracao = document.createElement("div");
       coracao.className = "coracao";
@@ -341,26 +190,16 @@
     }
     setInterval(criarCoracao, 400);
 
-    // Mostrar mensagens declarações
+    // Declarações interativas
     function mostrarMensagem(texto) {
       const divMensagem = document.getElementById('mensagem');
       divMensagem.classList.remove('show');
-      void divMensagem.offsetWidth;
+      void divMensagem.offsetWidth; 
       divMensagem.textContent = texto;
       divMensagem.classList.add('show');
     }
 
-    // Toggle descrição das datas importantes
-    function toggleDescricao(id) {
-      const desc = document.getElementById(id);
-      if (desc.style.display === "block") {
-        desc.style.display = "none";
-      } else {
-        desc.style.display = "block";
-      }
-    }
-
-    // Botão ligar/desligar música
+    // Música de fundo
     const musica = document.getElementById('musicaFundo');
     const btnSom = document.getElementById('btnSom');
     function toggleSom() {
@@ -372,77 +211,6 @@
         btnSom.textContent = '🔇 Tocar Música';
       }
     }
-
-    // Mini jogo do amor
-    const perguntas = [
-      {
-        pergunta: "Qual é a cor favorita do Levi?",
-        opcoes: ["Azul", "Vermelho", "Verde", "Rosa"],
-        resposta: 3
-      },
-      {
-        pergunta: "Onde tivemos nosso primeiro encontro?",
-        opcoes: ["No parque", "No cinema", "Na cafeteria", "Na praia"],
-        resposta: 2
-      },
-      {
-        pergunta: "Qual é a música que tocava no nosso pedido de namoro?",
-        opcoes: ["All of Me", "Perfect", "A Thousand Years", "Thinking Out Loud"],
-        resposta: 0
-      },
-      {
-        pergunta: "Qual foi o presente do primeiro aniversário juntos?",
-        opcoes: ["Flores", "Joia", "Livro", "Cartão"],
-        resposta: 1
-      },
-      {
-        pergunta: "Qual o nome do seu bichinho de estimação?",
-        opcoes: ["Levi", "Mimi", "Lulu", "Toto"],
-        resposta: 1
-      }
-    ];
-
-    let indicePergunta = 0;
-    let acertos = 0;
-
-    const perguntaAtual = document.getElementById('perguntaAtual');
-    const opcoesDiv = document.getElementById('opcoes');
-    const resultadoDiv = document.getElementById('resultadoMiniJogo');
-
-    function mostrarPergunta() {
-      if(indicePergunta >= perguntas.length){
-        resultadoDiv.textContent = `Jogo terminado! Você acertou ${acertos} de ${perguntas.length} perguntas. Te amo! 💖`;
-        perguntaAtual.textContent = "";
-        opcoesDiv.innerHTML = "";
-        return;
-      }
-      resultadoDiv.textContent = "";
-      const p = perguntas[indicePergunta];
-      perguntaAtual.textContent = p.pergunta;
-      opcoesDiv.innerHTML = "";
-      p.opcoes.forEach((opcao, i) => {
-        const btn = document.createElement('button');
-        btn.textContent = opcao;
-        btn.onclick = () => responder(i);
-        opcoesDiv.appendChild(btn);
-      });
-    }
-
-    function responder(i) {
-      if(i === perguntas[indicePergunta].resposta){
-        acertos++;
-        mostrarMensagem('Resposta correta! ❤️');
-      } else {
-        mostrarMensagem('Resposta errada, mas te amo mesmo assim! 💕');
-      }
-      indicePergunta++;
-      setTimeout(() => {
-        mostrarMensagem('');
-        mostrarPergunta();
-      }, 1500);
-    }
-
-    mostrarPergunta();
   </script>
 </body>
-</html
+</html>
