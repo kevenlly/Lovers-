@@ -1,334 +1,172 @@
 <!DOCTYPE html><html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nosso Amor💖</title>
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Roboto&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nosso Amor</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
       font-family: 'Roboto', sans-serif;
-      background: linear-gradient(to bottom right, #ffe0e9, #fff5f8);
-      color: #6d214f;
+      background: linear-gradient(to bottom, #ffdce0, #fff0f5);
+      color: #4a0033;
+      overflow-x: hidden;
     }
     header {
       text-align: center;
-      padding: 2rem 1rem 0.5rem;
-    }
-    header h1 {
+      padding: 2rem;
       font-family: 'Great Vibes', cursive;
       font-size: 3rem;
+      color: #d6336c;
     }
-    .contador-container {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 2rem;
-      margin: 1rem;
-    }
-    .contador {
-      background-color: #fff0f5;
-      padding: 1rem 2rem;
-      border-radius: 20px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    }
-    .contador h2 {
-      font-size: 1.2rem;
-      margin-bottom: 0.5rem;
-    }
-    .contador span {
-      font-weight: bold;
-      font-size: 1.5rem;
-    }
-    .fotos {
+    .gallery {
       display: flex;
       overflow-x: auto;
       scroll-snap-type: x mandatory;
+      gap: 1rem;
       padding: 1rem;
     }
-    .foto {
-      flex: 0 0 auto;
-      width: 300px;
-      height: 400px;
-      margin-right: 1rem;
-      position: relative;
-      scroll-snap-align: center;
-      border-radius: 15px;
-      overflow: hidden;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    }
-    .foto img {
+    .gallery img {
       width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.3s ease;
+      max-width: 400px;
+      border-radius: 1rem;
+      scroll-snap-align: center;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      transition: transform 0.3s;
     }
-    .foto:hover img {
+    .gallery img:hover {
       transform: scale(1.05);
     }
-    .mensagem-foto {
-      position: absolute;
-      bottom: 0;
-      background: rgba(255,255,255,0.8);
-      width: 100%;
-      padding: 0.5rem;
+    .caption {
       text-align: center;
-      font-size: 1.2rem;
-      font-family: 'Great Vibes', cursive;
+      font-size: 1.25rem;
+      margin-top: 0.5rem;
     }
-    .datas-especiais {
-      padding: 2rem 1rem;
+    .special-date {
       text-align: center;
+      margin: 2rem auto;
+      max-width: 600px;
+      background: #fff8fb;
+      padding: 1rem;
+      border-radius: 1rem;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     }
-    .datas-especiais h2 {
-      font-family: 'Great Vibes', cursive;
-      font-size: 2rem;
-      margin-bottom: 1rem;
-    }
-    .botao-data {
-      display: inline-block;
-      background: #ffb6c1;
-      color: #fff;
-      padding: 0.8rem 1.2rem;
-      margin: 0.5rem;
-      border: none;
-      border-radius: 25px;
-      cursor: pointer;
+    .special-date button {
+      margin-top: 0.5rem;
+      padding: 0.5rem 1rem;
       font-size: 1rem;
-      transition: background 0.3s ease;
-    }
-    .botao-data:hover {
-      background: #ff4f81;
+      border: none;
+      border-radius: 1rem;
+      background-color: #ff99bb;
+      color: white;
+      cursor: pointer;
     }
     .popup {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(0,0,0,0.6);
       display: none;
-      align-items: center;
-      justify-content: center;
-      z-index: 9999;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: white;
+      padding: 1.5rem;
+      border-radius: 1rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      z-index: 999;
     }
-    .popup-conteudo {
-      background: #fff;
-      padding: 2rem;
-      border-radius: 15px;
-      max-width: 400px;
+    .popup.active {
+      display: block;
+    }
+    .countdown {
       text-align: center;
+      font-size: 1.5rem;
+      margin-top: 2rem;
+      color: #b30059;
     }
-    .popup-conteudo h3 {
-      font-family: 'Great Vibes', cursive;
-      font-size: 1.8rem;
-      margin-bottom: 1rem;
-    }
-    .popup-conteudo p {
-      font-size: 1rem;
-    }
-    .fechar {
-      margin-top: 1rem;
-      background: #ff4f81;
-      color: white;
-      border: none;
+    .audio-control {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      background-color: #ffccdd;
       padding: 0.5rem 1rem;
-      border-radius: 10px;
-      cursor: pointer;
+      border-radius: 1rem;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
     }
   </style>
 </head>
 <body>
-  <audio id="bg-music" src="all_of_me.mp3" autoplay loop>
-  Seu navegador não suporta o áudio.
-</audio>
-
-<script>
-  // Reproduz música após interação do usuário (alguns navegadores bloqueiam autoplay)
-  document.addEventListener("DOMContentLoaded", () => {
-    const audio = document.getElementById("bg-music");
-    document.body.addEventListener("click", () => {
-      audio.play().catch(() => {
-        console.log("Autoplay bloqueado, clique para iniciar o áudio.");
-      });
-    });
-  });
-</script>
-    <h1>Nosso Amor💖</h1>
-  </header>  <section class="contador-container">
-    <div class="contador">
-      <h2>Desde o primeiro beijo (11/08/2024):</h2>
-      <div id="contador1"><span>Calculando...</span></div>
-    </div>
-    <div class="contador">
-      <h2>Desde o pedido de namoro (01/02/2025):</h2>
-      <div id="contador2"><span>Calculando...</span></div>
-    </div>
-  </section>  <section class="fotos">
-    <!-- Fotos e mensagens -->
-    <script>
-      const mensagens = [
-        "Você é meu sorriso diário",
-        "Te amo mais a cada dia",
-        "Com você tudo é mais bonito",
-        "Nosso amor é meu refúgio",
-        "Você ilumina minha vida",
-        "Somos poesia em forma de amor",
-        "Cada momento ao seu lado é mágico",
-        "A melhor parte de mim é você",
-        "Te amar é minha sorte",
-        "Nossa história é meu conto favorito",
-        "Você é meu lar",
-        "Amor eterno em cada olhar",
-        "Te quero para sempre",
-        "Você é meu paraíso"
-      ];
-      for (let i = 1; i <= 14; i++) {
-        document.write(`
-          <div class="foto">
-            <img src="foto${i}.jpg" alt="Foto ${i}">
-            <div class="mensagem-foto">${mensagens[i - 1]}</div>
-          </div>
-        `);
-      }
-    </script>
-  </section>  <section class="datas-especiais">
-    <h2>Nossas Datas Especiais</h2>
-    <button class="botao-data" onclick="mostrarPopup('11/08/2024', 'Primeiro beijo', 'O início do nosso conto de fadas...')">11/08/2024</button>
-    <button class="botao-data" onclick="mostrarPopup('18/01/2025', 'Primeiro date', 'A noite que nossos corações se reconheceram.')">18/01/2025</button>
-    <button class="botao-data" onclick="mostrarPopup('01/02/2025', 'Pedido oficial de namoro', 'Ali começou nosso para sempre.')">01/02/2025</button>
-    <button class="botao-data" onclick="mostrarPopup('02/03/2025', 'Primeira viagem ao sítio', 'Momentos incríveis ao seu lado.')">02/03/2025</button>
-    <button class="botao-data" onclick="mostrarPopup('01/04/2025', 'Entrega das alianças', 'Um elo eterno entre nós.')">01/04/2025</button>
-    <section id="datas-especiais" style="padding: 40px; background-color: #fff0f5;">
-  <h2 style="text-align: center; color: #c2185b; font-size: 32px;">📅 Nossas Datas Especiais</h2>
-  <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; margin-top: 30px;">
-    
-    <!-- Exemplo: 11/08/2024 - Primeiro Beijo -->
+  <header>Nosso Amor</header>  <div class="gallery">
+    <!-- Fotos com frases -->
     <div>
-      <button onclick="mostrarDeclaracao('beijo')" class="data-btn">💋 11/08/2024 - Primeiro Beijo</button>
+      <img src="foto1.jpg" alt="foto1" onclick="showPopup('Cada momento com você é mágico 💖')">
+      <div class="caption">Cada momento com você é mágico 💖</div>
     </div>
-
-    <!-- 18/01/2025 - Primeiro Date -->
     <div>
-      <button onclick="mostrarDeclaracao('date')" class="data-btn">🍷 18/01/2025 - Primeiro Date</button>
+      <img src="foto2.jpg" alt="foto2" onclick="showPopup('Seu sorriso ilumina minha vida 🌟')">
+      <div class="caption">Seu sorriso ilumina minha vida 🌟</div>
     </div>
-
-    <!-- 01/02/2025 - Pedido de Namoro -->
-    <div>
-      <button onclick="mostrarDeclaracao('namoro')" class="data-btn">💍 01/02/2025 - Pedido de Namoro</button>
-    </div>
-
-    <!-- 02/03/2025 - Viagem ao sítio -->
-    <div>
-      <button onclick="mostrarDeclaracao('viagem')" class="data-btn">🏞️ 02/03/2025 - Viagem ao Sítio</button>
-    </div>
-
-    <!-- 01/04/2025 - Entrega das Alianças -->
-    <div>
-      <button onclick="mostrarDeclaracao('aliancas')" class="data-btn">🔗 01/04/2025 - Alianças</button>
-    </div>
+    <!-- Adicione até foto14.jpg seguindo o mesmo padrão -->
+  </div>  <!-- Datas Especiais -->  <div class="special-date">
+    <h2>11/08/2024 - Nosso Primeiro Beijo</h2>
+    <button onclick="showPopup('Jamais esquecerei aquele momento em que nossos lábios se tocaram pela primeira vez. 💋')">Ver declaração</button>
   </div>
-</section>
-
-<style>
-  .data-btn {
-    background-color: #ff4081;
-    color: white;
-    border: none;
-    padding: 14px 22px;
-    border-radius: 10px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: transform 0.2s, background-color 0.3s;
-  }
-
-  .data-btn:hover {
-    transform: scale(1.05);
-    background-color: #f06292;
-  }
-</style>
-
-<script>
-  function mostrarDeclaracao(tipo) {
-    let mensagem = "";
-    let poema = "";
-
-    switch(tipo) {
-      case 'beijo':
-        mensagem = "Nosso primeiro beijo foi o início de uma linda jornada.";
-        poema = "Entre sorrisos e olhares,\nTeu beijo mudou meu mundo.\nFoi o começo do sempre.";
-        break;
-      case 'date':
-        mensagem = "Nosso primeiro encontro foi mágico. Tudo fez sentido ao seu lado.";
-        poema = "Na mesa, dois corações,\nConversas e risos soltos.\nMe encantei ainda mais.";
-        break;
-      case 'namoro':
-        mensagem = "O pedido mais lindo que recebi. O sim mais doce que disse.";
-        poema = "Com um 'sim' começou tudo,\nPromessa, afeto e carinho.\nNosso amor floresceu.";
-        break;
-      case 'viagem':
-        mensagem = "Foi uma viagem simples, mas cheia de amor e companheirismo.";
-        poema = "No campo, tua mão na minha,\nSorrisos sob o céu limpo.\nMomentos que não se esquecem.";
-        break;
-      case 'aliancas':
-        mensagem = "Nossas alianças selaram o compromisso mais bonito.";
-        poema = "Dois anéis, um só destino,\nEntrelaçados pra sempre.\nNosso amor eterno.";
-        break;
+  <div class="special-date">
+    <h2>18/01/2025 - Nosso Primeiro Encontro</h2>
+    <button onclick="showPopup('Foi nesse dia que eu percebi que meu coração tinha encontrado o lar. 💘')">Ver declaração</button>
+  </div>
+  <div class="special-date">
+    <h2>01/02/2025 - Pedido de Namoro</h2>
+    <button onclick="showPopup('Dizer sim foi o começo da nossa linda história de amor. 💍')">Ver declaração</button>
+  </div>
+  <div class="special-date">
+    <h2>02/03/2025 - Viagem ao Sítio</h2>
+    <button onclick="showPopup('Compartilhar essa viagem com você foi como viver um sonho. 🏞️')">Ver declaração</button>
+  </div>
+  <div class="special-date">
+    <h2>01/04/2025 - Entrega das Alianças</h2>
+    <button onclick="showPopup('Prometemos amor eterno com as alianças, e meu coração é seu para sempre. 💑')">Ver declaração</button>
+  </div>  <!-- Contadores -->  <div class="countdown" id="counter1"></div>
+  <div class="countdown" id="counter2"></div>  <!-- Música -->  <div class="audio-control">
+    <button onclick="toggleMusic()">Tocar/Pausar Música</button>
+  </div>
+  <audio id="bgMusic" loop>
+    <source src="all_of_me.mp3" type="audio/mpeg">
+    Seu navegador não suporta áudio.
+  </audio>  <!-- Pop-up -->  <div class="popup" id="popup"></div>  <script>
+    function showPopup(message) {
+      const popup = document.getElementById('popup');
+      popup.innerHTML = `<p>${message}</p><br><button onclick=\"popup.classList.remove('active')\">Fechar</button>`;
+      popup.classList.add('active');
     }
 
-    alert(`${mensagem}\n\n🌹 Poema:\n${poema}`);
-  }
-</script>
-  </section>  <div class="popup" id="popup">
-    <div class="popup-conteudo">
-      <h3 id="tituloPopup"></h3>
-      <p id="mensagemPopup"></p>
-      <button class="fechar" onclick="fecharPopup()">Fechar</button>
-    </div>
-  </div>  <script>
-    function atualizarContador(id, data) {
-      const destino = new Date(data);
-      setInterval(() => {
-        const agora = new Date();
-        const diferenca = agora - destino;
-        const dias = Math.floor(diferenca / (1000 * 60 * 60 * 24));
-        const horas = Math.floor((diferenca / (1000 * 60 * 60)) % 24);
-        const minutos = Math.floor((diferenca / (1000 * 60)) % 60);
-        const segundos = Math.floor((diferenca / 1000) % 60);
-        document.getElementById(id).innerHTML = `<span>${dias}d ${horas}h ${minutos}m ${segundos}s</span>`;
-      }, 1000);
+    function toggleMusic() {
+      const music = document.getElementById("bgMusic");
+      if (music.paused) {
+        music.play();
+      } else {
+        music.pause();
+      }
     }
-    atualizarContador("contador1", "2024-08-11T00:00:00");
-    atualizarContador("contador2", "2025-02-01T00:00:00");
 
-    function mostrarPopup(data, titulo, mensagem) {
-      document.getElementById("tituloPopup").textContent = `${surpresa} - ${12/06/2025}`;
-      document.getElementById("mensagemPopup").textContent = mensagem; "Não esqueça nunca do meu amor por você, obrigada por me fazer feliz.";
-      document.getElementById("popup").style.display = "flex";
+    function updateCountdowns() {
+      const format = (ms) => {
+        const d = Math.floor(ms / (1000 * 60 * 60 * 24));
+        const h = Math.floor((ms / (1000 * 60 * 60)) % 24);
+        const m = Math.floor((ms / (1000 * 60)) % 60);
+        const s = Math.floor((ms / 1000) % 60);
+        return `${d} dias, ${h}h, ${m}m, ${s}s`;
+      }
+
+      const date1 = new Date("2024-08-11T00:00:00");
+      const date2 = new Date("2025-02-01T00:00:00");
+      const now = new Date();
+
+      const el1 = document.getElementById("counter1");
+      const el2 = document.getElementById("counter2");
+      el1.textContent = `Desde o primeiro beijo: ${format(now - date1)}`;
+      el2.textContent = `Desde o início do namoro: ${format(now - date2)}`;
     }
-    function fecharPopup() {
-      document.getElementById("popup").style.display = "none";
-    }
+
+    setInterval(updateCountdowns, 1000);
   </script></body>
-  <!-- Botão para iniciar música -->
-<div id="music-control" style="position: fixed; top: 20px; left: 50%; transform: translateX(-50%); z-index: 9999;">
-  <button onclick="startMusic()" style="background-color: #ff4d6d; color: white; font-size: 18px; padding: 10px 20px; border: none; border-radius: 8px; cursor: pointer;">
-    🎵 Tocar Música
-  </button>
-</div>
-
-<!-- Música de fundo -->
-<audio id="bg-music" src="all_of_me.mp3" loop></audio>
-
-<script>
-  function startMusic() {
-    const music = document.getElementById("bg-music");
-    music.play().then(() => {
-      document.getElementById("music-control").style.display = "none";
-    }).catch((err) => {
-      alert("Clique novamente para permitir o áudio.");
-      console.log(err);
-    });
-  }
-</script>
 </html>
