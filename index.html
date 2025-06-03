@@ -36,7 +36,7 @@ h1 {
   max-width: 800px;
   margin: 10px auto 30px;
   padding: 0 20px;
-  font-size: 1.3em;
+  font-size: 1.6em;
 }
 
 .foto-container {
@@ -55,10 +55,11 @@ h1 {
   opacity: 0;
   transform: translateY(30px);
   animation: aparecer 1s ease forwards;
+  cursor: pointer;
 }
 
 .frase-foto {
-  font-size: 1.2em;
+  font-size: 2em;
   color: #b30059;
   margin-top: 10px;
   font-family: 'Beauty', cursive;
@@ -75,7 +76,7 @@ h1 {
 
 .data {
   margin: 20px 0;
-  font-size: 1.4em;
+  font-size: 1.6em;
   font-weight: bold;
   color: #a0004d;
   cursor: pointer;
@@ -97,7 +98,7 @@ h1 {
   color: white;
   border: none;
   padding: 20px 40px;
-  font-size: 24px;
+  font-size: 28px;
   font-family: 'Nocaut', sans-serif;
   border-radius: 15px;
   cursor: pointer;
@@ -115,7 +116,7 @@ h1 {
 
 .mensagem-botao {
   margin-top: 10px;
-  font-size: 1.3em;
+  font-size: 1.8em;
   color: #b30059;
 }
 
@@ -126,7 +127,7 @@ h1 {
   background: #fff0f5;
   border: 2px dashed #ff80aa;
   border-radius: 20px;
-  font-size: 1.5em;
+  font-size: 1.7em;
   font-family: 'Beauty', cursive;
   color: #a0004d;
   line-height: 1.6;
@@ -134,7 +135,7 @@ h1 {
 
 #mensagem {
   margin-top: 30px;
-  font-size: 1.6em;
+  font-size: 2.4em;
   color: #b30059;
   min-height: 70px;
   transition: opacity 0.6s ease;
@@ -172,27 +173,23 @@ h1 {
   <h1>Feliz Dia dos Namorados, meu Levi 💗</h1>
   <div id="contador">Carregando tempo...</div>
   <div id="mensagemInicial">
-    Marcos Levi, eu te desejo feliz dia dos namorados!🤍 Obrigada por ter entrado na minha vida,
-    sou extremamente grata a Deus por ter feito nossos caminhos colidirem, obrigada por ser essa pessoa incrível
-    do sorriso mais encantador, obrigada por me fazer feliz e me completar.
-    Eu quero construir um futuro junto com você meu amor, quero te fazer feliz, quero casar com você
-    e formar nossa futura família!🥹🤍 Eu te quero comigo sempre e EU AMO VOCÊ IMENSAMENTE,
+    Marcos Levi, eu te desejo feliz dia dos namorados!... EU AMO VOCÊ IMENSAMENTE,
     viveremos e nos teremos juntos até Jesus voltar.🤍
-  </div>  <!-- Datas importantes com mensagens -->  <div class="data" onclick="mostrarMensagem('💋 Nosso primeiro beijo foi mágico e mudou tudo entre nós.')">📅 11/08/2024 – Primeiro Beijo</div>
-  <div class="data" onclick="mostrarMensagem('🍝 Nosso primeiro date foi especial, o começo de muitos momentos.')">📅 18/01/2025 – Primeiro Date</div>
-  <div class="data" onclick="mostrarMensagem('💍 O dia em que nos entregamos ao amor oficialmente.')">📅 01/02/2025 – Pedido de Namoro</div>
-  <div class="data" onclick="mostrarMensagem('🏡 Nossa primeira viagem juntos foi inesquecível.')">📅 02/03/2025 – Viagem ao Sítio</div>
-  <div class="data" onclick="mostrarMensagem('💖 Quando trocamos alianças e selamos nosso compromisso.')">📅 01/04/2025 – Alianças</div>  <!-- Botão interativo antes das fotos -->  <div class="interativo">
+  </div>  <!-- Datas importantes com mensagens -->  <div class="data" onclick="mostrarMensagem('💋 Nosso primeiro beijo foi mágico...')">📅 11/08/2024 – Primeiro Beijo</div>
+  <div class="data" onclick="mostrarMensagem('🍝 Nosso primeiro date foi especial...')">📅 18/01/2025 – Primeiro Date</div>
+  <div class="data" onclick="mostrarMensagem('💍 O dia em que nos entregamos...')">📅 01/02/2025 – Pedido de Namoro</div>
+  <div class="data" onclick="mostrarMensagem('🏡 Nossa primeira viagem juntos...')">📅 02/03/2025 – Viagem ao Sítio</div>
+  <div class="data" onclick="mostrarMensagem('💖 Quando trocamos alianças...')">📅 01/04/2025 – Alianças</div>  <!-- Botões interativos ao longo da página -->  <div class="interativo">
     <button onclick="mostrarMensagem('Você é tudo que eu sempre quis e mais.')">💬 Declaração 1</button>
     <div class="mensagem-botao">Você é tudo que eu sempre quis e mais.</div>
-  </div>  <div class="foto-container" id="galeria"></div>  <!-- Poema no meio -->  <div id="poema">
+  </div>  <div class="foto-container" id="galeria"></div>  <div class="interativo">
+    <button onclick="mostrarMensagem('Você transforma a minha vida todos os dias.')">💘 Declaração 2</button>
+    <div class="mensagem-botao">Você transforma a minha vida todos os dias.</div>
+  </div>  <div id="poema">
     Te amo no silêncio, no riso, no instante.<br>
     Te amo no tempo, no toque, no sempre.<br>
     Te amo nas flores, na noite, no vento.<br>
     Te amo na alma, em cada pensamento. 💌
-  </div>  <!-- Botões após o poema -->  <div class="interativo">
-    <button onclick="mostrarMensagem('Você transforma a minha vida todos os dias.')">💘 Declaração 2</button>
-    <div class="mensagem-botao">Você transforma a minha vida todos os dias.</div>
   </div>  <div class="interativo">
     <button onclick="mostrarMensagem('Com você, encontrei o amor verdadeiro.')">💖 Declaração 3</button>
     <div class="mensagem-botao">Com você, encontrei o amor verdadeiro.</div>
@@ -202,7 +199,7 @@ h1 {
   </audio>
   <button id="btnSom" onclick="toggleSom()">🔈 Pausar Música</button>
   <div id="mensagem"></div>  <script>
-    const frases = [
+    const frases = [...Array(14)].map((_, i) => [
       "Cada momento ao seu lado é um presente.",
       "Seu sorriso ilumina meus dias.",
       "Te abraçar é meu lugar favorito.",
@@ -217,7 +214,7 @@ h1 {
       "O amor da minha vida tem o seu nome.",
       "Quero você em todas as minhas manhãs.",
       "A melhor parte da vida é te ter comigo."
-    ];
+    ][i]);
 
     const galeria = document.getElementById("galeria");
     frases.forEach((frase, i) => {
@@ -234,7 +231,10 @@ h1 {
       galeria.appendChild(img);
       galeria.appendChild(divFrase);
 
+      img.addEventListener("click", () => mostrarMensagem(frase));
       img.addEventListener("load", () => criarCoracao(img));
+
+      setTimeout(() => mostrarMensagem(frase), i * 1000);
     });
 
     function criarCoracao(el) {
@@ -278,5 +278,106 @@ h1 {
         btnSom.textContent = '🔇 Tocar Música';
       }
     }
+
+    <!-- Botão para abrir o mini jogo do amor -->
+<div class="interativo">
+  <button onclick="abrirJogo()">🎮 Mini Jogo do Amor</button>
+</div>
+
+<!-- Modal do jogo -->
+<div id="jogoModal" style="display:none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(255, 228, 237, 0.95); z-index: 2000; align-items: center; justify-content: center;">
+  <div style="background: #fff0f5; padding: 30px; border-radius: 20px; box-shadow: 0 0 20px rgba(0,0,0,0.3); max-width: 600px; text-align: center;">
+    <h2 style="font-family: 'Nocaut', sans-serif; color: #e60073;">💞 Encontre os Pares do Amor</h2>
+    <div id="tabuleiro" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 20px;"></div>
+    <button onclick="fecharJogo()" style="margin-top: 20px; padding: 10px 20px; background-color: #ff416c; color: white; border: none; border-radius: 10px; font-size: 16px;">❌ Fechar</button>
+  </div>
+</div>
+
+<script>
+  const mensagens = [
+    "Te amo 💘", "Seu sorriso 💫", "Abraço bom 🤗", "Nosso futuro 💍",
+    "Te amo 💘", "Seu sorriso 💫", "Abraço bom 🤗", "Nosso futuro 💍"
+  ];
+
+  let cartasViradas = [];
+  let cartasBloqueadas = [];
+
+  function embaralhar(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+  }
+
+  function abrirJogo() {
+    document.getElementById('jogoModal').style.display = 'flex';
+    iniciarJogo();
+  }
+
+  function fecharJogo() {
+    document.getElementById('jogoModal').style.display = 'none';
+  }
+
+  function iniciarJogo() {
+    const embaralhadas = embaralhar([...mensagens]);
+    const tabuleiro = document.getElementById("tabuleiro");
+    tabuleiro.innerHTML = "";
+    cartasViradas = [];
+    cartasBloqueadas = [];
+
+    embaralhadas.forEach((texto, i) => {
+      const carta = document.createElement("div");
+      carta.className = "carta";
+      carta.style.background = "#ffb6c1";
+      carta.style.borderRadius = "12px";
+      carta.style.height = "80px";
+      carta.style.display = "flex";
+      carta.style.justifyContent = "center";
+      carta.style.alignItems = "center";
+      carta.style.fontSize = "1.2em";
+      carta.style.fontFamily = "'Beauty', cursive";
+      carta.style.cursor = "pointer";
+      carta.style.transition = "transform 0.3s";
+      carta.dataset.texto = texto;
+      carta.dataset.index = i;
+      carta.textContent = "❓";
+
+      carta.onclick = () => virarCarta(carta);
+
+      tabuleiro.appendChild(carta);
+    });
+  }
+
+  function virarCarta(carta) {
+    if (cartasViradas.length >= 2 || carta.textContent !== "❓" || cartasBloqueadas.includes(carta.dataset.index)) {
+      return;
+    }
+
+    carta.textContent = carta.dataset.texto;
+    cartasViradas.push(carta);
+
+    if (cartasViradas.length === 2) {
+      const [c1, c2] = cartasViradas;
+      if (c1.dataset.texto === c2.dataset.texto) {
+        cartasBloqueadas.push(c1.dataset.index, c2.dataset.index);
+        cartasViradas = [];
+
+        if (cartasBloqueadas.length === mensagens.length) {
+          setTimeout(() => {
+            alert("🎉 Você encontrou todos os pares do amor! 💖");
+            fecharJogo();
+          }, 500);
+        }
+      } else {
+        setTimeout(() => {
+          c1.textContent = "❓";
+          c2.textContent = "❓";
+          cartasViradas = [];
+        }, 1000);
+      }
+    }
+  }
+</script>
   </script></body>
 </html>
