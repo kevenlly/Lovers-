@@ -1,220 +1,221 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
+<!DOCTYPE html><html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Nosso Amor</title>
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Roboto&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
-      font-family: 'Quicksand', sans-serif;
-      background: linear-gradient(#ffe6f0, #fff0f5);
-      color: #5a2a5f;
-      overflow-x: hidden;
+      font-family: 'Roboto', sans-serif;
+      background: linear-gradient(to bottom right, #ffe0e9, #fff5f8);
+      color: #6d214f;
     }
-
     header {
       text-align: center;
-      padding: 2rem;
+      padding: 2rem 1rem 0.5rem;
     }
-
-    h1 {
+    header h1 {
       font-family: 'Great Vibes', cursive;
       font-size: 3rem;
-      margin-bottom: 1rem;
     }
-
+    .contador-container {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 2rem;
+      margin: 1rem;
+    }
     .contador {
+      background-color: #fff0f5;
+      padding: 1rem 2rem;
+      border-radius: 20px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    .contador h2 {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+    .contador span {
+      font-weight: bold;
       font-size: 1.5rem;
     }
-
-    .galeria {
+    .fotos {
       display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      margin: 2rem 0;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      padding: 1rem;
     }
-
     .foto {
+      flex: 0 0 auto;
+      width: 300px;
+      height: 400px;
+      margin-right: 1rem;
       position: relative;
-      margin: 10px;
-      cursor: pointer;
-      transition: transform 0.3s;
+      scroll-snap-align: center;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
     }
-
     .foto img {
-      width: 250px;
-      height: 300px;
+      width: 100%;
+      height: 100%;
       object-fit: cover;
-      border-radius: 12px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      transition: transform 0.3s ease;
     }
-
-    .foto:hover {
+    .foto:hover img {
       transform: scale(1.05);
     }
-
-    .mensagem {
+    .mensagem-foto {
       position: absolute;
       bottom: 0;
-      left: 0;
-      right: 0;
-      background: rgba(255, 255, 255, 0.8);
-      color: #b2005b;
-      padding: 10px;
-      font-size: 1rem;
+      background: rgba(255,255,255,0.8);
+      width: 100%;
+      padding: 0.5rem;
       text-align: center;
-      display: none;
-      border-bottom-left-radius: 12px;
-      border-bottom-right-radius: 12px;
+      font-size: 1.2rem;
+      font-family: 'Great Vibes', cursive;
     }
-
-    .botao {
-      margin: 1rem;
-      padding: 0.7rem 1.5rem;
-      font-size: 1rem;
+    .datas-especiais {
+      padding: 2rem 1rem;
+      text-align: center;
+    }
+    .datas-especiais h2 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+    .botao-data {
+      display: inline-block;
+      background: #ffb6c1;
+      color: #fff;
+      padding: 0.8rem 1.2rem;
+      margin: 0.5rem;
       border: none;
-      border-radius: 30px;
-      background-color: #ff66a3;
-      color: white;
+      border-radius: 25px;
       cursor: pointer;
-      transition: background 0.3s;
+      font-size: 1rem;
+      transition: background 0.3s ease;
     }
-
-    .botao:hover {
-      background-color: #e60073;
+    .botao-data:hover {
+      background: #ff4f81;
     }
-
     .popup {
       position: fixed;
-      top: 20%;
-      left: 50%;
-      transform: translateX(-50%);
-      background: white;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.6);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+    }
+    .popup-conteudo {
+      background: #fff;
       padding: 2rem;
-      border-radius: 20px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.3);
-      display: none;
-      z-index: 999;
-      width: 90%;
-      max-width: 500px;
-    }
-
-    .popup h2 {
-      margin-top: 0;
-      font-family: 'Great Vibes', cursive;
-      color: #b2005b;
-    }
-
-    .datas {
-      margin: 2rem auto;
-      padding: 1rem;
-      background: #fff5fa;
-      max-width: 800px;
       border-radius: 15px;
+      max-width: 400px;
+      text-align: center;
     }
-
-    .data-evento {
-      margin: 1rem 0;
-      padding: 1rem;
-      background: #ffe6f0;
-      border-left: 5px solid #ff66a3;
+    .popup-conteudo h3 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+    }
+    .popup-conteudo p {
+      font-size: 1rem;
+    }
+    .fechar {
+      margin-top: 1rem;
+      background: #ff4f81;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
       border-radius: 10px;
-      animation: fadeIn 1s ease-in-out;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateX(-30px); }
-      to { opacity: 1; transform: translateX(0); }
-    }
-
-    audio {
-      display: none;
+      cursor: pointer;
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>Nosso Amor 💖</h1>
-    <div class="contador" id="contador"></div>
-  </header>
-
-  <section class="galeria">
-    <!-- Fotos e mensagens -->
-    ${[...Array(14)].map((_, i) => `
-      <div class="foto" onclick="mostrarMensagem(${i + 1})">
-        <img src="foto${i + 1}.jpg" alt="Foto ${i + 1}" />
-        <div class="mensagem" id="mensagem${i + 1}">Você é meu tudo ❤️ (Foto ${i + 1})</div>
-      </div>
-    `).join('')}
-  </section>
-
-  <div style="text-align:center;">
-    <button class="botao" onclick="mostrarPopup('decl')">💌 Ver Declaração</button>
-    <button class="botao" onclick="mostrarPopup('poema')">📜 Ler Poema</button>
-  </div>
-
-  <section class="datas">
-    <h2 style="text-align:center; font-family: 'Great Vibes', cursive;">✨ Nossas Datas Especiais ✨</h2>
-    <div class="data-evento"><strong>11/08/2024 - Primeiro beijo:</strong> O momento em que nossos corações se encontraram pela primeira vez 💋</div>
-    <div class="data-evento"><strong>18/01/2025 - Primeiro date:</strong> Um encontro inesquecível que marcou o início do nosso caminho 🌹</div>
-    <div class="data-evento"><strong>01/02/2025 - Pedido oficial de namoro:</strong> Dissemos sim para uma linda jornada a dois 💍</div>
-    <div class="data-evento"><strong>02/03/2025 - Primeira viagem ao sítio:</strong> Descobrimos a beleza de estarmos juntos em qualquer lugar 🏞️</div>
-    <div class="data-evento"><strong>01/04/2025 - Entrega das alianças:</strong> Promessas seladas com carinho e compromisso eterno 💑</div>
-  </section>
-
-  <div class="popup" id="popupDecl">
-    <h2>💖 Minha Declaração 💖</h2>
-    <p>Amor, cada dia ao seu lado é um presente. Seu sorriso ilumina meus dias e sua presença me completa. Te amo infinitamente! 💘</p>
-    <button class="botao" onclick="fecharPopup()">Fechar</button>
-  </div>
-
-  <div class="popup" id="popupPoema">
-    <h2>📜 Poema do Amor 📜</h2>
-    <p>Em teus olhos vejo o mundo,  
-    No teu abraço, meu lugar.  
-    És meu porto mais profundo,  
-    Meu motivo pra sonhar. 🌟</p>
-    <button class="botao" onclick="fecharPopup()">Fechar</button>
-  </div>
-
   <audio autoplay loop>
-    <source src="musica.mp3" type="audio/mpeg">
-    Seu navegador não suporta áudio.
-  </audio>
-
-  <script>
-    function mostrarMensagem(id) {
-      const msg = document.getElementById('mensagem' + id);
-      msg.style.display = msg.style.display === 'block' ? 'none' : 'block';
+    <source src="all_of_me.mp3" type="audio/mpeg">
+  </audio>  <header>
+    <h1>Nosso Amor</h1>
+  </header>  <section class="contador-container">
+    <div class="contador">
+      <h2>Desde o primeiro beijo (11/08/2024):</h2>
+      <div id="contador1"><span>Calculando...</span></div>
+    </div>
+    <div class="contador">
+      <h2>Desde o pedido de namoro (01/02/2025):</h2>
+      <div id="contador2"><span>Calculando...</span></div>
+    </div>
+  </section>  <section class="fotos">
+    <!-- Fotos e mensagens -->
+    <script>
+      const mensagens = [
+        "Você é meu sorriso diário",
+        "Te amo mais a cada dia",
+        "Com você tudo é mais bonito",
+        "Nosso amor é meu refúgio",
+        "Você ilumina minha vida",
+        "Somos poesia em forma de amor",
+        "Cada momento ao seu lado é mágico",
+        "A melhor parte de mim é você",
+        "Te amar é minha sorte",
+        "Nossa história é meu conto favorito",
+        "Você é meu lar",
+        "Amor eterno em cada olhar",
+        "Te quero para sempre",
+        "Você é meu paraíso"
+      ];
+      for (let i = 1; i <= 14; i++) {
+        document.write(`
+          <div class="foto">
+            <img src="foto${i}.jpg" alt="Foto ${i}">
+            <div class="mensagem-foto">${mensagens[i - 1]}</div>
+          </div>
+        `);
+      }
+    </script>
+  </section>  <section class="datas-especiais">
+    <h2>Nossas Datas Especiais</h2>
+    <button class="botao-data" onclick="mostrarPopup('11/08/2024', 'Primeiro beijo', 'O início do nosso conto de fadas...')">11/08/2024</button>
+    <button class="botao-data" onclick="mostrarPopup('18/01/2025', 'Primeiro date', 'A noite que nossos corações se reconheceram.')">18/01/2025</button>
+    <button class="botao-data" onclick="mostrarPopup('01/02/2025', 'Pedido oficial de namoro', 'Ali começou nosso para sempre.')">01/02/2025</button>
+    <button class="botao-data" onclick="mostrarPopup('02/03/2025', 'Primeira viagem ao sítio', 'Momentos incríveis ao seu lado.')">02/03/2025</button>
+    <button class="botao-data" onclick="mostrarPopup('01/04/2025', 'Entrega das alianças', 'Um elo eterno entre nós.')">01/04/2025</button>
+  </section>  <div class="popup" id="popup">
+    <div class="popup-conteudo">
+      <h3 id="tituloPopup"></h3>
+      <p id="mensagemPopup"></p>
+      <button class="fechar" onclick="fecharPopup()">Fechar</button>
+    </div>
+  </div>  <script>
+    function atualizarContador(id, data) {
+      const destino = new Date(data);
+      setInterval(() => {
+        const agora = new Date();
+        const diferenca = agora - destino;
+        const dias = Math.floor(diferenca / (1000 * 60 * 60 * 24));
+        const horas = Math.floor((diferenca / (1000 * 60 * 60)) % 24);
+        const minutos = Math.floor((diferenca / (1000 * 60)) % 60);
+        const segundos = Math.floor((diferenca / 1000) % 60);
+        document.getElementById(id).innerHTML = `<span>${dias}d ${horas}h ${minutos}m ${segundos}s</span>`;
+      }, 1000);
     }
+    atualizarContador("contador1", "2024-08-11T00:00:00");
+    atualizarContador("contador2", "2025-02-01T00:00:00");
 
-    function mostrarPopup(tipo) {
-      document.getElementById('popup' + (tipo === 'decl' ? 'Decl' : 'Poema')).style.display = 'block';
+    function mostrarPopup(data, titulo, mensagem) {
+      document.getElementById("tituloPopup").textContent = `${titulo} - ${data}`;
+      document.getElementById("mensagemPopup").textContent = mensagem;
+      document.getElementById("popup").style.display = "flex";
     }
-
     function fecharPopup() {
-      document.getElementById('popupDecl').style.display = 'none';
-      document.getElementById('popupPoema').style.display = 'none';
+      document.getElementById("popup").style.display = "none";
     }
-
-    function atualizarContador() {
-      const inicio = new Date("2024-08-11T00:00:00");
-      const agora = new Date();
-      const diff = agora - inicio;
-
-      const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const horas = Math.floor((diff / (1000 * 60 * 60)) % 24);
-      const minutos = Math.floor((diff / (1000 * 60)) % 60);
-      const segundos = Math.floor((diff / 1000) % 60);
-
-      document.getElementById("contador").textContent =
-        `${dias} dias, ${horas} horas, ${minutos} minutos e ${segundos} segundos de amor 💞`;
-    }
-
-    setInterval(atualizarContador, 1000);
-    atualizarContador();
-  </script>
-</body>
+  </script></body>
 </html>
