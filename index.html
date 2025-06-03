@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html lang="pt-br">
+<!DOCTYPE html><html lang="pt-br">
 <head>
   <meta charset="UTF-8" />
   <title>Feliz dia dos namorados, meu Levi💗</title>
@@ -35,20 +34,20 @@
       max-width: 800px;
       margin: 20px auto;
       padding: 0 20px;
-      font-size: 1.4em;
+      font-size: 1.5em;
     }
     .galeria {
       display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 10px;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
       padding: 20px;
     }
     .galeria img {
-      width: 400px;
+      width: 600px;
       max-width: 90vw;
       border-radius: 15px;
-      box-shadow: 0 0 10px #aaa;
+      box-shadow: 0 0 15px #aaa;
     }
     .coracao {
       position: fixed;
@@ -65,10 +64,10 @@
       background-color: #ff416c;
       color: white;
       border: none;
-      padding: 16px 36px;
-      margin: 12px;
-      font-size: 22px;
-      border-radius: 12px;
+      padding: 20px 40px;
+      margin: 16px;
+      font-size: 1.5em;
+      border-radius: 14px;
       cursor: pointer;
       box-shadow: 0 6px #cc3451;
       transition: background-color 0.3s, transform 0.2s;
@@ -96,9 +95,9 @@
       position: fixed;
       bottom: 20px;
       right: 20px;
-      padding: 10px 15px;
-      font-size: 16px;
-      border-radius: 8px;
+      padding: 12px 20px;
+      font-size: 18px;
+      border-radius: 10px;
       border: none;
       background: #ff416c;
       color: white;
@@ -106,13 +105,19 @@
       box-shadow: 0 4px #cc3451;
       z-index: 1000;
     }
+    #poema {
+      font-size: 1.5em;
+      margin-top: 20px;
+      display: none;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
   </style>
 </head>
 <body>
   <h1>Feliz dia dos namorados, meu Levi💗</h1>
-
   <div id="contador">Carregando tempo...</div>
-
   <div id="mensagemInicial">
     Marcos Levi, eu te desejo feliz dia dos namorados!🤍 Obrigada por ter entrado na minha vida,
     sou extremamente grata a Deus por ter feito nossos caminhos colidirem, obrigada por ser essa pessoa incrível
@@ -120,66 +125,55 @@
     Eu quero construir um futuro junto com você meu amor, quero te fazer feliz, quero casar com você
     e formar nossa futura família!🥹🤍 Eu te quero comigo sempre e EU AMO VOCÊ IMENSAMENTE,
     viveremos e nos teremos juntos até Jesus voltar.🤍
-  </div>
-
-  <div class="galeria">
+  </div>  <div class="galeria">
     <img src="imagens/foto1.jpg" alt="Foto 1">
     <img src="imagens/foto2.jpg" alt="Foto 2">
     <img src="imagens/foto3.jpg" alt="Foto 3">
     <img src="imagens/foto4.jpg" alt="Foto 4">
     <img src="imagens/foto5.jpg" alt="Foto 5">
     <img src="imagens/foto6.jpg" alt="Foto 6">
-    <img src="imagens/foto7.jpg" alt="Foto 7">   
+    <img src="imagens/foto7.jpg" alt="Foto 7">
     <img src="imagens/foto8.jpg" alt="Foto 8">
     <img src="imagens/foto9.jpg" alt="Foto 9">
-    <img src="imagens/foto10.jpg" alt="Foto 10">     
-    <img src="imagens/foto11.jpg" alt="Foto 11"> 
+    <img src="imagens/foto10.jpg" alt="Foto 10">
+    <img src="imagens/foto11.jpg" alt="Foto 11">
     <img src="imagens/foto12.jpg" alt="Foto 12">
     <img src="imagens/foto13.jpg" alt="Foto 13">
     <img src="imagens/foto14.jpg" alt="Foto 14">
-  </div>
+  </div><button onclick="mostrarMensagem('Você é a razão do meu sorriso todos os dias ❤️')">Declaração 1</button> <button onclick="mostrarMensagem('Meu coração bate mais forte só de pensar em você 💖')">Declaração 2</button> <button onclick="mostrarMensagem('Com você, encontrei o meu para sempre 💞')">Declaração 3</button>
 
-  <button onclick="mostrarMensagem('Você é a razão do meu sorriso todos os dias ❤️')">Declaração 1</button>
-  <button onclick="mostrarMensagem('Meu coração bate mais forte só de pensar em você 💖')">Declaração 2</button>
-  <button onclick="mostrarMensagem('Com você, encontrei o meu para sempre 💞')">Declaração 3</button>
+<button onclick="mostrarMensagem('11/08/2024 - Nosso primeiro beijo 💋')">Relembrar: Primeiro beijo</button> <button onclick="mostrarMensagem('18/01/2025 - Nosso primeiro date 🥰')">Relembrar: Primeiro date</button> <button onclick="mostrarMensagem('01/02/2025 - Pedido oficial de namoro 💍')">Relembrar: Pedido de namoro</button> <button onclick="mostrarMensagem('02/03/2025 - Primeira viagem ao sítio com a minha família 🏡')">Relembrar: Primeira viagem</button> <button onclick="mostrarMensagem('01/04/2025 - A entrega das nossas alianças ✨')">Relembrar: Entrega das alianças</button>
 
-  <div id="mensagem"></div>
+<button onclick="document.getElementById('poema').style.display = 'block'">📜 Clique aqui para ver o poema</button>
 
-  <audio id="musicaFundo" autoplay loop>
+  <div id="poema">
+    <p>Nos teus olhos encontrei abrigo,<br>
+    No teu sorriso, meu melhor abrigo.<br>
+    Te amar é doce como flor em florada,<br>
+    És meu presente, minha eterna jornada.</p>
+    <p>Contigo a vida é mais bela,<br>
+    Com tua alma tão singela.<br>
+    Te prometo amor e companhia,<br>
+    Pela noite e todo dia.</p>
+  </div>  <div id="mensagem"></div>  <audio id="musicaFundo" autoplay loop>
     <source src="audio/all_of_me.mp3" type="audio/mpeg">
     Seu navegador não suporta áudio.
   </audio>
-  <button id="btnSom" onclick="toggleSom()">🔈 Pausar Música</button>
+  <button id="btnSom" onclick="toggleSom()">🔈 Pausar Música</button>  <script>
+    const inicio = new Date("2025-02-01T00:00:00");
+    function atualizarContador() {
+      const agora = new Date();
+      const diff = agora - inicio;
+      const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const horas = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutos = Math.floor((diff / (1000 * 60)) % 60);
+      const segundos = Math.floor((diff / 1000) % 60);
+      document.getElementById("contador").textContent =
+        `Estamos juntos há: ${dias} dias, ${horas}h ${minutos}min ${segundos}s`;
+    }
+    setInterval(atualizarContador, 1000);
+    atualizarContador();
 
-  <script>
-    // Atualiza contador desde o início do namoro
-    document.addEventListener("DOMContentLoaded", function () {
-      const inicio = new Date("2025-02-01T00:00:00");
-      const contador = document.getElementById("contador");
-
-      function atualizarContador() {
-        const agora = new Date();
-        const diff = agora - inicio;
-
-        if (diff < 0) {
-          contador.textContent = "Ainda não começamos a contar o tempo!";
-          return;
-        }
-
-        const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
-        const horas = Math.floor((diff / (1000 * 60 * 60)) % 24);
-        const minutos = Math.floor((diff / (1000 * 60)) % 60);
-        const segundos = Math.floor((diff / 1000) % 60);
-
-        contador.textContent =
-          `Estamos juntos há: ${dias} dias, ${horas}h ${minutos}min ${segundos}s`;
-      }
-
-      atualizarContador();
-      setInterval(atualizarContador, 1000);
-    });
-
-    // Corações caindo
     function criarCoracao() {
       const coracao = document.createElement("div");
       coracao.className = "coracao";
@@ -190,16 +184,14 @@
     }
     setInterval(criarCoracao, 400);
 
-    // Declarações interativas
     function mostrarMensagem(texto) {
       const divMensagem = document.getElementById('mensagem');
       divMensagem.classList.remove('show');
-      void divMensagem.offsetWidth; 
+      void divMensagem.offsetWidth;
       divMensagem.textContent = texto;
       divMensagem.classList.add('show');
     }
 
-    // Música de fundo
     const musica = document.getElementById('musicaFundo');
     const btnSom = document.getElementById('btnSom');
     function toggleSom() {
@@ -211,6 +203,5 @@
         btnSom.textContent = '🔇 Tocar Música';
       }
     }
-  </script>
-</body>
+  </script></body>
 </html>
