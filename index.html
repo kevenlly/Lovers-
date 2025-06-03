@@ -2,452 +2,248 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Feliz dia dos namorados, meu Levi💗</title>
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Montserrat:wght@400;700&family=Playfair+Display&display=swap" rel="stylesheet" />
+  
   <style>
-    @font-face {
-      font-family: 'Nocaut';
-      src: url('fontes/NOCAUTE.ttf');
-    }
-    @font-face {
-      font-family: 'Beauty';
-      src: url('fontes/BEAUTY.ttf');
-    }
     body {
       margin: 0;
-      font-family: 'Beauty', cursive, sans-serif;
-      background: linear-gradient(135deg, #fffafc, #ffe4e1);
-      color: #333;
+      font-family: 'Montserrat', sans-serif;
+      background: linear-gradient(135deg, #fff0f5, #ffe4e1);
+      color: #4a2c3b;
       text-align: center;
       overflow-x: hidden;
-      scroll-behavior: smooth;
+      padding: 20px 0;
+      user-select: none;
     }
     h1 {
-      font-family: 'Nocaut', cursive, sans-serif;
-      font-size: 3.5em;
-      color: #e60073;
-      margin-top: 20px;
-      text-shadow: 0 0 8px #ff4d7a;
-    }
-    #contador {
-      font-size: 1.5em;
-      margin: 20px;
-      color: #cc3366;
-      font-weight: 600;
-      font-family: 'Beauty', cursive, sans-serif;
-    }
-    #mensagemInicial {
-      max-width: 800px;
-      margin: 20px auto;
-      padding: 0 20px;
-      font-size: 1.4em;
-      font-family: 'Beauty', cursive, sans-serif;
-      color: #a10050;
-      min-height: 120px;
-      position: relative;
-      overflow: hidden;
-      white-space: nowrap;
-      border-bottom: 2px solid #ff6699;
-    }
-    .galeria {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 30px;
-      padding: 20px 0 100px 0;
-      scroll-snap-type: y mandatory;
-      max-width: 600px;
-      margin: 0 auto;
-    }
-    .galeria img {
-      width: 90vw;
-      max-width: 600px;
-      border-radius: 20px;
-      box-shadow: 0 0 15px #ff6699aa;
-      cursor: pointer;
-      transition: transform 0.4s ease, box-shadow 0.3s ease;
-      scroll-snap-align: center;
-    }
-    .galeria img:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 25px #ff1e6c;
-    }
-    /* Zoom da imagem ao clicar */
-    #zoomOverlay {
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background-color: rgba(0,0,0,0.85);
-      display: none;
-      justify-content: center;
-      align-items: center;
-      z-index: 2000;
-    }
-    #zoomOverlay img {
-      max-width: 90vw;
-      max-height: 90vh;
-      border-radius: 25px;
-      box-shadow: 0 0 30px #ff1e6c;
-      animation: zoomIn 0.3s ease forwards;
-    }
-    @keyframes zoomIn {
-      from { transform: scale(0.7); opacity: 0; }
-      to { transform: scale(1); opacity: 1; }
-    }
-    /* Botões interativos centralizados e maiores */
-    .btn-interativo {
-      background-color: #ff416c;
-      color: white;
-      border: none;
-      padding: 20px 50px;
-      margin: 25px auto;
-      font-size: 26px;
-      border-radius: 15px;
-      cursor: pointer;
-      box-shadow: 0 8px #cc3451;
-      transition: background-color 0.4s, transform 0.2s;
-      display: block;
-      max-width: 320px;
-      font-family: 'Nocaut', cursive, sans-serif;
-    }
-    .btn-interativo:hover {
-      background-color: #ff1e50;
-      transform: scale(1.05);
-    }
-    .btn-interativo:active {
-      transform: scale(0.95);
-      box-shadow: 0 4px #a82c40;
+      font-family: 'Playfair Display', serif;
+      font-size: 3.2em;
+      color: #d81e5b;
+      margin-bottom: 12px;
+      text-shadow: 1px 1px 3px #ffcee3;
     }
     /* Datas importantes */
-    .data-importante {
-      font-family: 'Nocaut', cursive, sans-serif;
-      font-size: 1.6em;
-      color: #d91e6a;
-      margin: 35px 0 5px 0;
-      text-shadow: 0 0 10px #ff2f7e;
-      cursor: pointer;
-      transition: transform 0.3s ease, text-shadow 0.3s ease;
-      display: inline-block;
-    }
-    .data-importante:hover {
-      transform: scale(1.15);
-      text-shadow: 0 0 15px #ff1e6c, 0 0 25px #ff6699;
-    }
-    .descricao-data {
-      font-family: 'Beauty', cursive, sans-serif;
-      font-size: 1.3em;
-      max-width: 600px;
-      margin: 8px auto 20px auto;
-      color: #b02b5f;
-      opacity: 0.85;
-      transition: opacity 0.4s ease;
-    }
-    /* Mensagem surpresa final */
-    #popupMensagem {
-      position: fixed;
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%) scale(0);
-      background: #ff6699;
-      border-radius: 30px;
-      padding: 35px 50px;
-      box-shadow: 0 0 30px #ff1e6c;
-      color: white;
-      font-family: 'Nocaut', cursive, sans-serif;
-      font-size: 1.8em;
-      z-index: 5000;
-      text-align: center;
-      transition: transform 0.4s ease;
-      user-select: none;
-      max-width: 90vw;
-      cursor: default;
-    }
-    #popupMensagem.show {
-      transform: translate(-50%, -50%) scale(1);
-    }
-    #popupMensagem .coracao-pulse {
-      font-size: 3.5em;
-      animation: pulse 1.4s ease-in-out infinite;
-      margin-top: 15px;
-    }
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.3); }
-    }
-    /* Contador */
-    #contador {
-      font-size: 1.5em;
-      margin: 20px;
-      color: #cc3366;
-      font-weight: 600;
-      font-family: 'Beauty', cursive, sans-serif;
-    }
-    /* Mensagem com digitação */
-    #mensagemInicial.typing {
-      border-right: 3px solid #ff4d7a;
-      animation: blink-caret 0.8s step-end infinite;
-      white-space: nowrap;
-      overflow: hidden;
-    }
-    @keyframes blink-caret {
-      from, to { border-color: transparent; }
-      50% { border-color: #ff4d7a; }
-    }
-    /* Botão poema */
-    #btnPoema {
-      background-color: #a83266;
-      color: white;
-      border: none;
-      padding: 22px 55px;
-      margin: 40px auto 15px auto;
-      font-size: 28px;
-      border-radius: 18px;
-      cursor: pointer;
-      box-shadow: 0 8px #7a234c;
-      transition: background-color 0.4s, transform 0.2s;
-      display: block;
+    #datasImportantes {
       max-width: 320px;
-      font-family: 'Nocaut', cursive, sans-serif;
+      margin: 0 auto 30px;
+      font-family: 'Dancing Script', cursive;
+      font-size: 1.05em;
+      color: #b36b7f;
+      line-height: 1.5;
     }
-    #btnPoema:hover {
-      background-color: #7a1e4a;
-      transform: scale(1.07);
-    }
-    #btnPoema:active {
-      transform: scale(0.95);
-      box-shadow: 0 4px #5a1637;
-    }
-    /* Texto do poema */
-    #poema {
-      font-family: 'Beauty', cursive, sans-serif;
-      font-size: 1.4em;
-      max-width: 700px;
-      margin: 0 auto 40px auto;
-      color: #7a1e4a;
-      line-height: 1.6em;
-      display: none;
-      text-align: center;
-      white-space: normal;
-      padding: 0 15px;
+    #datasImportantes div {
+      cursor: pointer;
+      padding: 6px 10px;
+      margin: 6px 0;
+      border-radius: 10px;
+      transition: background-color 0.3s, color 0.3s;
       user-select: none;
     }
-    /* Botão de alternar som */
-    #btnSom {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      padding: 14px 20px;
-      font-size: 20px;
-      border-radius: 12px;
-      border: none;
-      background: #ff416c;
+    #datasImportantes div:hover {
+      background-color: #d81e5b;
       color: white;
+      box-shadow: 0 0 6px #d81e5b;
+    }
+    /* Descrição da data */
+    .descricao-data {
+      max-width: 320px;
+      margin: 10px auto 40px;
+      font-family: 'Dancing Script', cursive;
+      font-size: 1em;
+      color: #82475e;
+      min-height: 45px;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+    .descricao-data.show {
+      opacity: 1;
+    }
+    /* Galeria fotos */
+    .galeria {
+      display: flex;
+      overflow-x: auto;
+      gap: 20px;
+      padding-bottom: 20px;
+      max-width: 100vw;
+      scroll-behavior: smooth;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+    }
+    .galeria img {
+      flex: 0 0 auto;
+      width: 320px;
+      border-radius: 20px;
+      box-shadow: 0 5px 15px rgba(216,30,91,0.5);
       cursor: pointer;
-      box-shadow: 0 5px #cc3451;
-      z-index: 10000;
-      font-family: 'Nocaut', cursive, sans-serif;
-      transition: background-color 0.3s;
+      scroll-snap-align: center;
+      transition: transform 0.5s ease, box-shadow 0.5s ease;
+      user-select: none;
     }
-    #btnSom:hover {
-      background-color: #ff1e50;
+    .galeria img.zoomed {
+      transform: scale(1.5);
+      z-index: 200;
+      box-shadow: 0 10px 30px #d81e5b;
     }
-    /* Ícones nos botões */
-    .btn-interativo::before {
-      content: '💌 ';
+    /* Declaração da foto */
+    #declaracaoFoto {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5em;
+      color: #d81e5b;
+      min-height: 50px;
+      margin-top: 25px;
+      opacity: 0;
+      transition: opacity 0.8s ease;
+      user-select: none;
     }
-    .btn-interativo.relembrar::before {
-      content: '🌹 ';
+    #declaracaoFoto.show {
+      opacity: 1;
     }
-    .btn-interativo.pedido::before {
-      content: '💍 ';
+    /* Scrollbar custom */
+    .galeria::-webkit-scrollbar {
+      height: 10px;
     }
-    .btn-interativo.poema::before {
-      content: '📜 ';
+    .galeria::-webkit-scrollbar-track {
+      background: #ffe4e1;
+      border-radius: 10px;
+    }
+    .galeria::-webkit-scrollbar-thumb {
+      background: #d81e5b;
+      border-radius: 10px;
     }
   </style>
 </head>
 <body>
+
   <h1>Feliz dia dos namorados, meu Levi💗</h1>
-  <div id="contador">Carregando tempo...</div>
-  <div id="mensagemInicial" class="typing"></div>
 
-  <!-- Botões iniciais -->
-  <button class="btn-interativo" onclick="mostrarMensagem('Você é a razão do meu sorriso todos os dias ❤️')">Declaração 1</button>
-  <button class="btn-interativo" onclick="mostrarMensagem('Meu coração bate mais forte só de pensar em você 💖')">Declaração 2</button>
-  <button class="btn-interativo" onclick="mostrarMensagem('Com você, encontrei o meu para sempre 💞')">Declaração 3</button>
-
-  <!-- Datas importantes interativas -->
+  <!-- Datas importantes -->
   <div id="datasImportantes">
-    <div class="data-importante" onclick="mostrarDescricaoData(0)">11/08/2024 - Primeiro beijo</div>
-    <div class="descricao-data" id="desc0" style="display:none;">O nosso primeiro beijo foi o momento em que tudo ficou ainda mais especial.</div>
-
-    <div class="data-importante" onclick="mostrarDescricaoData(1)">18/01/2025 - Primeiro date</div>
-    <div class="descricao-data" id="desc1" style="display:none;">Nosso primeiro encontro foi mágico e cheio de expectativas.</div>
-
-    <div class="data-importante" onclick="mostrarDescricaoData(2)">01/02/2025 - Pedido de namoro oficial</div>
-    <div class="descricao-data" id="desc2" style="display:none;">Aquele momento inesquecível em que decidimos construir nossa história juntos.</div>
-
-    <div class="data-importante" onclick="mostrarDescricaoData(3)">02/03/2025 - Primeira viagem ao sítio com minha família</div>
-    <div class="descricao-data" id="desc3" style="display:none;">Nossa primeira aventura juntos com minha família, cheia de risadas e carinho.</div>
-
-    <div class="data-importante" onclick="mostrarDescricaoData(4)">01/04/2025 - Entrega das alianças</div>
- [❶](code://python)
-    <div class="descricao-data" id="desc4" style="display:none;">O momento de selar nosso compromisso e amor eterno.</div>
+    <div tabindex="0" role="button" aria-pressed="false" onclick="mostrarDescricaoData(0)">11/08/2024 - Primeiro beijo 💋</div>
+    <div tabindex="0" role="button" aria-pressed="false" onclick="mostrarDescricaoData(1)">18/01/2025 - Primeiro date 💕</div>
+    <div tabindex="0" role="button" aria-pressed="false" onclick="mostrarDescricaoData(2)">01/02/2025 - Pedido de namoro oficial 💍</div>
+    <div tabindex="0" role="button" aria-pressed="false" onclick="mostrarDescricaoData(3)">02/03/2025 - Viagem ao sítio com família 🏡</div>
+    <div tabindex="0" role="button" aria-pressed="false" onclick="mostrarDescricaoData(4)">01/04/2025 - Entrega das alianças 💎</div>
   </div>
+
+  <div class="descricao-data" id="desc0">Nosso primeiro beijo mágico que mudou tudo.</div>
+  <div class="descricao-data" id="desc1">O primeiro encontro que marcou o início da nossa história.</div>
+  <div class="descricao-data" id="desc2">O momento que oficializamos nosso amor.</div>
+  <div class="descricao-data" id="desc3">Nossa primeira viagem inesquecível ao sítio com minha família.</div>
+  <div class="descricao-data" id="desc4">O momento de selar nosso compromisso e amor eterno.</div>
 
   <!-- Galeria de fotos -->
-  <div class="galeria" id="galeriaFotos">
-    <img src="foto1.jpg" alt="Foto 1 - Nosso primeiro encontro" onclick="zoomFoto(this)" />
-    <img src="foto2.jpg" alt="Foto 2 - Primeiro beijo" onclick="zoomFoto(this)" />
-    <img src="foto3.jpg" alt="Foto 3 - Primeiro passeio" onclick="zoomFoto(this)" />
-    <img src="foto4.jpg" alt="Foto 4 - Jantar romântico" onclick="zoomFoto(this)" />
-    <img src="foto5.jpg" alt="Foto 5 - Viagem ao sítio" onclick="zoomFoto(this)" />
-    <img src="foto6.jpg" alt="Foto 6 - Entrega das alianças" onclick="zoomFoto(this)" />
-    <img src="foto7.jpg" alt="Foto 7 - Momento divertido" onclick="zoomFoto(this)" />
-    <img src="foto8.jpg" alt="Foto 8 - Rindo juntos" onclick="zoomFoto(this)" />
-    <img src="foto9.jpg" alt="Foto 9 - Abraço apertado" onclick="zoomFoto(this)" />
-    <img src="foto10.jpg" alt="Foto 10 - Caminhada ao pôr do sol" onclick="zoomFoto(this)" />
-    <img src="foto11.jpg" alt="Foto 11 - Carinho na praia" onclick="zoomFoto(this)" />
-    <img src="foto12.jpg" alt="Foto 12 - Noite de cinema" onclick="zoomFoto(this)" />
-    <img src="foto13.jpg" alt="Foto 13 - Surpresa especial" onclick="zoomFoto(this)" />
-    <img src="foto14.jpg" alt="Foto 14 - Nosso sorriso eterno" onclick="zoomFoto(this)" />
+  <div class="galeria" id="galeriaFotos" aria-label="Galeria de fotos com declarações românticas">
+    <img src="foto1.jpg" alt="Foto 1" onclick="zoomFoto(this)" tabindex="0" />
+    <img src="foto2.jpg" alt="Foto 2" onclick="zoomFoto(this)" tabindex="0" />
+    <img src="foto3.jpg" alt="Foto 3" onclick="zoomFoto(this)" tabindex="0" />
+    <img src="foto4.jpg" alt="Foto 4" onclick="zoomFoto(this)" tabindex="0" />
+    <img src="foto5.jpg" alt="Foto 5" onclick="zoomFoto(this)" tabindex="0" />
+    <img src="foto6.jpg" alt="Foto 6" onclick="zoomFoto(this)" tabindex="0" />
+    <img src="foto7.jpg" alt="Foto 7" onclick="zoomFoto(this)" tabindex="0" />
+    <img src="foto8.jpg" alt="Foto 8" onclick="zoomFoto(this)" tabindex="0" />
+    <img src="foto9.jpg" alt="Foto 9" onclick="zoomFoto(this)" tabindex="0" />
+    <img src="foto10.jpg" alt="Foto 10" onclick="zoomFoto(this)" tabindex="0" />
+    <img src="foto11.jpg" alt="Foto 11" onclick="zoomFoto(this)" tabindex="0" />
+    <img src="foto12.jpg" alt="Foto 12" onclick="zoomFoto(this)" tabindex="0" />
+    <img src="foto13.jpg" alt="Foto 13" onclick="zoomFoto(this)" tabindex="0" />
+    <img src="foto14.jpg" alt="Foto 14" onclick="zoomFoto(this)" tabindex="0" />
   </div>
 
-  <!-- Zoom Overlay -->
-  <div id="zoomOverlay" onclick="fecharZoom()">
-    <img src="" alt="Foto ampliada" id="fotoZoom" />
-  </div>
+  <div id="declaracaoFoto"></div>
 
-  <!-- Botão para mostrar poema -->
-  <button id="btnPoema" class="btn-interativo poema" onclick="mostrarPoema()">Mostrar Poema</button>
-  <div id="poema">
-    <p>Te amo em cada suspiro, em cada olhar,</p>
-    <p>Nosso amor é um livro que não para de contar.</p>
-    <p>Em seus braços encontro o meu lar,</p>
-    <p>Com você, pra sempre quero estar.</p>
-  </div>
-
-  <!-- Botão para alternar trilha sonora -->
-  <button id="btnSom" onclick="alternarSom()">🎵 Mudar música</button>
-
-  <!-- Mensagem surpresa final -->
-  <div id="popupMensagem">
-    <div>Levi, você é meu para sempre! 💖</div>
-    <div class="coracao-pulse">❤️</div>
-  </div>
-
-  <!-- Áudios -->
-  <audio id="musica1" src="musicas/musica1.mp3" loop autoplay></audio>
-  <audio id="musica2" src="musicas/musica2.mp3" loop></audio>
+  <!-- Música de fundo -->
+  <audio id="musicaFundo" src="musica.mp3" autoplay loop></audio>
 
   <script>
-    // Contador regressivo desde 11/08/2024 até hoje
-    const dataInicio = new Date('2024-08-11T00:00:00');
-    const contadorElem = document.getElementById('contador');
-    const mensagemInicial = document.getElementById('mensagemInicial');
-    const popupMensagem = document.getElementById('popupMensagem');
-    let poemaVisivel = false;
-    let musicaAtual = 1;
-
-    function atualizarContador() {
-      const agora = new Date();
-      const diffMs = agora - dataInicio;
-      if(diffMs < 0) {
-        contadorElem.textContent = "Nosso amor está só começando...";
-        return;
-      }
-      const dias = Math.floor(diffMs / (1000 * 60 * 60 * 24));
-      const horas = Math.floor((diffMs / (1000 * 60 * 60)) % 24);
-      const minutos = Math.floor((diffMs / (1000 * 60)) % 60);
-      const segundos = Math.floor((diffMs / 1000) % 60);
-      contadorElem.textContent = `Estamos juntos há ${dias} dias, ${horas}h ${minutos}m ${segundos}s ❤️`;
-    }
-    setInterval(atualizarContador, 1000);
-
-    // Efeito digitação da mensagem inicial
-    const mensagemTexto = "Levi, cada instante contigo é um presente que nunca quero abrir sozinho...";
-    let indexDigitar = 0;
-
-    function digitarMensagem() {
-      if(indexDigitar < mensagemTexto.length) {
-        mensagemInicial.textContent += mensagemTexto.charAt(indexDigitar);
-        indexDigitar++;
-        setTimeout(digitarMensagem, 70);
-      } else {
-        mensagemInicial.classList.remove('typing');
-      }
-    }
-    digitarMensagem();
-
-    // Mostrar mensagem em popup surpresa
-    function mostrarMensagem(msg) {
-      popupMensagem.querySelector('div').textContent = msg;
-      popupMensagem.classList.add('show');
-      setTimeout(() => {
-        popupMensagem.classList.remove('show');
-      }, 3500);
-    }
-
-    // Mostrar descrição da data importante
-    function mostrarDescricaoData(i) {
-      for(let j=0; j<5; j++) {
-        const desc = document.getElementById('desc' + j);
-        if(j === i) {
-          desc.style.display = desc.style.display === 'none' ? 'block' : 'none';
+    // Mostrar descrição das datas
+    function mostrarDescricaoData(index) {
+      const descricoes = document.querySelectorAll('.descricao-data');
+      descricoes.forEach((desc, i) => {
+        if(i === index) {
+          desc.classList.add('show');
         } else {
-          desc.style.display = 'none';
+          desc.classList.remove('show');
         }
-      }
+      });
     }
 
-    // Zoom na foto ao clicar
-    const zoomOverlay = document.getElementById('zoomOverlay');
-    const fotoZoom = document.getElementById('fotoZoom');
-
-    function zoomFoto(imgElem) {
-      fotoZoom.src = imgElem.src;
-      zoomOverlay.style.display = 'flex';
-      document.body.style.overflow = 'hidden';
-    }
-    function fecharZoom() {
-      zoomOverlay.style.display = 'none';
-      document.body.style.overflow = '';
-    }
-
-    // Mostrar ou esconder poema
-    function mostrarPoema() {
-      const poema = document.getElementById('poema');
-      poemaVisivel = !poemaVisivel;
-      poema.style.display = poemaVisivel ? 'block' : 'none';
-      if(poemaVisivel) {
-        mostrarMensagem("Aqui está o poema só para você 💌");
-      }
-    }
-
-    // Alternar músicas
-    const musica1 = document.getElementById('musica1');
-    const musica2 = document.getElementById('musica2');
-    const btnSom = document.getElementById('btnSom');
-
-    function alternarSom() {
-      if(musicaAtual === 1) {
-        musica1.pause();
-        musica2.currentTime = 0;
-        musica2.play();
-        musicaAtual = 2;
-        btnSom.textContent = "🎵 Mudar música";
+    // Zoom na foto ao clicar (toggle)
+    function zoomFoto(img) {
+      if(img.classList.contains('zoomed')) {
+        img.classList.remove('zoomed');
       } else {
-        musica2.pause();
-        musica1.currentTime = 0;
-        musica1.play();
-        musicaAtual = 1;
-        btnSom.textContent = "🎵 Mudar música";
+        // Remove zoom das outras fotos
+        document.querySelectorAll('.galeria img.zoomed').forEach(el => el.classList.remove('zoomed'));
+        img.classList.add('zoomed');
       }
     }
 
-    // Mostrar popup surpresa após 25 segundos
-    setTimeout(() => {
-      mostrarMensagem("Você é meu para sempre, Levi! ❤️");
-    }, 25000);
+    // Declarações para cada foto
+    const declaracoes = [
+      "Você é a luz que ilumina meus dias ❤️",
+      "Cada momento contigo é um presente 💝",
+      "Nosso amor é a melhor história já escrita 💞",
+      "Com você, todo lugar é meu lugar favorito 💕",
+      "Te amar é a minha maior alegria 💓",
+      "Você faz meu coração bater mais forte 💗",
+      "Meu sorriso tem seu nome gravado 🥰",
+      "Ao seu lado, sou a melhor versão de mim 💖",
+      "Nosso amor é poesia que não termina 🌹",
+      "Você é meu sonho realizado ✨",
+      "Caminhar contigo é o paraíso na terra 👫",
+      "Cada beijo seu é meu refúgio 💋",
+      "Com você, descobri o verdadeiro amor 💘",
+      "Para sempre e além, eu te amo 💌"
+    ];
 
+    const galeria = document.getElementById('galeriaFotos');
+    const declaracaoDiv = document.getElementById('declaracaoFoto');
+    let indiceAtual = 0;
+
+    // Mostrar foto destacada e declaração
+    function mostrarFotoEDeclaracao(index) {
+      const imgs = galeria.querySelectorAll('img');
+      if(index >= imgs.length) index = 0;
+      if(index < 0) index = imgs.length -1;
+      indiceAtual = index;
+
+      imgs[index].scrollIntoView({behavior: 'smooth', inline: 'center'});
+      declaracaoDiv.classList.remove('show');
+      setTimeout(() => {
+        declaracaoDiv.textContent = declaracoes[index];
+        declaracaoDiv.classList.add('show');
+      }, 300);
+    }
+
+    // Slide automático a cada 5s
+    setInterval(() => {
+      mostrarFotoEDeclaracao(indiceAtual + 1);
+    }, 5000);
+
+    // Inicializa
+    mostrarFotoEDeclaracao(0);
+
+    // Permite usar teclado para clicar nas datas e fotos (acessibilidade)
+    document.querySelectorAll('#datasImportantes div').forEach((el, i) => {
+      el.addEventListener('keydown', e => {
+        if(e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          mostrarDescricaoData(i);
+        }
+      });
+    });
+    document.querySelectorAll('.galeria img').forEach((el, i) => {
+      el.addEventListener('keydown', e => {
+        if(e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          zoomFoto(el);
+        }
+      });
+    });
   </script>
 </body>
 </html>
-    
