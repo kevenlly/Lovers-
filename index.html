@@ -139,9 +139,21 @@
   </style>
 </head>
 <body>
-  <audio autoplay loop>
-    <source src="all_of_me.mp3" type="audio/.mp3">
-  </audio>  <header>
+  <audio id="bg-music" src="all_of_me.mp3" autoplay loop>
+  Seu navegador não suporta o áudio.
+</audio>
+
+<script>
+  // Reproduz música após interação do usuário (alguns navegadores bloqueiam autoplay)
+  document.addEventListener("DOMContentLoaded", () => {
+    const audio = document.getElementById("bg-music");
+    document.body.addEventListener("click", () => {
+      audio.play().catch(() => {
+        console.log("Autoplay bloqueado, clique para iniciar o áudio.");
+      });
+    });
+  });
+</script>
     <h1>Nosso Amor💖</h1>
   </header>  <section class="contador-container">
     <div class="contador">
