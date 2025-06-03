@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="pt-br">
+<!DOCTYPE html>
+<html lang="pt-br">
 <head>
   <meta charset="UTF-8" />
   <title>Feliz Dia dos Namorados 💘</title>
@@ -10,237 +11,260 @@
     @font-face {
       font-family: 'Beauty';
       src: url('fontes/BEAUTY.ttf');
-    }body {
-  margin: 0;
-  font-family: 'Beauty', sans-serif;
-  background: linear-gradient(135deg, #fffafc, #ffe4e1);
-  color: #333;
-  text-align: center;
-  overflow-x: hidden;
-}
+    }
 
-h1 {
-  font-family: 'Nocaut', sans-serif;
-  font-size: 3em;
-  color: #e60073;
-  margin-top: 20px;
-}
+    body {
+      margin: 0;
+      font-family: 'Beauty', cursive, sans-serif;
+      background: linear-gradient(135deg, #fffafc, #ffe4e1);
+      color: #333;
+      text-align: center;
+      overflow-x: hidden;
+      padding-bottom: 60px;
+    }
 
-#contador {
-  font-size: 1.4em;
-  margin: 10px;
-  color: #cc3366;
-}
+    h1 {
+      font-family: 'Nocaut', sans-serif;
+      font-size: 3em;
+      color: #e60073;
+      margin-top: 20px;
+    }
 
-#mensagemInicial {
-  max-width: 800px;
-  margin: 10px auto 30px;
-  padding: 0 20px;
-  font-size: 1.6em;
-}
+    #contador {
+      font-size: 1.4em;
+      margin: 10px;
+      color: #cc3366;
+      font-weight: bold;
+    }
 
-.foto-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 50px;
-  padding-bottom: 50px;
-}
+    #mensagemInicial {
+      max-width: 800px;
+      margin: 10px auto 30px;
+      padding: 0 20px;
+      font-size: 1.6em;
+      line-height: 1.5em;
+      color: #88004d;
+    }
 
-.foto-container img {
-  width: 90%;
-  max-width: 600px;
-  border-radius: 20px;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-  opacity: 0;
-  transform: translateY(30px);
-  animation: aparecer 1s ease forwards;
-}
+    .data {
+      margin: 10px auto;
+      font-size: 1.4em;
+      font-weight: 600;
+      color: #a0004d;
+      cursor: pointer;
+      max-width: 300px;
+      border-radius: 10px;
+      background: #ffe4e1cc;
+      padding: 10px 15px;
+      transition: all 0.3s ease;
+      user-select: none;
+    }
+    .data:hover {
+      background: #ffb3c1;
+      color: #60002a;
+      transform: scale(1.05);
+      text-decoration: underline;
+    }
 
-.frase-foto {
-  font-size: 1.6em;
-  color: #b30059;
-  margin-top: 10px;
-  font-family: 'Beauty', cursive;
-  opacity: 0;
-  animation: aparecer 1s ease forwards;
-}
+    .interativo {
+      margin: 30px auto;
+      max-width: 90%;
+      max-width: 600px;
+    }
 
-@keyframes aparecer {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
+    .interativo button {
+      background-color: #ff416c;
+      color: white;
+      border: none;
+      padding: 22px 48px;
+      font-size: 30px;
+      font-family: 'Nocaut', sans-serif;
+      border-radius: 15px;
+      cursor: pointer;
+      box-shadow: 0 6px #cc3451;
+      transition: background-color 0.3s, transform 0.2s;
+      display: block;
+      margin: 0 auto;
+      user-select: none;
+    }
+    .interativo button:hover {
+      background-color: #ff1e50;
+    }
+    .interativo button:active {
+      transform: scale(0.95);
+    }
 
-.data {
-  margin: 20px 0;
-  font-size: 1.6em;
-  font-weight: bold;
-  color: #a0004d;
-  cursor: pointer;
-  transition: transform 0.3s;
-}
+    .mensagem-botao {
+      margin-top: 12px;
+      font-size: 1.8em;
+      color: #b30059;
+      font-family: 'Beauty', cursive;
+      min-height: 50px;
+    }
 
-.data:hover {
-  transform: scale(1.05);
-  text-decoration: underline;
-}
+    #poema-container {
+      max-width: 700px;
+      margin: 50px auto;
+      padding: 15px;
+      background: #fff0f5;
+      border: 2px dashed #ff80aa;
+      border-radius: 20px;
+      font-size: 1.9em;
+      font-family: 'Beauty', cursive;
+      color: #a0004d;
+      line-height: 1.6;
+      display: none;
+      user-select: text;
+    }
+    #btnPoema {
+      font-size: 24px;
+      margin: 20px auto 10px;
+      padding: 12px 28px;
+      background: #ff416c;
+      color: white;
+      border-radius: 12px;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px #cc3451;
+      user-select: none;
+      display: block;
+      max-width: 250px;
+    }
+    #btnPoema:hover {
+      background: #ff1e50;
+    }
 
-.interativo {
-  margin: 40px auto;
-  max-width: 90%;
-}
+    #mensagem {
+      margin-top: 20px;
+      font-size: 2em;
+      color: #b30059;
+      min-height: 80px;
+      font-family: 'Beauty', cursive;
+      transition: opacity 0.5s ease;
+    }
 
-.interativo button {
-  background-color: #ff416c;
-  color: white;
-  border: none;
-  padding: 20px 40px;
-  font-size: 28px;
-  font-family: 'Nocaut', sans-serif;
-  border-radius: 15px;
-  cursor: pointer;
-  box-shadow: 0 6px #cc3451;
-  transition: background-color 0.3s, transform 0.2s;
-}
+    #btnSom {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      padding: 14px 20px;
+      font-size: 18px;
+      border-radius: 8px;
+      background: #ff416c;
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 4px #cc3451;
+      z-index: 1000;
+      user-select: none;
+    }
 
-.interativo button:hover {
-  background-color: #ff1e50;
-}
+    .foto-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 50px;
+      padding-bottom: 50px;
+      max-width: 700px;
+      margin: 0 auto;
+    }
 
-.interativo button:active {
-  transform: scale(0.95);
-}
+    .foto-container img {
+      width: 100%;
+      max-width: 700px;
+      border-radius: 20px;
+      box-shadow: 0 0 20px rgba(255, 20, 100, 0.35);
+      cursor: pointer;
+      opacity: 0;
+      transform: translateY(40px);
+      animation: aparecer 0.7s ease forwards;
+    }
 
-.mensagem-botao {
-  margin-top: 10px;
-  font-size: 1.5em;
-  color: #b30059;
-}
+    .frase-foto {
+      font-size: 1.7em;
+      color: #b30059;
+      margin-top: 8px;
+      font-family: 'Beauty', cursive;
+      opacity: 0;
+      animation: aparecer 0.7s ease forwards;
+    }
 
-#poema {
-  max-width: 700px;
-  margin: 60px auto;
-  padding: 30px;
-  background: #fff0f5;
-  border: 2px dashed #ff80aa;
-  border-radius: 20px;
-  font-size: 1.7em;
-  font-family: 'Beauty', cursive;
-  color: #a0004d;
-  line-height: 1.6;
-}
+    @keyframes aparecer {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
 
-#mensagem {
-  margin-top: 30px;
-  font-size: 2em;
-  color: #b30059;
-  min-height: 70px;
-  transition: opacity 0.6s ease;
-}
+    .coracao-flutuante {
+      position: absolute;
+      animation: flutuar 2.5s ease-out forwards;
+      font-size: 32px;
+      color: #ff4d6d;
+      user-select: none;
+      pointer-events: none;
+      z-index: 9999;
+    }
+    @keyframes flutuar {
+      0% { opacity: 1; transform: translateY(0) scale(1); }
+      100% { opacity: 0; transform: translateY(-120px) scale(1.6); }
+    }
 
-#btnSom {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  padding: 12px 18px;
-  font-size: 16px;
-  border-radius: 8px;
-  background: #ff416c;
-  color: white;
-  cursor: pointer;
-  box-shadow: 0 4px #cc3451;
-  z-index: 1000;
-}
-
-.coracao-flutuante {
-  position: absolute;
-  animation: flutuar 3s ease-out forwards;
-  font-size: 30px;
-  color: #ff4d6d;
-}
-
-@keyframes flutuar {
-  0% { opacity: 1; transform: translateY(0) scale(1); }
-  100% { opacity: 0; transform: translateY(-100px) scale(1.5); }
-}
-
+    /* Popup para mensagem do coração */
+    #popupCoracao {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: #ffe4ec;
+      border-radius: 20px;
+      padding: 25px 40px;
+      box-shadow: 0 0 25px #ff416c;
+      font-family: 'Beauty', cursive;
+      font-size: 1.8em;
+      color: #a0004d;
+      display: none;
+      z-index: 10000;
+      max-width: 90vw;
+      text-align: center;
+      user-select: none;
+    }
+    #popupCoracao button {
+      margin-top: 15px;
+      padding: 12px 28px;
+      background: #ff416c;
+      color: white;
+      font-size: 1.2em;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      box-shadow: 0 4px #cc3451;
+      user-select: none;
+    }
+    #popupCoracao button:hover {
+      background: #ff1e50;
+    }
   </style>
 </head>
 <body>
-  <!-- (Conteúdo anterior preservado) -->  <!-- Botão do mini jogo -->  <div class="interativo">
-    <button onclick="abrirJogo()">🧠 Mini Jogo do Amor</button>
-  </div>  <!-- Modal do mini jogo -->  <div id="modalJogo" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:9999; justify-content:center; align-items:center;">
-    <div style="background:white; padding:30px; border-radius:20px; max-width:600px; width:90%; text-align:center; position:relative;">
-      <h2 style="font-family:'Nocaut'; color:#e60073;">Jogo da Memória do Amor 💘</h2>
-      <div id="tabuleiro" style="display:grid; grid-template-columns:repeat(4, 60px); gap:15px; justify-content:center; margin-top:20px;"></div>
-      <button onclick="fecharJogo()" style="margin-top:20px; font-size:18px; padding:10px 20px; background:#ff416c; color:white; border:none; border-radius:8px;">Fechar</button>
-    </div>
-  </div>  <script>
-    const emojis = ['💖', '💋', '🌹', '❤️', '😍', '💑', '💌', '😘'];
-    let cartas = [];
-    let primeira = null;
-    let bloqueado = false;
+  <h1>Feliz Dia dos Namorados, meu Levi 💗</h1>
+  <div id="contador">Carregando tempo...</div>
+  <div id="mensagemInicial">
+    Marcos Levi, eu te desejo feliz dia dos namorados!🤍 Obrigada por ter entrado na minha vida,
+    sou extremamente grata a Deus por ter feito nossos caminhos colidirem, obrigada por ser essa pessoa incrível
+    do sorriso mais encantador, obrigada por me fazer feliz e me completar.
+    Eu quero construir um futuro junto com você meu amor, quero te fazer feliz, quero casar com você
+    e formar nossa futura família!🥹🤍 Eu te quero comigo sempre e EU AMO VOCÊ IMENSAMENTE,
+    viveremos e nos teremos juntos até Jesus voltar.🤍
+  </div>
 
-    function abrirJogo() {
-      document.getElementById('modalJogo').style.display = 'flex';
-      iniciarJogo();
-    }
+  <!-- Datas importantes com interação -->
+  <div class="data" onclick="mostrarMensagem('💋 Nosso primeiro beijo foi mágico e mudou tudo entre nós. Você me fez sentir borboletas no estômago!')">📅 11/08/2024 – Primeiro Beijo</div>
+  <div class="data" onclick="mostrarMensagem('🍝 Nosso primeiro date foi especial, o começo de muitos momentos incríveis que viriam. Eu me apaixonei mais ainda.')">📅 18/01/2025 – Primeiro Date</div>
+  <div class="data" onclick="mostrarMensagem('💍 O dia em que nos entregamos ao amor oficialmente. Meu coração pertence a você desde então.')">📅 01/02/2025 – Pedido de Namoro</div>
+  <div class="data" onclick="mostrarMensagem('🏡 Nossa primeira viagem juntos foi inesquecível. Me senti parte da sua família e amei cada segundo!')">📅 02/03/2025 – Viagem ao Sítio</div>
+  <div class="data" onclick="mostrarMensagem('💖 Quando trocamos alianças e selamos nosso compromisso. Um passo lindo rumo ao nosso futuro!')">📅 01/04/2025 – Alianças</div>
 
-    function fecharJogo() {
-      document.getElementById('modalJogo').style.display = 'none';
-    }
-
-    function iniciarJogo() {
-      const tabuleiro = document.getElementById('tabuleiro');
-      tabuleiro.innerHTML = '';
-      const pares = [...emojis, ...emojis].sort(() => 0.5 - Math.random());
-      cartas = pares.map((emoji, index) => {
-        const carta = document.createElement('div');
-        carta.textContent = '❔';
-        carta.style.fontSize = '32px';
-        carta.style.width = '60px';
-        carta.style.height = '60px';
-        carta.style.display = 'flex';
-        carta.style.justifyContent = 'center';
-        carta.style.alignItems = 'center';
-        carta.style.cursor = 'pointer';
-        carta.style.border = '2px solid #ff80aa';
-        carta.style.borderRadius = '10px';
-        carta.style.background = '#fff0f5';
-        carta.dataset.valor = emoji;
-        carta.dataset.revelada = 'false';
-        carta.onclick = () => virarCarta(carta);
-        tabuleiro.appendChild(carta);
-        return carta;
-      });
-    }
-
-    function virarCarta(carta) {
-      if (bloqueado || carta.dataset.revelada === 'true') return;
-      carta.textContent = carta.dataset.valor;
-      carta.dataset.revelada = 'true';
-      if (!primeira) {
-        primeira = carta;
-      } else {
-        if (primeira.dataset.valor === carta.dataset.valor) {
-          primeira = null;
-          if (cartas.every(c => c.dataset.revelada === 'true')) {
-            setTimeout(() => alert("💌 Você venceu! O amor sempre encontra seu par! 💌"), 300);
-          }
-        } else {
-          bloqueado = true;
-          setTimeout(() => {
-            carta.textContent = '❔';
-            carta.dataset.revelada = 'false';
-            primeira.textContent = '❔';
-            primeira.dataset.revelada = 'false';
-            primeira = null;
-            bloqueado = false;
-          }, 1000);
-        }
-      }
-    }
-  </script></body>
-</html>
+  <!-- Botões interativos distribuídos -->
+  <div class="interativo">
+    <button onclick="mostrarMensagem('Você é tudo que eu sempre quis e mais.')">💬 Declaração 1</button>
+    <div class="mensagem-bot
