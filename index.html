@@ -230,4 +230,25 @@
       document.getElementById("popup").style.display = "none";
     }
   </script></body>
+  <!-- Botão para iniciar música -->
+<div id="music-control" style="position: fixed; top: 20px; left: 50%; transform: translateX(-50%); z-index: 9999;">
+  <button onclick="startMusic()" style="background-color: #ff4d6d; color: white; font-size: 18px; padding: 10px 20px; border: none; border-radius: 8px; cursor: pointer;">
+    🎵 Tocar Música
+  </button>
+</div>
+
+<!-- Música de fundo -->
+<audio id="bg-music" src="all_of_me.mp3" loop></audio>
+
+<script>
+  function startMusic() {
+    const music = document.getElementById("bg-music");
+    music.play().then(() => {
+      document.getElementById("music-control").style.display = "none";
+    }).catch((err) => {
+      alert("Clique novamente para permitir o áudio.");
+      console.log(err);
+    });
+  }
+</script>
 </html>
