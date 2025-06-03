@@ -1,8 +1,7 @@
-<!DOCTYPE html>
-<html lang="pt-br">
+<!DOCTYPE html><html lang="pt-br">
 <head>
   <meta charset="UTF-8" />
-  <title>Feliz Dia dos Namorados, meu Levi 💗</title>
+  <title>Feliz Dia dos Namorados 💘</title>
   <style>
     @font-face {
       font-family: 'Nocaut';
@@ -11,142 +10,167 @@
     @font-face {
       font-family: 'Beauty';
       src: url('fontes/BEAUTY.ttf');
-    }
+    }body {
+  margin: 0;
+  font-family: 'Beauty', sans-serif;
+  background: linear-gradient(135deg, #fffafc, #ffe4e1);
+  color: #333;
+  text-align: center;
+  overflow-x: hidden;
+}
 
-    body {
-      margin: 0;
-      font-family: 'Beauty', sans-serif;
-      background: linear-gradient(135deg, #fffafc, #ffe4e1);
-      color: #333;
-      text-align: center;
-      overflow-x: hidden;
-    }
+h1 {
+  font-family: 'Nocaut', sans-serif;
+  font-size: 3em;
+  color: #e60073;
+  margin-top: 20px;
+}
 
-    h1 {
-      font-family: 'Nocaut', sans-serif;
-      font-size: 3em;
-      color: #e60073;
-      margin-top: 20px;
-    }
+#contador {
+  font-size: 1.4em;
+  margin: 10px;
+  color: #cc3366;
+}
 
-    #contador {
-      font-size: 1.4em;
-      margin: 10px;
-      color: #cc3366;
-    }
+#mensagemInicial {
+  max-width: 800px;
+  margin: 10px auto 30px;
+  padding: 0 20px;
+  font-size: 1.3em;
+}
 
-    #mensagemInicial {
-      max-width: 800px;
-      margin: 10px auto 30px;
-      padding: 0 20px;
-      font-size: 1.3em;
-    }
+.foto-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 50px;
+  padding-bottom: 50px;
+}
 
-    .foto-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 25px;
-      padding-bottom: 50px;
-    }
+.foto-container img {
+  width: 90%;
+  max-width: 600px;
+  border-radius: 20px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  transform: translateY(30px);
+  animation: aparecer 1s ease forwards;
+}
 
-    .foto-container img {
-      width: 90%;
-      max-width: 600px;
-      border-radius: 20px;
-      box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-      transition: transform 0.5s;
-    }
+.frase-foto {
+  font-size: 1.2em;
+  color: #b30059;
+  margin-top: 10px;
+  font-family: 'Beauty', cursive;
+  opacity: 0;
+  animation: aparecer 1s ease forwards;
+}
 
-    .foto-container img:hover {
-      transform: scale(1.03);
-    }
+@keyframes aparecer {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
-    .frase-foto {
-      font-size: 1.2em;
-      color: #b30059;
-      margin-top: 10px;
-      font-family: 'Beauty', cursive;
-    }
+.data {
+  margin: 20px 0;
+  font-size: 1.4em;
+  font-weight: bold;
+  color: #a0004d;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
 
-    .data {
-      margin: 20px 0;
-      font-size: 1.4em;
-      font-weight: bold;
-      color: #a0004d;
-      cursor: pointer;
-      transition: transform 0.3s;
-    }
+.data:hover {
+  transform: scale(1.05);
+  text-decoration: underline;
+}
 
-    .data:hover {
-      transform: scale(1.05);
-      text-decoration: underline;
-    }
+.interativo {
+  margin: 40px auto;
+  max-width: 90%;
+}
 
-    button {
-      background-color: #ff416c;
-      color: white;
-      border: none;
-      padding: 20px 40px;
-      margin: 20px auto;
-      font-size: 22px;
-      font-family: 'Nocaut', sans-serif;
-      border-radius: 15px;
-      cursor: pointer;
-      display: block;
-      box-shadow: 0 6px #cc3451;
-      transition: background-color 0.3s, transform 0.2s;
-    }
+.interativo button {
+  background-color: #ff416c;
+  color: white;
+  border: none;
+  padding: 20px 40px;
+  font-size: 24px;
+  font-family: 'Nocaut', sans-serif;
+  border-radius: 15px;
+  cursor: pointer;
+  box-shadow: 0 6px #cc3451;
+  transition: background-color 0.3s, transform 0.2s;
+}
 
-    button:hover {
-      background-color: #ff1e50;
-    }
+.interativo button:hover {
+  background-color: #ff1e50;
+}
 
-    button:active {
-      transform: scale(0.95);
-      box-shadow: 0 3px #a82c40;
-    }
+.interativo button:active {
+  transform: scale(0.95);
+}
 
-    #mensagem {
-      margin-top: 30px;
-      font-size: 1.6em;
-      color: #b30059;
-      min-height: 70px;
-      transition: opacity 0.6s ease;
-    }
+.mensagem-botao {
+  margin-top: 10px;
+  font-size: 1.3em;
+  color: #b30059;
+}
 
-    #btnSom {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      padding: 12px 18px;
-      font-size: 16px;
-      border-radius: 8px;
-      background: #ff416c;
-      color: white;
-      cursor: pointer;
-      box-shadow: 0 4px #cc3451;
-      z-index: 1000;
-    }
+#poema {
+  max-width: 700px;
+  margin: 60px auto;
+  padding: 30px;
+  background: #fff0f5;
+  border: 2px dashed #ff80aa;
+  border-radius: 20px;
+  font-size: 1.5em;
+  font-family: 'Beauty', cursive;
+  color: #a0004d;
+  line-height: 1.6;
+}
 
-    .coracao {
-      position: fixed;
-      top: -50px;
-      font-size: 24px;
-      animation: cair 6s linear infinite;
-      color: #ff4d6d;
-    }
+#mensagem {
+  margin-top: 30px;
+  font-size: 1.6em;
+  color: #b30059;
+  min-height: 70px;
+  transition: opacity 0.6s ease;
+}
 
-    @keyframes cair {
-      0% { transform: translateY(0) rotate(0deg); opacity: 1; }
-      100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
-    }
+#btnSom {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 12px 18px;
+  font-size: 16px;
+  border-radius: 8px;
+  background: #ff416c;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 4px #cc3451;
+  z-index: 1000;
+}
+
+.coracao-flutuante {
+  position: absolute;
+  animation: flutuar 3s ease-out forwards;
+  font-size: 30px;
+  color: #ff4d6d;
+}
+
+@keyframes flutuar {
+  0% { opacity: 1; transform: translateY(0) scale(1); }
+  100% { opacity: 0; transform: translateY(-100px) scale(1.5); }
+}
+
   </style>
 </head>
 <body>
   <h1>Feliz Dia dos Namorados, meu Levi 💗</h1>
   <div id="contador">Carregando tempo...</div>
-
   <div id="mensagemInicial">
     Marcos Levi, eu te desejo feliz dia dos namorados!🤍 Obrigada por ter entrado na minha vida,
     sou extremamente grata a Deus por ter feito nossos caminhos colidirem, obrigada por ser essa pessoa incrível
@@ -154,64 +178,75 @@
     Eu quero construir um futuro junto com você meu amor, quero te fazer feliz, quero casar com você
     e formar nossa futura família!🥹🤍 Eu te quero comigo sempre e EU AMO VOCÊ IMENSAMENTE,
     viveremos e nos teremos juntos até Jesus voltar.🤍
-  </div>
-
-  <!-- Botões Interativos (parte 1) -->
-  <button onclick="mostrarMensagem('Você é o meu sonho realizado, todos os dias.')">💬 Declaração Especial</button>
-
-  <!-- Datas importantes com interações -->
-  <div class="data" onclick="mostrarMensagem('Nosso primeiro beijo em 11/08/2024 💋 Um momento mágico que nunca esquecerei.')">📅 11/08/2024 – Primeiro Beijo</div>
-  <div class="data" onclick="mostrarMensagem('Nosso primeiro date em 18/01/2025 🥰 Foi o início de algo incrível.')">📅 18/01/2025 – Primeiro Date</div>
-  <div class="data" onclick="mostrarMensagem('O dia em que começamos a namorar oficialmente! 💍 01/02/2025')">📅 01/02/2025 – Pedido Oficial</div>
-  <div class="data" onclick="mostrarMensagem('Primeira viagem ao sítio com minha família, 02/03/2025 🏡')">📅 02/03/2025 – Primeira Viagem</div>
-  <div class="data" onclick="mostrarMensagem('O dia em que trocamos alianças, em 01/04/2025 💗')">📅 01/04/2025 – Entrega das Alianças</div>
-
-  <!-- Galeria de fotos com frases -->
-  <div class="foto-container">
-    <script>
-      const frases = [
-        "Cada momento ao seu lado é um presente.",
-        "Seu sorriso ilumina meus dias.",
-        "Te abraçar é meu lugar favorito.",
-        "Somos duas metades de um só coração.",
-        "Você me faz acreditar no amor todos os dias.",
-        "Nosso amor é minha maior alegria.",
-        "Te amarei até o fim dos meus dias.",
-        "Você me completa de forma única.",
-        "Ao seu lado tudo é melhor.",
-        "Você é o meu para sempre.",
-        "Com você, todos os dias são especiais.",
-        "O amor da minha vida tem o seu nome.",
-        "Quero você em todas as minhas manhãs.",
-        "A melhor parte da vida é te ter comigo."
-      ];
-
-      for (let i = 1; i <= 14; i++) {
-        document.write(`<img src="imagens/foto${i}.jpg" alt="Foto ${i}">`);
-        document.write(`<div class="frase-foto">${frases[i - 1]}</div>`);
-      }
-    </script>
-  </div>
-
-  <!-- Botões Interativos (parte 2) -->
-  <button onclick="mostrarMensagem('Com você tudo tem mais cor e sentido.')">💘 Mais Amor</button>
-  <button onclick="mostrarMensagem('Você é o meu lugar seguro.')">💖 Meu Refúgio</button>
-
-  <!-- Botão do poema -->
-  <button onclick="mostrarMensagem('Te amo no silêncio, no riso, no instante. Te amo no tempo, no toque, no sempre. 💌')">📜 Clique aqui para ler meu poema</button>
-
-  <!-- Campo para exibir mensagem -->
-  <div id="mensagem"></div>
-
-  <!-- Música de fundo -->
-  <audio id="musicaFundo" autoplay loop>
+  </div>  <!-- Datas importantes com mensagens -->  <div class="data" onclick="mostrarMensagem('💋 Nosso primeiro beijo foi mágico e mudou tudo entre nós.')">📅 11/08/2024 – Primeiro Beijo</div>
+  <div class="data" onclick="mostrarMensagem('🍝 Nosso primeiro date foi especial, o começo de muitos momentos.')">📅 18/01/2025 – Primeiro Date</div>
+  <div class="data" onclick="mostrarMensagem('💍 O dia em que nos entregamos ao amor oficialmente.')">📅 01/02/2025 – Pedido de Namoro</div>
+  <div class="data" onclick="mostrarMensagem('🏡 Nossa primeira viagem juntos foi inesquecível.')">📅 02/03/2025 – Viagem ao Sítio</div>
+  <div class="data" onclick="mostrarMensagem('💖 Quando trocamos alianças e selamos nosso compromisso.')">📅 01/04/2025 – Alianças</div>  <!-- Botão interativo antes das fotos -->  <div class="interativo">
+    <button onclick="mostrarMensagem('Você é tudo que eu sempre quis e mais.')">💬 Declaração 1</button>
+    <div class="mensagem-botao">Você é tudo que eu sempre quis e mais.</div>
+  </div>  <div class="foto-container" id="galeria"></div>  <!-- Poema no meio -->  <div id="poema">
+    Te amo no silêncio, no riso, no instante.<br>
+    Te amo no tempo, no toque, no sempre.<br>
+    Te amo nas flores, na noite, no vento.<br>
+    Te amo na alma, em cada pensamento. 💌
+  </div>  <!-- Botões após o poema -->  <div class="interativo">
+    <button onclick="mostrarMensagem('Você transforma a minha vida todos os dias.')">💘 Declaração 2</button>
+    <div class="mensagem-botao">Você transforma a minha vida todos os dias.</div>
+  </div>  <div class="interativo">
+    <button onclick="mostrarMensagem('Com você, encontrei o amor verdadeiro.')">💖 Declaração 3</button>
+    <div class="mensagem-botao">Com você, encontrei o amor verdadeiro.</div>
+  </div>  <audio id="musicaFundo" autoplay loop>
     <source src="audio/all_of_me.mp3" type="audio/mpeg">
     Seu navegador não suporta áudio.
   </audio>
   <button id="btnSom" onclick="toggleSom()">🔈 Pausar Música</button>
+  <div id="mensagem"></div>  <script>
+    const frases = [
+      "Cada momento ao seu lado é um presente.",
+      "Seu sorriso ilumina meus dias.",
+      "Te abraçar é meu lugar favorito.",
+      "Somos duas metades de um só coração.",
+      "Você me faz acreditar no amor todos os dias.",
+      "Nosso amor é minha maior alegria.",
+      "Te amarei até o fim dos meus dias.",
+      "Você me completa de forma única.",
+      "Ao seu lado tudo é melhor.",
+      "Você é o meu para sempre.",
+      "Com você, todos os dias são especiais.",
+      "O amor da minha vida tem o seu nome.",
+      "Quero você em todas as minhas manhãs.",
+      "A melhor parte da vida é te ter comigo."
+    ];
 
-  <script>
-    // Contador de tempo
+    const galeria = document.getElementById("galeria");
+    frases.forEach((frase, i) => {
+      const img = document.createElement("img");
+      img.src = `imagens/foto${i + 1}.jpg`;
+      img.alt = `Foto ${i + 1}`;
+      img.style.animationDelay = `${i * 0.2}s`;
+
+      const divFrase = document.createElement("div");
+      divFrase.className = "frase-foto";
+      divFrase.textContent = frase;
+      divFrase.style.animationDelay = `${i * 0.2 + 0.1}s`;
+
+      galeria.appendChild(img);
+      galeria.appendChild(divFrase);
+
+      img.addEventListener("load", () => criarCoracao(img));
+    });
+
+    function criarCoracao(el) {
+      const coracao = document.createElement("div");
+      coracao.className = "coracao-flutuante";
+      coracao.style.left = `${el.offsetLeft + el.offsetWidth / 2}px`;
+      coracao.style.top = `${el.offsetTop}px`;
+      coracao.textContent = "💖";
+      document.body.appendChild(coracao);
+      setTimeout(() => coracao.remove(), 3000);
+    }
+
     const inicio = new Date("2025-02-01T00:00:00");
     function atualizarContador() {
       const agora = new Date();
@@ -226,25 +261,12 @@
     setInterval(atualizarContador, 1000);
     atualizarContador();
 
-    // Corações animados
-    function criarCoracao() {
-      const coracao = document.createElement("div");
-      coracao.className = "coracao";
-      coracao.style.left = Math.random() * 100 + "vw";
-      coracao.textContent = "💖";
-      document.body.appendChild(coracao);
-      setTimeout(() => coracao.remove(), 6000);
-    }
-    setInterval(criarCoracao, 400);
-
-    // Mensagens interativas
     function mostrarMensagem(texto) {
       const div = document.getElementById("mensagem");
       div.textContent = texto;
       div.style.opacity = 1;
     }
 
-    // Som
     const musica = document.getElementById('musicaFundo');
     const btnSom = document.getElementById('btnSom');
     function toggleSom() {
@@ -256,6 +278,5 @@
         btnSom.textContent = '🔇 Tocar Música';
       }
     }
-  </script>
-</body>
+  </script></body>
 </html>
