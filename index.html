@@ -199,6 +199,86 @@
     <button class="botao-data" onclick="mostrarPopup('01/02/2025', 'Pedido oficial de namoro', 'Ali começou nosso para sempre.')">01/02/2025</button>
     <button class="botao-data" onclick="mostrarPopup('02/03/2025', 'Primeira viagem ao sítio', 'Momentos incríveis ao seu lado.')">02/03/2025</button>
     <button class="botao-data" onclick="mostrarPopup('01/04/2025', 'Entrega das alianças', 'Um elo eterno entre nós.')">01/04/2025</button>
+    <section id="datas-especiais" style="padding: 40px; background-color: #fff0f5;">
+  <h2 style="text-align: center; color: #c2185b; font-size: 32px;">📅 Nossas Datas Especiais</h2>
+  <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; margin-top: 30px;">
+    
+    <!-- Exemplo: 11/08/2024 - Primeiro Beijo -->
+    <div>
+      <button onclick="mostrarDeclaracao('beijo')" class="data-btn">💋 11/08/2024 - Primeiro Beijo</button>
+    </div>
+
+    <!-- 18/01/2025 - Primeiro Date -->
+    <div>
+      <button onclick="mostrarDeclaracao('date')" class="data-btn">🍷 18/01/2025 - Primeiro Date</button>
+    </div>
+
+    <!-- 01/02/2025 - Pedido de Namoro -->
+    <div>
+      <button onclick="mostrarDeclaracao('namoro')" class="data-btn">💍 01/02/2025 - Pedido de Namoro</button>
+    </div>
+
+    <!-- 02/03/2025 - Viagem ao sítio -->
+    <div>
+      <button onclick="mostrarDeclaracao('viagem')" class="data-btn">🏞️ 02/03/2025 - Viagem ao Sítio</button>
+    </div>
+
+    <!-- 01/04/2025 - Entrega das Alianças -->
+    <div>
+      <button onclick="mostrarDeclaracao('aliancas')" class="data-btn">🔗 01/04/2025 - Alianças</button>
+    </div>
+  </div>
+</section>
+
+<style>
+  .data-btn {
+    background-color: #ff4081;
+    color: white;
+    border: none;
+    padding: 14px 22px;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.3s;
+  }
+
+  .data-btn:hover {
+    transform: scale(1.05);
+    background-color: #f06292;
+  }
+</style>
+
+<script>
+  function mostrarDeclaracao(tipo) {
+    let mensagem = "";
+    let poema = "";
+
+    switch(tipo) {
+      case 'beijo':
+        mensagem = "Nosso primeiro beijo foi o início de uma linda jornada.";
+        poema = "Entre sorrisos e olhares,\nTeu beijo mudou meu mundo.\nFoi o começo do sempre.";
+        break;
+      case 'date':
+        mensagem = "Nosso primeiro encontro foi mágico. Tudo fez sentido ao seu lado.";
+        poema = "Na mesa, dois corações,\nConversas e risos soltos.\nMe encantei ainda mais.";
+        break;
+      case 'namoro':
+        mensagem = "O pedido mais lindo que recebi. O sim mais doce que disse.";
+        poema = "Com um 'sim' começou tudo,\nPromessa, afeto e carinho.\nNosso amor floresceu.";
+        break;
+      case 'viagem':
+        mensagem = "Foi uma viagem simples, mas cheia de amor e companheirismo.";
+        poema = "No campo, tua mão na minha,\nSorrisos sob o céu limpo.\nMomentos que não se esquecem.";
+        break;
+      case 'aliancas':
+        mensagem = "Nossas alianças selaram o compromisso mais bonito.";
+        poema = "Dois anéis, um só destino,\nEntrelaçados pra sempre.\nNosso amor eterno.";
+        break;
+    }
+
+    alert(`${mensagem}\n\n🌹 Poema:\n${poema}`);
+  }
+</script>
   </section>  <div class="popup" id="popup">
     <div class="popup-conteudo">
       <h3 id="tituloPopup"></h3>
