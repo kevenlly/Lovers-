@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <title>Feliz Dia dos Namorados 💘</title>
+  <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+  <h1>Feliz Dia dos Namorados, meu Levi 💗</h1>
+  <div id="contador">Carregando tempo...</div>
+  <div id="mensagemInicial">
+    Marcos Levi, eu te desejo feliz dia dos namorados!🤍 Obrigada por ter entrado na minha vida,
+    sou extremamente grata a Deus por ter feito nossos caminhos colidirem, obrigada por ser essa pessoa incrível
+    do sorriso mais encantador, obrigada por me fazer feliz e me completar.
+    Eu quero construir um futuro junto com você meu amor, quero te fazer feliz, quero casar com você
+    e formar nossa futura família!🥹🤍 Eu te quero comigo sempre e EU AMO VOCÊ IMENSAMENTE,
+    viveremos e nos teremos juntos até Jesus voltar.🤍
+  </div>
+
+  <!-- Datas especiais -->
+  <div class="data" onclick="mostrarMensagem('💋 Nosso primeiro beijo foi mágico e mudou tudo entre nós.')">📅 11/08/2024 – Primeiro Beijo</div>
+  <div class="data" onclick="mostrarMensagem('🍝 Nosso primeiro date foi especial, o começo de muitos momentos incríveis.')">📅 18/01/2025 – Primeiro Date</div>
+  <div class="data" onclick="mostrarMensagem('💍 O dia em que nos entregamos ao amor oficialmente.')">📅 01/02/2025 – Pedido de Namoro</div>
+  <div class="data" onclick="mostrarMensagem('🏡 Nossa primeira viagem juntos foi inesquecível.')">📅 02/03/2025 – Viagem ao Sítio</div>
+  <div class="data" onclick="mostrarMensagem('💖 Quando trocamos alianças e selamos nosso compromisso.')">📅 01/04/2025 – Alianças</div>
+
+  <!-- Botões interativos -->
+  <div class="interativo">
+    <button onclick="mostrarMensagem('Você é tudo que eu sempre quis e mais.')">💬 Declaração 1</button>
+    <div class="mensagem-botao">Você é tudo que eu sempre quis e mais.</div>
+  </div>
+
+  <div id="galeria"></div>
+
+  <div id="poema">
+    Te amo no silêncio, no riso, no instante.<br>
+    Te amo no tempo, no toque, no sempre.<br>
+    Te amo nas flores, na noite, no vento.<br>
+    Te amo na alma, em cada pensamento. 💌
+  </div>
+
+  <!-- Mais declarações -->
+  <div class="interativo">
+    <button onclick="mostrarMensagem('Você transforma a minha vida todos os dias.')">💘 Declaração 2</button>
+    <div class="mensagem-botao">Você transforma a minha vida todos os dias.</div>
+  </div>
+
+  <div class="interativo">
+    <button onclick="mostrarMensagem('Com você, encontrei o amor verdadeiro.')">💖 Declaração 3</button>
+    <div class="mensagem-botao">Com você, encontrei o amor verdadeiro.</div>
+  </div>
+
+  <audio id="musicaFundo" autoplay loop>
+    <source src="audio/all_of_me.mp3" type="audio/mpeg">
+  </audio>
+  <button id="btnSom" onclick="toggleSom()">🔈 Pausar Música</button>
+  <div id="mensagem"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
+  <!-- Botão interativo -->
+  <div class="interativo">
+    <button onclick="mostrarDeclaracao()">Clique para uma declaração 💌</button>
+    <div class="mensagem-botao" id="mensagemBotao"></div>
+  </div>
+
+  <!-- Poema romântico -->
+  <div id="poema">
+    Em teus olhos encontrei meu lar,<br>
+    No teu abraço, o meu abrigo.<br>
+    Amar você é respirar,<br>
+    É sorrir sem motivo!<br><br>
+    Contigo os dias brilham mais,<br>
+    E as noites são puro luar.<br>
+    Que o nosso amor, eterno e audaz,<br>
+    Nunca deixe de nos guiar. 💖
+  </div>
+
+  <!-- Container de fotos -->
+  <div class="foto-container" id="fotos"></div>
+
+  <!-- Música e botão -->
+  <audio id="musica" loop>
+    <source src="musica.mp3" type="audio/mp3" />
+    Seu navegador não suporta áudio.
+  </audio>
+  <button id="btnSom" onclick="alternarSom()">🔊 Música</button>
+
+  <!-- Scripts -->
+  <script>
+    const inicioNamoro = new Date("2025-02-01T00:00:00");
+    const frases = [
+      "Com você, cada dia é especial 💕",
+      "Te amo mais do que palavras podem dizer 💖",
+      "Você é o meu mundo 🌍",
+      "Nosso amor é para sempre 💘",
+      "Obrigada por me fazer tão feliz 🥰",
+      "Meu coração é todo seu ❤️",
+      "Você é meu sonho realizado 💫",
+      "Contigo, a vida é mais linda 🌹"
+    ];
+    const imagens = 14;
+    const mensagensPopUp = [
+      "Esse momento foi mágico entre nós...",
+      "Lembra desse sorriso? É só seu!",
+      "Eu te amo em cada detalhe...",
+      "Essa foto me faz suspirar!",
+      "Juntos somos perfeitos...",
+      "Esse dia ficará para sempre na memória!",
+      "Com você, todos os momentos valem ouro.",
+      "Cada foto, uma história de amor...",
+      "Nosso amor só cresce!",
+      "Você é minha felicidade.",
+      "Meu amor por você é infinito.",
+      "Você me completa.",
+      "Não existe nós sem você.",
+      "Somos um do outro para sempre."
+    ];
+
+    function atualizarContador() {
+      const agora = new Date();
+      const diff = agora - inicioNamoro;
+      const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const horas = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutos = Math.floor((diff / (1000 * 60)) % 60);
+      const segundos = Math.floor((diff / 1000) % 60);
+      document.getElementById("contador").innerText = `Estamos juntos há ${dias} dias, ${horas} horas, ${minutos} minutos e ${segundos} segundos 💑`;
+    }
+    setInterval(atualizarContador, 1000);
+
+    function mostrarDeclaracao() {
+      const msg = frases[Math.floor(Math.random() * frases.length)];
+      document.getElementById("mensagemBotao").innerText = msg;
+    }
+
+    function mostrarMensagem(texto) {
+      const elemento = document.createElement("div");
+      elemento.innerText = texto;
+      elemento.className = "mensagem-popup";
+      elemento.style.position = "fixed";
+      elemento.style.top = "30%";
+      elemento.style.left = "50%";
+      elemento.style.transform = "translate(-50%, -50%)";
+      elemento.style.background = "#fff0f5";
+      elemento.style.padding = "20px";
+      elemento.style.borderRadius = "12px";
+      elemento.style.boxShadow = "0 0 15px #ff99cc";
+      elemento.style.fontSize = "1.6em";
+      elemento.style.zIndex = 99999;
+      document.body.appendChild(elemento);
+      setTimeout(() => document.body.removeChild(elemento), 4000);
+    }
+
+    function alternarSom() {
+      const musica = document.getElementById("musica");
+      if (musica.paused) {
+        musica.play();
+      } else {
+        musica.pause();
+      }
+    }
+
+    function carregarFotos() {
+      const container = document.getElementById("fotos");
+      for (let i = 1; i <= imagens; i++) {
+        const img = document.createElement("img");
+        img.src = `fotos/foto${i}.jpg`;
+        img.alt = `Foto ${i}`;
+        img.onclick = () => mostrarMensagem(mensagensPopUp[i - 1]);
+        container.appendChild(img);
+        const frase = document.createElement("div");
+        frase.className = "frase-foto";
+        frase.innerText = frases[i % frases.length];
+        container.appendChild(frase);
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", carregarFotos);
+  </script>
+</body>
+</html>
