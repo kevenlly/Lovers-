@@ -1,193 +1,395 @@
-<!DOCTYPE html><html lang="pt-br">
+<!DOCTYPE html>
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <title>Feliz Dia dos Namorados 💘</title>
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Indie+Flower&display=swap" rel="stylesheet">
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Indie Flower', cursive;
-      background: linear-gradient(135deg, #fffafc, #ffe4e1);
-      color: #333;
-      text-align: center;
-      overflow-x: hidden;
-    }h1 {
-  font-family: 'Great Vibes', cursive;
-  font-size: 3.5em;
-  color: #e60073;
-  margin-top: 20px;
-}
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Nosso Amor Eterno 💖</title>
 
-#contador {
-  font-size: 1.6em;
-  margin: 10px;
-  color: #cc3366;
-}
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
 
-.data {
-  margin: 20px 0;
-  font-size: 1.8em;
-  font-weight: bold;
-  color: #a0004d;
-  cursor: pointer;
-  transition: transform 0.3s;
-}
-
-.data:hover {
-  transform: scale(1.05);
-  text-decoration: underline;
-}
-
-.interativo {
-  margin: 40px auto;
-  max-width: 90%;
-}
-
-.interativo button {
-  background-color: #ff416c;
-  color: white;
-  border: none;
-  padding: 20px 40px;
-  font-size: 28px;
-  font-family: 'Indie Flower', cursive;
-  border-radius: 15px;
-  cursor: pointer;
-  box-shadow: 0 6px #cc3451;
-  transition: background-color 0.3s, transform 0.2s;
-}
-
-.interativo button:hover {
-  background-color: #ff1e50;
-}
-
-.interativo button:active {
-  transform: scale(0.95);
-}
-
-.foto-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 60px;
-  padding-bottom: 50px;
-}
-
-.foto-container img {
-  width: 90%;
-  max-width: 600px;
-  border-radius: 20px;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-  cursor: pointer;
-}
-
-.frase-foto {
-  font-size: 2em;
-  color: #b30059;
-  margin-top: 10px;
-  display: none;
-  font-family: 'Great Vibes', cursive;
-}
-
-#poema {
-  max-width: 700px;
-  margin: 30px auto;
-  padding: 30px;
-  background: #fff0f5;
-  border: 2px dashed #ff80aa;
-  border-radius: 20px;
-  font-size: 1.8em;
-  color: #a0004d;
-  line-height: 1.6;
-  font-family: 'Great Vibes', cursive;
-  display: none;
-}
-
-#mensagem {
-  margin-top: 30px;
-  font-size: 1.8em;
-  color: #b30059;
-  min-height: 70px;
-}
-
-  </style>
+<style>
+  /* ======== Estilos ======== */
+  body {
+    margin:0; padding:0; font-family: 'Roboto', sans-serif;
+    background: linear-gradient(135deg, #ffeff2, #ffcad4);
+    color: #a0004d; text-align: center;
+  }
+  h1 {
+    font-family: 'Great Vibes', cursive; font-size: 4em; margin: 20px 0 10px 0;
+    color: #cc3366;
+    text-shadow: 1px 1px 3px #ffb6c1;
+  }
+  #contador {
+    font-size: 1.8em; margin: 15px auto 30px auto;
+    font-weight: 700;
+    color: #e60050;
+    text-shadow: 1px 1px 2px #ffd9e3;
+  }
+  .data {
+    background: #ffe4e1; color: #a0004d;
+    margin: 20px auto; padding: 10px 15px;
+    border-radius: 10px;
+    width: 320px;
+    font-weight: 700;
+    font-size: 1.3em;
+    cursor: pointer;
+    box-shadow: 0 3px 7px #ffb6c1;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  .data:hover {
+    background: #ff1e50;
+    color: white;
+  }
+  .mensagem-data {
+    font-size: 1.4em; font-style: italic; color: #cc3366; max-width: 700px;
+    margin: 8px auto 20px auto;
+    user-select: text;
+    min-height: 50px;
+    min-width: 320px;
+  }
+  .btn-declaracao {
+    background: #cc3366;
+    color: white;
+    border:none;
+    padding: 14px 28px;
+    margin: 12px 10px;
+    font-size: 1.8em;
+    border-radius: 22px;
+    cursor: pointer;
+    box-shadow: 0 5px #991f47;
+    transition: background-color 0.3s ease;
+  }
+  .btn-declaracao:hover {
+    background: #ff4d6d;
+  }
+  #mensagemDeclaracao {
+    font-size: 2em;
+    color: #cc3366;
+    margin: 30px auto 60px auto;
+    min-height: 70px;
+    max-width: 700px;
+    user-select: text;
+  }
+  #poema {
+    font-size: 1.8em;
+    font-weight: 700;
+    color: #cc3366;
+    margin: 40px auto 20px auto;
+    cursor: pointer;
+    max-width: 700px;
+    border: 3px dashed #cc3366;
+    padding: 20px;
+    border-radius: 18px;
+    user-select: none;
+    transition: background-color 0.3s ease;
+  }
+  #poema:hover {
+    background-color: #ffdde0;
+  }
+  #textoPoema {
+    max-width: 700px;
+    margin: 25px auto 70px auto;
+    font-size: 1.9em;
+    color: #cc3366;
+    line-height: 1.5em;
+    user-select: text;
+    display: none;
+  }
+  .foto-container {
+    margin: 30px auto 50px auto;
+    max-width: 700px;
+    position: relative;
+  }
+  .foto-container img {
+    width: 100%;
+    max-height: 480px;
+    border-radius: 20px;
+    box-shadow: 0 12px 24px #ffb6c1;
+    cursor: pointer;
+    transition: transform 0.4s ease;
+  }
+  .foto-container img:hover, .foto-container img:focus {
+    transform: scale(1.07);
+    outline: none;
+  }
+  .frase-foto {
+    font-size: 1.7em;
+    color: #cc3366;
+    margin-top: 18px;
+    font-style: italic;
+    max-width: 700px;
+  }
+  #btnProximaFoto {
+    font-size: 1.6em; padding: 12px 26px; margin-bottom: 70px;
+    cursor:pointer; border:none;
+    background:#ff4d6d; color:white;
+    border-radius:14px; box-shadow: 0 6px #cc3451;
+    user-select: none;
+    transition: background-color 0.3s ease;
+  }
+  #btnProximaFoto:hover {
+    background: #e63a57;
+  }
+  #btnProximaFoto:active {
+    box-shadow: none;
+    transform: translateY(4px);
+  }
+  #btnSom {
+    font-size: 1.6em; padding: 12px 26px; margin-bottom: 70px;
+    cursor:pointer; border:none;
+    background:#cc3366; color:white;
+    border-radius: 14px; box-shadow: 0 6px #991f47;
+    user-select: none;
+    transition: background-color 0.3s ease;
+  }
+  #btnSom:hover {
+    background:#a82852;
+  }
+  #btnSom:active {
+    box-shadow: none;
+    transform: translateY(4px);
+  }
+  .coracao-flutuante {
+    position: fixed;
+    font-size: 36px;
+    animation: flutuar 2.5s ease forwards;
+    pointer-events: none;
+    user-select: none;
+  }
+  @keyframes flutuar {
+    0% {opacity: 1; transform: translateY(0) scale(1);}
+    100% {opacity: 0; transform: translateY(-110px) scale(1.8);}
+  }
+</style>
 </head>
 <body>
-  <h1>Feliz Dia dos Namorados, meu Levi 💗</h1>
-  <div id="contador">Carregando tempo...</div>  <div class="data" onclick="mostrarMensagem('💋 Nosso primeiro beijo foi mágico e mudou tudo entre nós. Você me fez sentir borboletas no estômago!')">📅 11/08/2024 – Primeiro Beijo</div>
-  <div class="data" onclick="mostrarMensagem('🍝 Nosso primeiro date foi especial, o começo de muitos momentos incríveis que viriam. Eu me apaixonei mais ainda.')">📅 18/01/2025 – Primeiro Date</div>
-  <div class="data" onclick="mostrarMensagem('💍 O dia em que nos entregamos ao amor oficialmente. Meu coração pertence a você desde então.')">📅 01/02/2025 – Pedido de Namoro</div>
-  <div class="data" onclick="mostrarMensagem('🏡 Nossa primeira viagem juntos foi inesquecível. Me senti parte da sua família e amei cada segundo!')">📅 02/03/2025 – Viagem ao Sítio</div>
-  <div class="data" onclick="mostrarMensagem('💖 Quando trocamos alianças e selamos nosso compromisso. Um passo lindo rumo ao nosso futuro!')">📅 01/04/2025 – Alianças</div>  <div class="interativo">
-    <button onclick="mostrarMensagem('Você é tudo que eu sempre quis e mais.')">💬 Declaração 1</button>
-  </div>
-  <div class="interativo">
-    <button onclick="mostrarMensagem('Você transforma a minha vida todos os dias.')">💘 Declaração 2</button>
-  </div>
-  <div class="interativo">
-    <button onclick="mostrarMensagem('Com você, encontrei o amor verdadeiro.')">💖 Declaração 3</button>
-  </div>
-  <div class="interativo">
-    <button onclick="document.getElementById('poema').style.display = 'block';">📜 Mostrar Poema</button>
-  </div>
-  <div id="poema">
-    Te amo no silêncio, no riso, no instante.<br>
-    Te amo no tempo, no toque, no sempre.<br>
-    Te amo nas flores, na noite, no vento.<br>
-    Te amo na alma, em cada pensamento. 💌
-  </div>  <div class="foto-container" id="galeria"></div>  <div id="mensagem"></div>  <script>
-    const frases = [
-      "Cada momento ao seu lado é um presente.",
-      "Seu sorriso ilumina meus dias.",
-      "Te abraçar é meu lugar favorito.",
-      "Somos duas metades de um só coração.",
-      "Você me faz acreditar no amor todos os dias.",
-      "Nosso amor é minha maior alegria.",
-      "Te amarei até o fim dos meus dias.",
-      "Você me completa de forma única.",
-      "Ao seu lado tudo é melhor.",
-      "Você é o meu para sempre.",
-      "Com você, todos os dias são especiais.",
-      "O amor da minha vida tem o seu nome.",
-      "Quero você em todas as minhas manhãs.",
-      "A melhor parte da vida é te ter comigo."
-    ];
 
-    const galeria = document.getElementById("galeria");
-    frases.forEach((frase, i) => {
-      const img = document.createElement("img");
-      img.src = `imagens/foto${i + 1}.jpg`;
-      img.alt = `Foto ${i + 1}`;
+<h1>Nosso Amor Eterno 💖</h1>
 
-      const divFrase = document.createElement("div");
-      divFrase.className = "frase-foto";
-      divFrase.textContent = frase;
+<div id="contador" aria-live="polite">Carregando contador...</div>
 
-      const container = document.createElement("div");
-      container.appendChild(img);
-      container.appendChild(divFrase);
-      galeria.appendChild(container);
+<!-- Datas especiais -->
+<div class="data" id="data1" tabindex="0" role="button" aria-pressed="false" aria-label="11 de Agosto de 2024, primeiro beijo">11/08/2024 - Primeiro Beijo</div>
+<div class="mensagem-data" id="msgData1" aria-live="polite"></div>
 
-      img.addEventListener("click", () => {
-        divFrase.style.display = "block";
-      });
-    });
+<div class="data" id="data2" tabindex="0" role="button" aria-pressed="false" aria-label="18 de Janeiro de 2025, primeiro date">18/01/2025 - Primeiro Date</div>
+<div class="mensagem-data" id="msgData2" aria-live="polite"></div>
 
-    const inicio = new Date("2025-02-01T00:00:00");
-    function atualizarContador() {
-      const agora = new Date();
-      const diff = agora - inicio;
-      const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const horas = Math.floor((diff / (1000 * 60 * 60)) % 24);
-      const minutos = Math.floor((diff / (1000 * 60)) % 60);
-      const segundos = Math.floor((diff / 1000) % 60);
-      document.getElementById("contador").textContent =
-        `Estamos juntos há: ${dias} dias, ${horas}h ${minutos}min ${segundos}s`;
+<div class="data" id="data3" tabindex="0" role="button" aria-pressed="false" aria-label="01 de Fevereiro de 2025, pedido de namoro oficial">01/02/2025 - Pedido Oficial</div>
+<div class="mensagem-data" id="msgData3" aria-live="polite"></div>
+
+<div class="data" id="data4" tabindex="0" role="button" aria-pressed="false" aria-label="02 de Março de 2025, primeira viagem ao sítio com família">02/03/2025 - Viagem ao Sítio</div>
+<div class="mensagem-data" id="msgData4" aria-live="polite"></div>
+
+<div class="data" id="data5" tabindex="0" role="button" aria-pressed="false" aria-label="01 de Abril de 2025, entrega das alianças">01/04/2025 - Entrega das Alianças</div>
+<div class="mensagem-data" id="msgData5" aria-live="polite"></div>
+
+<!-- Botões das declarações -->
+<button class="btn-declaracao" id="btnDec1" aria-label="Mostrar declaração de amor 1">💌 Declaração 1</button>
+<button class="btn-declaracao" id="btnDec2" aria-label="Mostrar declaração de amor 2">💘 Declaração 2</button>
+<button class="btn-declaracao" id="btnDec3" aria-label="Mostrar declaração de amor 3">❤️ Declaração 3</button>
+
+<div id="mensagemDeclaracao" role="region" aria-live="polite"></div>
+
+<!-- Poema clicável -->
+<div id="poema" tabindex="0" role="button" aria-pressed="false" aria-label="Mostrar poema de amor">
+Clique aqui para ler nosso poema de amor 💞
+</div>
+<div id="textoPoema"></div>
+
+<!-- Fotos -->
+<div class="foto-container" aria-live="polite" aria-label="Galeria de fotos">
+  <img src="foto1.jpg" alt="Foto 1 do casal sorrindo" tabindex="0" />
+  <div class="frase-foto" id="fraseFoto">Nosso primeiro sorriso juntos.</div>
+</div>
+<button id="btnProximaFoto" aria-label="Mostrar próxima foto">Próxima Foto ➡️</button>
+
+<!-- Música de fundo -->
+<button id="btnSom" aria-label="Ligar ou desligar música de fundo">🔈 Música Ligada</button>
+<audio id="musica" src="musica_fundo.mp3" loop></audio>
+
+<script src="script.js"></script>
+
+  </html>
+<script</script>
+  // Contador de tempo desde 01/02/2025 (Pedido oficial)
+const contadorEl = document.getElementById('contador');
+const dataNamoro = new Date('2025-02-01T00:00:00');
+
+function atualizarContador() {
+  const agora = new Date();
+  let diff = agora - dataNamoro;
+
+  if(diff < 0){
+    contadorEl.textContent = "Nosso namoro começará em breve...";
+    return;
+  }
+
+  const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const horas = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutos = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+  const segundos = Math.floor((diff % (1000 * 60)) / 1000);
+
+  contadorEl.textContent = `Estamos juntos há ${dias} dias, ${horas} horas, ${minutos} minutos e ${segundos} segundos 💕`;
+}
+setInterval(atualizarContador, 1000);
+atualizarContador();
+
+
+// Declarações para botões
+const declaracoes = [
+  "Levi, meu amor, você é o sol que ilumina todos os meus dias!",
+  "Com você, cada instante é magia e felicidade.",
+  "Nossa história é meu melhor presente, e quero vivê-la eternamente ao seu lado."
+];
+const btnDec1 = document.getElementById('btnDec1');
+const btnDec2 = document.getElementById('btnDec2');
+const btnDec3 = document.getElementById('btnDec3');
+const mensagemDeclaracao = document.getElementById('mensagemDeclaracao');
+
+btnDec1.addEventListener('click', () => {
+  mensagemDeclaracao.textContent = declaracoes[1];
+});
+btnDec2.addEventListener('click', () => {
+  mensagemDeclaracao.textContent = declaracoes[2];
+});
+btnDec3.addEventListener('click', () => {
+  mensagemDeclaracao.textContent = declaracoes[3];
+// Fotos e frases associadas
+const fotos = [
+  {src: 'foto1.jpg', frase: 'Nosso primeiro sorriso juntos.'},
+  {src: 'foto2.jpg', frase: 'Passeio inesquecível no parque.'},
+  {src: 'foto3.jpg', frase: 'Nosso abraço apertado no cinema.'},
+  {src: 'foto4.jpg', frase: 'Piquenique ao pôr do sol.'},
+  {src: 'foto5.jpg', frase: 'Nossa primeira viagem ao sítio.'},
+  {src: 'foto6.jpg', frase: 'Rindo até chorar juntos.'},
+  {src: 'foto7.jpg', frase: 'Jantar romântico a luz de velas.'},
+  {src: 'foto8.jpg', frase: 'Dançando no meio da rua.'},
+  {src: 'foto9.jpg', frase: 'Nosso beijo no frio da manhã.'},
+  {src: 'foto10.jpg', frase: 'Momentos de pura felicidade.'},
+  {src: 'foto11.jpg', frase: 'Nosso olhar que diz tudo.'},
+  {src: 'foto12.jpg', frase: 'Um abraço que aquece a alma.'},
+  {src: 'foto13.jpg', frase: 'Complicidade em cada gesto.'},
+  {src: 'foto14.jpg', frase: 'Amor que cresce a cada dia.'}
+];
+
+let fotoAtual = 0;
+const imgElement = document.querySelector('.foto-container img');
+const fraseFoto = document.getElementById('fraseFoto');
+const btnProximaFoto = document.getElementById('btnProximaFoto');
+
+btnProximaFoto.addEventListener('click', () => {
+  fotoAtual = (fotoAtual + 1) % fotos.length;
+  imgElement.src = fotos[fotoAtual].src;
+  imgElement.alt = `Foto ${fotoAtual + 1} do casal`;
+  fraseFoto.textContent = fotos[fotoAtual].frase;
+
+  // Animação coração ao mudar foto
+  criarCoracaoFlutuante();
+});
+
+// Criar animação de coração flutuante
+function criarCoracaoFlutuante() {
+  const coracao = document.createElement('div');
+  coracao.className = 'coracao-flutuante';
+  coracao.textContent = '💖';
+
+  // Posicionar coração em local aleatório na horizontal
+  coracao.style.left = Math.random() * window.innerWidth + 'px';
+  coracao.style.bottom = '30px';
+
+  document.body.appendChild(coracao);
+
+  setTimeout(() => {
+    coracao.remove();
+  }, 2500);
+}
+
+// Declarações para datas especiais
+const datasEspeciais = {
+  data1: "11/08/2024 - Nosso primeiro beijo, inesquecível e cheio de emoção! 💋",
+  data2: "18/01/2025 - Nosso primeiro date, coração acelerado e muita alegria! 🥰",
+  data3: "01/02/2025 - O pedido oficial de namoro, o começo do para sempre! 💍",
+  data4: "02/03/2025 - Primeira viagem ao sítio com a família, momentos de felicidade pura! 🚜",
+  data5: "01/04/2025 - Entrega das alianças, selando nosso compromisso eterno! 💞"
+};
+
+for (const id in datasEspeciais) {
+  const el = document.getElementById(id);
+  const msgEl = document.getElementById('msg' + id.charAt(0).toUpperCase() + id.slice(1));
+
+  el.addEventListener('click', () => {
+    // Alterna mensagem visível
+    if (msgEl.textContent === '') {
+      msgEl.textContent = datasEspeciais[id];
+      el.setAttribute('aria-pressed', 'true');
+      criarCoracaoFlutuante();
+    } else {
+      msgEl.textContent = '';
+      el.setAttribute('aria-pressed', 'false');
     }
-    setInterval(atualizarContador, 1000);
-    atualizarContador();
+  });
 
-    function mostrarMensagem(texto) {
-      document.getElementById("mensagem").textContent = texto;
+  // Ativa também com Enter e Espaço no teclado (acessibilidade)
+  el.addEventListener('keydown', (event) => {
+    if(event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      el.click();
     }
-  </script></body>
+  });
+}
+
+// Música de fundo
+const btnSom = document.getElementById('btnSom');
+const musica = document.getElementById('musica');
+let musicaTocando = false;
+
+btnSom.addEventListener('click', () => {
+  if (musicaTocando) {
+    musica.pause();
+    btnSom.textContent = '🔈 Música Desligada';
+    musicaTocando = false;
+  } else {
+    musica.play();
+    btnSom.textContent = '🔊 Música Ligada';
+    musicaTocando = true;
+  }
+});
+
+// Poema interativo
+const poema = document.getElementById('poema');
+const textoPoema = document.getElementById('textoPoema');
+const poemaTexto = `
+Nosso amor é uma linda canção,
+Que toca forte no coração.
+Em cada abraço, um calor,
+Que cresce sempre, nosso amor.
+
+Por entre risos e momentos,
+Vivemos sonhos e sentimentos.
+Levi e você, juntos a brilhar,
+Um para o outro, a eternizar.
+`;
+
+poema.addEventListener('click', () => {
+  if (textoPoema.style.display === 'none' || textoPoema.style.display === '') {
+    textoPoema.style.display = 'block';
+    poema.setAttribute('aria-pressed', 'true');
+  } else {
+    textoPoema.style.display = 'none';
+    poema.setAttribute('aria-pressed', 'false');
+  }
+});
+
+poema.addEventListener('keydown', (event) => {
+  if(event.key === 'Enter' || event.key === ' ') {
+    event.preventDefault();
+    poema.click();
+  }
+});
+
+  <script src="script.js"></script>
+
+</body>
 </html>
