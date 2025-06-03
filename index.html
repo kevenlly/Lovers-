@@ -1,278 +1,259 @@
-<!DOCTYPE html><html lang="pt-br">
+<!DOCTYPE html>
+<html lang="pt-br">
 <head>
   <meta charset="UTF-8" />
   <title>Feliz Dia dos Namorados 💘</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
   <style>
-    @font-face {
-      font-family: 'Nocaut';
-      src: url('fontes/NOCAUTE.ttf');
+    body {
+      margin: 0;
+      font-family: 'Montserrat', sans-serif;
+      background: linear-gradient(135deg, #fffafc, #ffe4e1);
+      color: #333;
+      text-align: center;
+      overflow-x: hidden;
+      overflow-y: scroll;
     }
-    @font-face {
-      font-family: 'Beauty';
-      src: url('fontes/BEAUTY.ttf');
-    }body {
-  margin: 0;
-  font-family: 'Beauty', sans-serif;
-  background: linear-gradient(135deg, #fffafc, #ffe4e1);
-  color: #333;
-  text-align: center;
-  overflow-x: hidden;
-}
 
-h1 {
-  font-family: 'Nocaut', sans-serif;
-  font-size: 3em;
-  color: #e60073;
-  margin-top: 20px;
-}
+    h1 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 3.8em;
+      color: #e60073;
+      margin-top: 20px;
+      text-shadow: 1px 1px 4px #ffb6c1;
+    }
 
-#contador {
-  font-size: 1.4em;
-  margin: 10px;
-  color: #cc3366;
-}
+    #contador {
+      font-size: 1.4em;
+      margin: 10px;
+      color: #cc3366;
+      font-weight: 600;
+    }
 
-#mensagemInicial {
-  max-width: 800px;
-  margin: 10px auto 30px;
-  padding: 0 20px;
-  font-size: 1.6em;
-}
+    #mensagemInicial {
+      max-width: 800px;
+      margin: 15px auto 40px;
+      padding: 0 20px;
+      font-size: 1.6em;
+      font-style: italic;
+      color: #a0004d;
+      line-height: 1.4;
+      user-select: none;
+    }
 
-.foto-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 50px;
-  padding-bottom: 50px;
-}
+    .data-container {
+      max-width: 400px;
+      margin: 30px auto;
+      text-align: left;
+    }
 
-.foto-container img {
-  width: 90%;
-  max-width: 600px;
-  border-radius: 20px;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-  opacity: 0;
-  transform: translateY(30px);
-  animation: aparecer 1s ease forwards;
-}
+    .data {
+      margin: 8px 0;
+      font-size: 1.3em;
+      font-weight: 700;
+      color: #a0004d;
+      cursor: pointer;
+      border-left: 4px solid #e60073;
+      padding-left: 10px;
+      transition: background-color 0.3s, transform 0.2s;
+      border-radius: 4px;
+      user-select: none;
+    }
+    .data:hover {
+      background-color: #ffe0eb;
+      transform: scale(1.05);
+    }
 
-.frase-foto {
-  font-size: 1.6em;
-  color: #b30059;
-  margin-top: 10px;
-  font-family: 'Beauty', cursive;
-  opacity: 0;
-  animation: aparecer 1s ease forwards;
-}
+    .interativo {
+      margin: 50px auto 40px;
+      max-width: 300px;
+    }
 
-@keyframes aparecer {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
+    .interativo button {
+      background-color: #ff416c;
+      color: white;
+      border: none;
+      padding: 22px 50px;
+      font-size: 30px;
+      font-family: 'Great Vibes', cursive;
+      border-radius: 25px;
+      cursor: pointer;
+      box-shadow: 0 6px #cc3451;
+      transition: background-color 0.3s, transform 0.2s;
+      user-select: none;
+    }
 
-.data {
-  margin: 10px 0;
-  font-size: 1.4em;
-  font-weight: bold;
-  color: #a0004d;
-  cursor: pointer;
-  transition: transform 0.3s;
-}
+    .interativo button:hover {
+      background-color: #ff1e50;
+    }
 
-.data:hover {
-  transform: scale(1.05);
-  text-decoration: underline;
-}
+    .interativo button:active {
+      transform: scale(0.95);
+    }
 
-.interativo {
-  margin: 40px auto;
-  max-width: 90%;
-}
+    .mensagem-botao {
+      margin-top: 15px;
+      font-size: 1.7em;
+      color: #b30059;
+      font-family: 'Montserrat', sans-serif;
+      min-height: 70px;
+      user-select: none;
+    }
 
-.interativo button {
-  background-color: #ff416c;
-  color: white;
-  border: none;
-  padding: 20px 40px;
-  font-size: 28px;
-  font-family: 'Nocaut', sans-serif;
-  border-radius: 15px;
-  cursor: pointer;
-  box-shadow: 0 6px #cc3451;
-  transition: background-color 0.3s, transform 0.2s;
-}
+    #poema-container {
+      max-width: 700px;
+      margin: 60px auto 80px;
+      padding: 30px;
+      background: #fff0f5;
+      border: 3px dashed #ff80aa;
+      border-radius: 25px;
+      font-size: 2em;
+      font-family: 'Great Vibes', cursive;
+      color: #a0004d;
+      line-height: 1.6;
+      display: none;
+      user-select: none;
+    }
 
-.interativo button:hover {
-  background-color: #ff1e50;
-}
+    #btnPoema {
+      background-color: #ff7ca3;
+      color: white;
+      border: none;
+      padding: 20px 50px;
+      font-size: 28px;
+      font-family: 'Great Vibes', cursive;
+      border-radius: 30px;
+      cursor: pointer;
+      margin: 40px auto;
+      display: block;
+      box-shadow: 0 5px #c35d7a;
+      user-select: none;
+      transition: background-color 0.3s;
+    }
+    #btnPoema:hover {
+      background-color: #ff4d7a;
+    }
+    #btnPoema:active {
+      transform: scale(0.95);
+    }
 
-.interativo button:active {
-  transform: scale(0.95);
-}
+    #mensagem {
+      margin-top: 30px;
+      font-size: 2em;
+      color: #b30059;
+      min-height: 80px;
+      transition: opacity 0.6s ease;
+      user-select: none;
+    }
 
-.mensagem-botao {
-  margin-top: 10px;
-  font-size: 1.5em;
-  color: #b30059;
-}
+    #galeria {
+      max-width: 650px;
+      margin: 0 auto 80px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 60px;
+      position: relative;
+    }
 
-#poema {
-  max-width: 700px;
-  margin: 60px auto;
-  padding: 30px;
-  background: #fff0f5;
-  border: 2px dashed #ff80aa;
-  border-radius: 20px;
-  font-size: 1.7em;
-  font-family: 'Beauty', cursive;
-  color: #a0004d;
-  line-height: 1.6;
-}
+    .foto-container {
+      position: relative;
+      width: 100%;
+      max-width: 600px;
+      cursor: pointer;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 0 20px rgba(255, 66, 115, 0.4);
+      opacity: 0;
+      transform: translateY(50px);
+      animation-fill-mode: forwards;
+    }
 
-#mensagem {
-  margin-top: 30px;
-  font-size: 2em;
-  color: #b30059;
-  min-height: 70px;
-  transition: opacity 0.6s ease;
-}
+    .foto-container img {
+      width: 100%;
+      display: block;
+      border-radius: 20px;
+      transition: transform 0.4s ease;
+    }
+    .foto-container img:hover {
+      transform: scale(1.05);
+    }
 
-#btnSom {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  padding: 12px 18px;
-  font-size: 16px;
-  border-radius: 8px;
-  background: #ff416c;
-  color: white;
-  cursor: pointer;
-  box-shadow: 0 4px #cc3451;
-  z-index: 1000;
-}
+    .frase-foto {
+      position: absolute;
+      bottom: 15px;
+      left: 15px;
+      right: 15px;
+      font-family: 'Great Vibes', cursive;
+      font-size: 1.7em;
+      color: #ff416c;
+      text-shadow: 1px 1px 3px #fff;
+      background: rgba(255, 255, 255, 0.6);
+      padding: 10px 20px;
+      border-radius: 25px;
+      user-select: none;
+      pointer-events: none;
+    }
 
-.coracao-flutuante {
-  position: absolute;
-  animation: flutuar 3s ease-out forwards;
-  font-size: 30px;
-  color: #ff4d6d;
-}
+    @keyframes aparecer {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
 
-@keyframes flutuar {
-  0% { opacity: 1; transform: translateY(0) scale(1); }
-  100% { opacity: 0; transform: translateY(-100px) scale(1.5); }
-}
+    #btnSom {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      padding: 14px 22px;
+      font-size: 18px;
+      border-radius: 12px;
+      background: #ff416c;
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 4px #cc3451;
+      z-index: 1000;
+      user-select: none;
+      transition: background-color 0.3s;
+    }
+    #btnSom:hover {
+      background-color: #ff1e50;
+    }
+    #btnSom:active {
+      transform: scale(0.95);
+    }
 
+    .coracao-flutuante {
+      position: absolute;
+      animation: flutuar 3s ease-out forwards;
+      font-size: 40px;
+      color: #ff4d6d;
+      pointer-events: none;
+      user-select: none;
+      z-index: 1500;
+      user-select:none;
+    }
+
+    @keyframes flutuar {
+      0% { opacity: 1; transform: translateY(0) scale(1); }
+      100% { opacity: 0; transform: translateY(-100px) scale(1.5); }
+    }
   </style>
 </head>
 <body>
   <h1>Feliz Dia dos Namorados, meu Levi 💗</h1>
   <div id="contador">Carregando tempo...</div>
   <div id="mensagemInicial">
-    Marcos Levi, eu te desejo feliz dia dos namorados!🤍 Obrigada por ter entrado na minha vida...
-  </div>  <div class="data" onclick="mostrarMensagem('💋 Nosso primeiro beijo foi mágico...')">📅 11/08/2024 – Primeiro Beijo</div>
-  <div class="data" onclick="mostrarMensagem('🍝 Nosso primeiro date foi especial...')">📅 18/01/2025 – Primeiro Date</div>
-  <div class="data" onclick="mostrarMensagem('💍 O dia em que nos entregamos ao amor...')">📅 01/02/2025 – Pedido de Namoro</div>
-  <div class="data" onclick="mostrarMensagem('🏡 Nossa primeira viagem juntos...')">📅 02/03/2025 – Viagem ao Sítio</div>
-  <div class="data" onclick="mostrarMensagem('💖 Quando trocamos alianças...')">📅 01/04/2025 – Alianças</div>  <div class="interativo">
-    <button onclick="mostrarMensagem('Você é tudo que eu sempre quis.')">💬 Declaração 1</button>
-    <div class="mensagem-botao">Você é tudo que eu sempre quis.</div>
-  </div>  <div class="foto-container" id="galeria"></div>  <div id="poema">
-    Te amo no silêncio, no riso, no instante.<br>
-    Te amo no tempo, no toque, no sempre.<br>
-    Te amo nas flores, na noite, no vento.<br>
-    Te amo na alma, em cada pensamento. 💌
-  </div>  <div class="interativo">
-    <button onclick="mostrarMensagem('Você transforma a minha vida!')">💘 Declaração 2</button>
-    <div class="mensagem-botao">Você transforma a minha vida!</div>
-  </div>  <div class="interativo">
-    <button onclick="mostrarMensagem('Com você encontrei o amor verdadeiro.')">💖 Declaração 3</button>
-    <div class="mensagem-botao">Com você encontrei o amor verdadeiro.</div>
-  </div>  <audio id="musicaFundo" autoplay loop>
-    <source src="audio/all_of_me.mp3" type="audio/mpeg">
-    Seu navegador não suporta áudio.
-  </audio>
-  <button id="btnSom" onclick="toggleSom()">🔈 Pausar Música</button>
-  <div id="mensagem"></div>  <script>
-    const frases = [
-      "Cada momento ao seu lado é um presente.",
-      "Seu sorriso ilumina meus dias.",
-      "Te abraçar é meu lugar favorito.",
-      "Somos duas metades de um só coração.",
-      "Você me faz acreditar no amor todos os dias.",
-      "Nosso amor é minha maior alegria.",
-      "Te amarei até o fim dos meus dias.",
-      "Você me completa de forma única.",
-      "Ao seu lado tudo é melhor.",
-      "Você é o meu para sempre.",
-      "Com você, todos os dias são especiais.",
-      "O amor da minha vida tem o seu nome.",
-      "Quero você em todas as minhas manhãs.",
-      "A melhor parte da vida é te ter comigo."
-    ];
+    Marcos Levi, eu te desejo feliz dia dos namorados!🤍 Obrigada por ter entrado na minha vida,
+    sou extremamente grata a Deus por ter feito nossos caminhos colidirem, obrigada por ser essa pessoa incrível
+    do sorriso mais encantador, obrigada por me fazer feliz e me completar.
+    Eu quero construir um futuro junto com você meu amor, quero te fazer feliz, quero casar com você
+    e formar nossa futura família!🥹🤍 Eu te quero comigo sempre e EU AMO VOCÊ IMENSAMENTE,
+    viveremos e nos teremos juntos até Jesus voltar.🤍
+  </div>
 
-    const galeria = document.getElementById("galeria");
-    frases.forEach((frase, i) => {
-      const img = document.createElement("img");
-      img.src = `imagens/foto${i + 1}.jpg`;
-      img.alt = `Foto ${i + 1}`;
-      img.style.animationDelay = `${i * 0.2}s`;
-
-      const divFrase = document.createElement("div");
-      divFrase.className = "frase-foto";
-      divFrase.textContent = frase;
-      divFrase.style.animationDelay = `${i * 0.2 + 0.1}s`;
-
-      galeria.appendChild(img);
-      galeria.appendChild(divFrase);
-
-      img.addEventListener("click", () => mostrarMensagem(frase));
-      img.addEventListener("load", () => criarCoracao(img));
-    });
-
-    function criarCoracao(el) {
-      const coracao = document.createElement("div");
-      coracao.className = "coracao-flutuante";
-      coracao.style.left = `${el.offsetLeft + el.offsetWidth / 2}px`;
-      coracao.style.top = `${el.offsetTop}px`;
-      coracao.textContent = "💖";
-      document.body.appendChild(coracao);
-      setTimeout(() => coracao.remove(), 3000);
-    }
-
-    const inicio = new Date("2025-02-01T00:00:00");
-    function atualizarContador() {
-      const agora = new Date();
-      const diff = agora - inicio;
-      const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const horas = Math.floor((diff / (1000 * 60 * 60)) % 24);
-      const minutos = Math.floor((diff / (1000 * 60)) % 60);
-      const segundos = Math.floor((diff / 1000) % 60);
-      document.getElementById("contador").textContent =
-        `Estamos juntos há: ${dias} dias, ${horas}h ${minutos}min ${segundos}s`;
-    }
-    setInterval(atualizarContador, 1000);
-    atualizarContador();
-
-    function mostrarMensagem(texto) {
-      const div = document.getElementById("mensagem");
-      div.textContent = texto;
-      div.style.opacity = 1;
-    }
-
-    const musica = document.getElementById('musicaFundo');
-    const btnSom = document.getElementById('btnSom');
-    function toggleSom() {
-      if (musica.paused) {
-        musica.play();
-        btnSom.textContent = '🔈 Pausar Música';
-      } else {
-        musica.pause();
-        btnSom.textContent = '🔇 Tocar Música';
-      }
-    }
-  </script></body>
-</html>
+  <div class="data-container">
+    <div class="data" onclick="mostrarMensagem('💋 Nosso primeiro beijo foi mágico e mudou tudo entre nós. Você me fez sentir borboletas no estômago!')">📅 11/08/2024 – Primeiro Beijo</div>
+    <div class="data" onclick="mostrarMensagem('🍝 Nosso primeiro date foi especial, o começo de muitos momentos incríveis que viriam. Eu me apaixonei mais ainda.')">📅 18/01/2025 – Primeiro Date</div>
+    <div class="data" onclick="mostrarMensagem('💍 O dia em que nos entregamos ao amor oficialmente. Meu coração pertence a você desde então.')">
