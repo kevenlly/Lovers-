@@ -3,233 +3,173 @@
 <head>
   <meta charset="UTF-8" />
   <title>Feliz Dia dos Namorados 💘</title>
-
-  <!-- Fontes Google -->
-  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
-
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto:wght@400;700&display=swap');
+
     body {
+      font-family: 'Roboto', sans-serif;
       margin: 0;
-      font-family: 'Montserrat', sans-serif;
-      background: linear-gradient(135deg, #fffafc, #ffe4e1);
+      background: linear-gradient(135deg, #fff0f5, #ffe4e1);
       color: #333;
       text-align: center;
       overflow-x: hidden;
-      overflow-y: auto;
     }
 
     h1 {
-      font-family: 'Dancing Script', cursive;
+      font-family: 'Pacifico', cursive;
       font-size: 3.5em;
       color: #e60073;
-      margin-top: 30px;
-      user-select: none;
+      margin: 20px 0;
     }
 
     #contador {
-      font-size: 1.4em;
-      margin: 15px auto;
+      font-size: 1.5em;
+      margin-bottom: 25px;
       color: #cc3366;
-      font-weight: 600;
-      user-select: none;
-    }
-
-    #mensagemInicial {
-      max-width: 850px;
-      margin: 20px auto 40px;
-      padding: 0 20px;
-      font-size: 1.6em;
-      line-height: 1.5;
-      font-weight: 500;
-      color: #a0004d;
-      user-select: none;
-    }
-
-    /* Fotos - container vertical */
-    #galeria {
-      max-width: 700px;
-      margin: 0 auto 50px;
-      display: flex;
-      flex-direction: column;
-      gap: 50px;
-      scroll-behavior: smooth;
-      padding-bottom: 50px;
-      user-select: none;
-    }
-
-    #galeria img {
-      width: 100%;
-      border-radius: 20px;
-      box-shadow: 0 6px 15px rgba(255, 0, 120, 0.3);
-      cursor: pointer;
-      opacity: 0;
-      transform: translateY(40px);
-      animation-fill-mode: forwards;
-      animation-name: aparecer;
-      animation-duration: 1s;
-      animation-timing-function: ease-out;
-    }
-
-    @keyframes aparecer {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .frase-foto {
-      font-family: 'Dancing Script', cursive;
-      font-size: 1.7em;
-      color: #b30059;
-      margin-top: 12px;
-      opacity: 0;
-      transform: translateY(20px);
-      animation-fill-mode: forwards;
-      animation-name: aparecerFrase;
-      animation-duration: 1s;
-      animation-timing-function: ease-out;
-      user-select: none;
-    }
-
-    @keyframes aparecerFrase {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    /* Datas especiais */
-    #datas {
-      max-width: 700px;
-      margin: 30px auto;
-      text-align: center;
+      font-weight: 700;
     }
 
     .data-evento {
-      background: #ffd0e3;
-      border-radius: 12px;
       margin: 15px auto;
-      max-width: 500px;
-      padding: 12px 20px;
-      font-size: 1.5em;
-      color: #9b0051;
-      font-weight: 600;
+      max-width: 400px;
+      background: #f9d6e3;
+      border-radius: 12px;
+      padding: 12px 18px;
+      font-weight: bold;
+      font-size: 1.3em;
+      color: #a0004d;
       cursor: pointer;
-      user-select: none;
-      box-shadow: 0 4px 8px rgba(255, 0, 120, 0.3);
-      transition: background-color 0.3s ease, transform 0.3s ease;
+      box-shadow: 0 3px 8px rgba(204, 51, 102, 0.3);
+      transition: transform 0.2s ease, box-shadow 0.3s ease;
     }
     .data-evento:hover {
-      background-color: #ff89ac;
       transform: scale(1.05);
+      box-shadow: 0 6px 14px rgba(204, 51, 102, 0.6);
       text-decoration: underline;
     }
-    .mensagem-data {
-      font-family: 'Dancing Script', cursive;
-      font-size: 1.4em;
-      color: #b30059;
-      margin-top: 8px;
-      max-width: 480px;
-      margin-left: auto;
-      margin-right: auto;
-      user-select: none;
-    }
 
-    /* Botões interativos */
     .interativo {
-      max-width: 350px;
-      margin: 50px auto;
-      text-align: center;
-      user-select: none;
+      margin: 40px auto;
+      max-width: 90%;
     }
-
     .interativo button {
       background-color: #ff416c;
       color: white;
       border: none;
-      padding: 22px 50px;
+      padding: 20px 45px;
       font-size: 26px;
-      font-family: 'Montserrat', sans-serif;
-      font-weight: 700;
-      border-radius: 20px;
+      font-family: 'Pacifico', cursive;
+      border-radius: 18px;
       cursor: pointer;
-      box-shadow: 0 8px #cc3451;
-      transition: background-color 0.3s, transform 0.2s;
-      user-select: none;
+      box-shadow: 0 6px #cc3451;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      display: block;
+      margin: 15px auto;
+      max-width: 300px;
     }
-
     .interativo button:hover {
       background-color: #ff1e50;
     }
-
     .interativo button:active {
       transform: scale(0.95);
     }
-
     .mensagem-botao {
-      margin-top: 12px;
-      font-family: 'Dancing Script', cursive;
-      font-size: 1.7em;
+      margin-top: 8px;
+      font-size: 1.6em;
       color: #b30059;
-      user-select: none;
+      max-width: 300px;
+      margin-left: auto;
+      margin-right: auto;
+      font-family: 'Roboto', sans-serif;
     }
 
-    /* Poema no meio */
+    #galeria {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 45px;
+      padding-bottom: 80px;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    #galeria img {
+      width: 100%;
+      max-width: 600px;
+      border-radius: 20px;
+      box-shadow: 0 0 20px rgba(204, 51, 102, 0.3);
+      cursor: pointer;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeInUp 0.8s forwards;
+    }
+    #galeria div.frase-foto {
+      margin-top: 10px;
+      font-family: 'Pacifico', cursive;
+      font-size: 1.5em;
+      color: #b30059;
+      opacity: 0;
+      animation: fadeInUp 0.8s forwards;
+    }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
     #poema {
-      max-width: 720px;
-      margin: 70px auto;
-      padding: 40px 30px;
+      max-width: 700px;
+      margin: 60px auto;
+      padding: 30px;
       background: #fff0f5;
-      border: 3px dashed #ff80aa;
-      border-radius: 25px;
-      font-family: 'Dancing Script', cursive;
-      font-size: 2em;
+      border: 2px dashed #ff80aa;
+      border-radius: 20px;
+      font-size: 1.9em;
+      font-family: 'Pacifico', cursive;
       color: #a0004d;
       line-height: 1.6;
-      user-select: none;
     }
 
-    /* Mensagem geral */
     #mensagem {
-      margin: 40px auto 60px;
-      font-size: 2.4em;
+      margin-top: 30px;
+      font-size: 2em;
       color: #b30059;
-      min-height: 90px;
-      font-family: 'Dancing Script', cursive;
-      transition: opacity 0.5s ease;
-      user-select: none;
+      min-height: 70px;
+      transition: opacity 0.6s ease;
+      font-family: 'Roboto', sans-serif;
+      font-weight: 700;
     }
 
-    /* Botão de som */
+    .coracao-flutuante {
+      position: absolute;
+      animation: flutuar 3s ease-out forwards;
+      font-size: 50px;
+      color: #ff4d6d;
+      pointer-events: none;
+      user-select: none;
+      z-index: 9999;
+    }
+
+    @keyframes flutuar {
+      0% { opacity: 1; transform: translateY(0) scale(1); }
+      100% { opacity: 0; transform: translateY(-120px) scale(1.7); }
+    }
+
     #btnSom {
       position: fixed;
-      bottom: 25px;
-      right: 25px;
+      bottom: 20px;
+      right: 20px;
       padding: 14px 22px;
       font-size: 18px;
       border-radius: 12px;
       background: #ff416c;
       color: white;
       cursor: pointer;
-      box-shadow: 0 6px #cc3451;
-      user-select: none;
+      box-shadow: 0 4px #cc3451;
       z-index: 1000;
-    }
-
-    /* Coração flutuante */
-    .coracao-flutuante {
-      position: fixed;
-      animation: flutuar 2.5s ease-out forwards;
-      font-size: 36px;
-      color: #ff4d6d;
-      pointer-events: none;
-      user-select: none;
-      z-index: 999;
-    }
-
-    @keyframes flutuar {
-      0% { opacity: 1; transform: translateY(0) scale(1); }
-      100% { opacity: 0; transform: translateY(-150px) scale(1.7); }
+      font-family: 'Pacifico', cursive;
     }
   </style>
 </head>
@@ -239,283 +179,168 @@
 
   <div id="contador">Carregando tempo...</div>
 
-  <div id="mensagemInicial">
-    Marcos Levi, eu te desejo feliz dia dos namorados! 🤍 Obrigada por ter entrado na minha vida,
-    sou extremamente grata a Deus por ter feito nossos caminhos colidirem, obrigada por ser essa pessoa incrível
-    do sorriso mais encantador, obrigada por me fazer feliz e me completar.<br><br>
-    Eu quero construir um futuro junto com você meu amor, quero te fazer feliz, quero casar com você
-    e formar nossa futura família! 🥹🤍 Eu te quero comigo sempre e EU AMO VOCÊ IMENSAMENTE,
-    viveremos e nos teremos juntos até Jesus voltar. 🤍
-  </div>
-
-  <!-- Datas especiais -->
-  <div id="datas">
-    <div class="data-evento" data-msg="💋 Nosso primeiro beijo foi mágico e mudou tudo entre nós. Você me fez sentir borboletas no estômago!">
-      📅 11/08/2024 – Primeiro Beijo
-    </div>
-    <div class="data-evento" data-msg="🌹 Nosso primeiro date foi inesquecível, só nós dois juntos descobrindo o mundo com amor.">
-      📅 18/01/2025 – Primeiro Date
-    </div>
-    <div class="data-evento" data-msg="💍 O pedido de namoro oficial que me fez sorrir por dias, um marco para nós dois.">
-      📅 01/02/2025 – Pedido de Namoro Oficial
-    </div>
-    <div class="data-evento" data-msg="🏡 Nossa primeira viagem ao sítio com a família, onde criamos memórias doces e únicas.">
-      📅 02/03/2025 – Primeira Viagem ao Sítio com a Família
-    </div>
-    <div class="data-evento" data-msg="💖 A entrega das alianças, símbolo da nossa união e do amor eterno que cultivamos.">
-      📅 01/04/2025 – Entrega das Alianças
-    </div>
-  </div>
-
-  <!-- Galeria de fotos com frases e popups -->
-  <div id="galeria">
-    <!-- Foto 1 -->
-    <div>
-      <img src="foto1.jpg" alt="Foto 1" data-msg="Nosso primeiro sorriso juntos que iluminou meu mundo." />
-      <div class="frase-foto">"O sorriso que conquistou meu coração"</div>
-    </div>
-    <!-- Foto 2 -->
-    <div>
-      <img src="foto2.jpg" alt="Foto 2" data-msg="Cada momento contigo é uma nova história de amor." />
-      <div class="frase-foto">"Histórias que só nós entendemos"</div>
-    </div>
-    <!-- Foto 3 -->
-    <div>
-      <img src="foto3.jpg" alt="Foto 3" data-msg="Nosso abraço que aquece a alma mesmo nas noites frias." />
-      <div class="frase-foto">"Abraços que curam"</div>
-    </div>
-    <!-- Foto 4 -->
-    <div>
-      <img src="foto4.jpg" alt="Foto 4" data-msg="O olhar que diz tudo sem uma palavra." />
-      <div class="frase-foto">"Olhares que falam"</div>
-    </div>
-    <!-- Foto 5 -->
-    <div>
-      <img src="foto5.jpg" alt="Foto 5" data-msg="Rindo juntos, sempre prontos para a próxima aventura." />
-      <div class="frase-foto">"Risadas compartilhadas"</div>
-    </div>
-    <!-- Foto 6 -->
-    <div>
-      <img src="foto6.jpg" alt="Foto 6" data-msg="Momentos que guardo com carinho para sempre." />
-      <div class="frase-foto">"Memórias eternas"</div>
-    </div>
-    <!-- Foto 7 -->
-    <div>
-      <img src="foto7.jpg" alt="Foto 7" data-msg="Te amo mais a cada dia, mais do que ontem." />
-      <div class="frase-foto">"Amor que cresce"</div>
-    </div>
-    <!-- Foto 8 -->
-    <div>
-      <img src="foto8.jpg" alt="Foto 8" data-msg="Teu jeito meigo é o que me conquista todo dia." />
-      <div class="frase-foto">"Doçura em pessoa"</div>
-    </div>
-    <!-- Foto 9 -->
-    <div>
-      <img src="foto9.jpg" alt="Foto 9" data-msg="Nossas mãos entrelaçadas, sinal de união." />
-      <div class="frase-foto">"União sem fim"</div>
-    </div>
-    <!-- Foto 10 -->
-    <div>
-      <img src="foto10.jpg" alt="Foto 10" data-msg="Cada beijo nosso tem sabor de eternidade." />
-      <div class="frase-foto">"Beijos inesquecíveis"</div>
-    </div>
-    <!-- Foto 11 -->
-    <div>
-      <img src="foto11.jpg" alt="Foto 11" data-msg="O nosso amor é meu maior tesouro." />
-      <div class="frase-foto">"Tesouro da vida"</div>
-    </div>
-    <!-- Foto 12 -->
-    <div>
-      <img src="foto12.jpg" alt="Foto 12" data-msg="Você é minha paz e minha felicidade." />
-      <div class="frase-foto">"Minha paz"</div>
-    </div>
-    <!-- Foto 13 -->
-    <div>
-      <img src="foto13.jpg" alt="Foto 13" data-msg="Juntos somos mais fortes, sempre." />
-      <div class="frase-foto">"Força em dobro"</div>
-    </div>
-    <!-- Foto 14 -->
-    <div>
-      <img src="foto14.jpg" alt="Foto 14" data-msg="Contigo, todo dia é especial." />
-      <div class="frase-foto">"Especial em todos os momentos"</div>
-    </div>
-  </div>
-
-  <!-- Poema -->
-  <div id="poema">
-    <p>Te amo não apenas pelo que és,</p>
-    <p>Mas pelo que sou quando estou contigo.</p>
-    <p>Te amo não apenas pelo que fizeste de ti,</p>
-    <p>Mas pelo que fazes de mim.</p>
-    <p>Te amo por colocar tua mão na minha,</p>
-    <p>Por me olhar com ternura e nunca desistir.</p>
-    <p>Em cada batida do meu coração, está o teu nome.</p>
-  </div>
-
-  <!-- Mensagem interativa geral -->
-  <div id="mensagem"></div>
+  <!-- Datas especiais com mensagens -->
+  <div class="data-evento" data-msg="💋 Nosso primeiro beijo foi mágico e mudou tudo entre nós. Você me fez sentir borboletas no estômago!">📅 11/08/2024 – Primeiro Beijo</div>
+  <div class="data-evento" data-msg="🍝 Nosso primeiro date foi inesquecível, só nós dois juntos descobrindo o mundo com amor.">📅 18/01/2025 – Primeiro Date</div>
+  <div class="data-evento" data-msg="💍 O dia em que nos entregamos ao amor oficialmente. Meu coração pertence a você desde então.">📅 01/02/2025 – Pedido de Namoro</div>
+  <div class="data-evento" data-msg="🏡 Nossa primeira viagem juntos foi inesquecível. Me senti parte da sua família e amei cada segundo!">📅 02/03/2025 – Viagem ao Sítio</div>
+  <div class="data-evento" data-msg="💖 Quando trocamos alianças e selamos nosso compromisso. Um passo lindo rumo ao nosso futuro!">📅 01/04/2025 – Alianças</div>
 
   <!-- Botões interativos -->
   <div class="interativo">
-    <button id="btnDeclarar">Clique para uma declaração especial</button>
-    <div class="mensagem-botao" id="mensagemDeclaracao"></div>
+    <button onclick="mostrarMensagem('Você é tudo que eu sempre quis e mais.')">💬 Declaração 1</button>
+    <div class="mensagem-botao">Você é tudo que eu sempre quis e mais.</div>
+  </div>
+
+  <div id="galeria"></div>
+
+  <!-- Poema -->
+  <div id="poema">
+    Te amo no silêncio, no riso, no instante.<br>
+    Te amo no tempo, no toque, no sempre.<br>
+    Te amo nas flores, na noite, no vento.<br>
+    Te amo na alma, em cada pensamento. 💌
+  </div>
+
+  <!-- Mais botões interativos -->
+  <div class="interativo">
+    <button onclick="mostrarMensagem('Você transforma a minha vida todos os dias.')">💘 Declaração 2</button>
+    <div class="mensagem-botao">Você transforma a minha vida todos os dias.</div>
   </div>
 
   <div class="interativo">
-    <button id="btnPoema">Clique para um poema de amor</button>
-    <div class="mensagem-botao" id="mensagemPoema"></div>
+    <button onclick="mostrarMensagem('Com você, encontrei o amor verdadeiro.')">💖 Declaração 3</button>
+    <div class="mensagem-botao">Com você, encontrei o amor verdadeiro.</div>
   </div>
 
-  <!-- Botão de som -->
-  <button id="btnSom">▶️ Tocar música</button>
-
-  <!-- Música de fundo -->
-  <audio id="musicaFundo" loop preload="auto">
-    <source src="musica.mp3" type="audio/mpeg" />
-    Seu navegador não suporta áudio HTML5.
+  <audio id="musicaFundo" autoplay loop>
+    <source src="audio/all_of_me.mp3" type="audio/mpeg" />
+    Seu navegador não suporta áudio.
   </audio>
+  <button id="btnSom" onclick="toggleSom()">🔈 Pausar Música</button>
 
-<script>
-  // Contador regressivo do tempo desde 01/02/2025 00:00:00 (pedido namoro oficial)
-  const contadorEl = document.getElementById('contador');
-  const dataInicio = new Date('2025-02-01T00:00:00');
+  <div id="mensagem"></div>
 
-  function atualizarContador() {
-    const agora = new Date();
-    let diff = agora - dataInicio;
+  <script>
+    // Fotos e frases para cada foto
+  // Fotos e frases para cada foto (nome dos arquivos de foto genéricos: foto1.jpg a foto14.jpg)
+const fotos = [
+  {src: 'foto1.jpg', frase: 'Nosso primeiro sorriso juntos.'},
+  {src: 'foto2.jpg', frase: 'Um momento de paz e amor.'},
+  {src: 'foto3.jpg', frase: 'Quando o mundo parecia perfeito.'},
+  {src: 'foto4.jpg', frase: 'Te olhando com o coração.'},
+  {src: 'foto5.jpg', frase: 'Cada dia mais apaixonado.'},
+  {src: 'foto6.jpg', frase: 'Você e eu, um só caminho.'},
+  {src: 'foto7.jpg', frase: 'Risadas que só a gente entende.'},
+  {src: 'foto8.jpg', frase: 'Nosso refúgio de carinho.'},
+  {src: 'foto9.jpg', frase: 'Abraços que aquecem a alma.'},
+  {src: 'foto10.jpg', frase: 'Sonhos que viram realidade.'},
+  {src: 'foto11.jpg', frase: 'Amor em cada detalhe.'},
+  {src: 'foto12.jpg', frase: 'A certeza do “para sempre”.'},
+  {src: 'foto13.jpg', frase: 'Cumplicidade e aventura.'},
+  {src: 'foto14.jpg', frase: 'Você é meu eterno amor.'}
+];
 
-    if (diff < 0) {
-      contadorEl.textContent = "Nosso namoro vai começar em breve!";
-      return;
-    }
+// Montar galeria de fotos com frases e pop-ups ao clicar
+const galeria = document.getElementById('galeria');
 
-    let dias = Math.floor(diff / (1000 * 60 * 60 * 24));
-    let horas = Math.floor((diff / (1000 * 60 * 60)) % 24);
-    let minutos = Math.floor((diff / (1000 * 60)) % 60);
-    let segundos = Math.floor((diff / 1000) % 60);
+fotos.forEach((foto, i) => {
+  // Criar imagem
+  const img = document.createElement('img');
+  img.src = foto.src;
+  img.alt = `Foto ${i+1}`;
+  img.style.animationDelay = (i * 0.15) + 's';
 
-    contadorEl.textContent = `Namorando há: ${dias} dias, ${horas} horas, ${minutos} minutos e ${segundos} segundos 💖`;
-  }
-  setInterval(atualizarContador, 1000);
-  atualizarContador();
+  // Criar frase da foto
+  const frase = document.createElement('div');
+  frase.className = 'frase-foto';
+  frase.style.animationDelay = (i * 0.15 + 0.3) + 's';
+  frase.textContent = foto.frase;
 
-  // Mostrar mensagens ao clicar nas datas
-  document.querySelectorAll('.data-evento').forEach(el => {
-    el.addEventListener('click', () => {
-      alert(el.getAttribute('data-msg'));
-    });
+  // Ao clicar na foto: pop-up de declaração e animação coração
+  img.addEventListener('click', () => {
+    alert(`Foto ${i+1}: ${foto.frase}`);
+    criarCoracaoAnimado(event.pageX, event.pageY);
   });
 
-  // Mostrar mensagens popup ao clicar nas fotos e mostrar frase
-  document.querySelectorAll('#galeria img').forEach(img => {
-    img.addEventListener('click', () => {
-      mostrarCoracaoPopup(img);
-      mostrarMensagem(img.getAttribute('data-msg'));
-      zoomFoto(img);
-    });
-  });
+  galeria.appendChild(img);
+  galeria.appendChild(frase);
+});
 
-  // Função para mostrar mensagem geral abaixo do título
-  const mensagemEl = document.getElementById('mensagem');
-  function mostrarMensagem(texto) {
-    mensagemEl.style.opacity = 0;
-    setTimeout(() => {
-      mensagemEl.textContent = texto;
-      mensagemEl.style.opacity = 1;
-    }, 300);
-  }
+// Mostrar mensagem ao clicar em botões interativos
+function mostrarMensagem(msg) {
+  const mensagemDiv = document.getElementById('mensagem');
+  mensagemDiv.style.opacity = 0;
+  setTimeout(() => {
+    mensagemDiv.textContent = msg;
+    mensagemDiv.style.opacity = 1;
+  }, 300);
+}
 
-  // Função para animar zoom na foto clicada
-  let fotoZoomAtual = null;
-  function zoomFoto(img) {
-    if (fotoZoomAtual && fotoZoomAtual !== img) {
-      fotoZoomAtual.style.transform = 'scale(1)';
-      fotoZoomAtual.style.zIndex = 0;
-    }
-    if (img.style.transform === 'scale(1.1)') {
-      img.style.transform = 'scale(1)';
-      img.style.zIndex = 0;
-      fotoZoomAtual = null;
-    } else {
-      img.style.transform = 'scale(1.1)';
-      img.style.zIndex = 10;
-      fotoZoomAtual = img;
-    }
-  }
+// Contagem regressiva do tempo de namoro desde 01/02/2025 00:00:00
+function atualizarContador() {
+  const agora = new Date();
+  const inicioNamoro = new Date('2025-02-01T00:00:00');
+  let diff = agora - inicioNamoro;
 
-  // Criar coração flutuante popup
-  function mostrarCoracaoPopup(elemento) {
-    const coracao = document.createElement('div');
-    coracao.className = 'coracao-flutuante';
-    coracao.textContent = '💖';
-
-    // Posicionar perto do elemento clicado
-    const rect = elemento.getBoundingClientRect();
-    coracao.style.left = (rect.left + rect.width/2) + 'px';
-    coracao.style.top = (rect.top + window.scrollY) + 'px';
-
-    document.body.appendChild(coracao);
-
-    setTimeout(() => {
-      coracao.remove();
-    }, 2500);
+  if(diff < 0) {
+    document.getElementById('contador').textContent = "Ainda não começamos nosso namoro!";
+    return;
   }
 
-  // Botão de declaração especial
-  const btnDeclarar = document.getElementById('btnDeclarar');
-  const mensagemDeclaracao = document.getElementById('mensagemDeclaracao');
-  const declaracoes = [
-    "Levi, você é o motivo do meu sorriso diário ❤️",
-    "Meu amor por você cresce a cada instante que passamos juntos 💕",
-    "Obrigado por ser meu porto seguro e meu melhor amigo 🥰",
-    "Te amar é o presente mais lindo que a vida me deu 🌹",
-    "Com você, todos os dias são um sonho realizado 🌟"
-  ];
-  btnDeclarar.addEventListener('click', () => {
-    const aleatorio = declaracoes[Math.floor(Math.random() * declaracoes.length)];
-    mensagemDeclaracao.textContent = aleatorio;
-  });
+  // Cálculos para dias, horas, minutos e segundos
+  const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
+  diff -= dias * (1000 * 60 * 60 * 24);
 
-  // Botão de poema
-  const btnPoema = document.getElementById('btnPoema');
-  const mensagemPoema = document.getElementById('mensagemPoema');
-  const poemas = [
-    "Amar-te é viver em cores que só o coração conhece.",
-    "Entrelaçados, somos versos de uma canção eterna.",
-    "No silêncio do teu abraço, encontro a paz infinita.",
-    "Teu amor é chama que aquece minhas noites frias.",
-    "Somos estrelas que brilham juntas no céu da vida."
-  ];
-  btnPoema.addEventListener('click', () => {
-    const aleatorio = poemas[Math.floor(Math.random() * poemas.length)];
-    mensagemPoema.textContent = aleatorio;
-  });
+  const horas = Math.floor(diff / (1000 * 60 * 60));
+  diff -= horas * (1000 * 60 * 60);
 
-  // Controle da música
-  const btnSom = document.getElementById('btnSom');
-  const musica = document.getElementById('musicaFundo');
-  let tocando = false;
+  const minutos = Math.floor(diff / (1000 * 60));
+  diff -= minutos * (1000 * 60);
 
-  btnSom.addEventListener('click', () => {
-    if (tocando) {
-      musica.pause();
-      btnSom.textContent = "▶️ Tocar música";
-    } else {
-      musica.play();
-      btnSom.textContent = "⏸️ Pausar música";
-    }
-    tocando = !tocando;
-  });
+  const segundos = Math.floor(diff / 1000);
 
-  // Aparecer fotos com delay suave
-  window.addEventListener('load', () => {
-    document.querySelectorAll('#galeria img').forEach((img, i) => {
-      img.style.animationDelay = (i * 0.25) + 's';
-    });
-    document.querySelectorAll('.frase-foto').forEach((frase, i) => {
-      frase.style.animationDelay = (i * 0.25 + 0.5) + 's';
-    });
+  document.getElementById('contador').textContent =
+    `Estamos juntos há ${dias} dias, ${horas} horas, ${minutos} minutos e ${segundos} segundos.`;
+}
+
+setInterval(atualizarContador, 1000);
+atualizarContador(); // chamar logo ao iniciar
+
+// Mensagens para datas especiais ao clicar nas datas
+document.querySelectorAll('.data-evento').forEach(elem => {
+  elem.addEventListener('click', () => {
+    alert(elem.dataset.msg);
   });
+});
+
+// Função para criar coração animado na tela
+function criarCoracaoAnimado(x, y) {
+  const coracao = document.createElement('div');
+  coracao.className = 'coracao-flutuante';
+  coracao.style.left = (x - 25) + 'px';
+  coracao.style.top = (y - 25) + 'px';
+  coracao.textContent = '❤️';
+  document.body.appendChild(coracao);
+
+  setTimeout(() => {
+    coracao.remove();
+  }, 3000);
+}
+
+// Botão para pausar e tocar música
+const musica = document.getElementById('musicaFundo');
+const btnSom = document.getElementById('btnSom');
+
+function toggleSom() {
+  if(musica.paused) {
+    musica.play();
+    btnSom.textContent = '🔈 Pausar Música';
+  } else {
+    musica.pause();
+    btnSom.textContent = '🔇 Tocar Música';
+  }
+}
 </script>
 
 </body>
