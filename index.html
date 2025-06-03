@@ -17,88 +17,143 @@
       font-family: 'Beauty', sans-serif;
       background: linear-gradient(135deg, #fffafc, #ffe4e1);
       color: #333;
+      text-align: center;
       overflow-x: hidden;
     }
     h1 {
       font-family: 'Nocaut', sans-serif;
       font-size: 3em;
       color: #e60073;
-      text-align: center;
       margin-top: 20px;
     }
     #contador {
       font-size: 1.6em;
       margin: 20px;
-      text-align: center;
       color: #cc3366;
+      font-weight: bold;
+    }
+    #mensagemInicial {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 0 20px;
+      font-size: 1.4em;
     }
     .galeria {
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 50px;
-      padding: 40px 0;
+      gap: 30px;
+      padding: 20px;
     }
     .galeria img {
-      width: 90%;
-      max-width: 600px;
-      border-radius: 20px;
-      box-shadow: 0 0 15px #888;
-      transition: transform 1s ease;
+      width: 80vw;
+      max-width: 700px;
+      border-radius: 15px;
+      box-shadow: 0 0 12px #d26a8c;
+      transition: transform 0.6s ease;
     }
-    .frase-foto {
-      font-size: 1.4em;
-      color: #b30059;
-      margin-top: 10px;
-      text-align: center;
-      font-family: 'Beauty', cursive;
+    .galeria img:hover {
+      transform: scale(1.03);
     }
-    .data-evento {
-      background: #ffe6f0;
-      padding: 15px;
-      border-left: 5px solid #ff4d94;
-      margin: 10px auto;
-      width: fit-content;
-      font-size: 1.2em;
-      font-family: 'Beauty';
+    .foto-frase {
+      font-size: 1.3em;
+      font-weight: bold;
       color: #cc3366;
+      margin-bottom: 20px;
     }
-    .botao-interativo {
+    .coracao {
+      position: fixed;
+      top: -50px;
+      font-size: 24px;
+      animation: cair 6s linear infinite;
+      color: #ff4d6d;
+    }
+    @keyframes cair {
+      0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+    }
+    .btn-romantico {
       display: block;
-      margin: 25px auto;
-      background: #ff4d88;
+      margin: 30px auto;
+      background-color: #ff416c;
       color: white;
-      font-size: 22px;
-      padding: 18px 40px;
       border: none;
-      border-radius: 14px;
-      box-shadow: 0 6px #b30047;
+      padding: 20px 40px;
+      font-size: 22px;
+      border-radius: 15px;
       cursor: pointer;
-      transition: all 0.3s ease;
-      font-family: 'Beauty';
+      box-shadow: 0 6px #cc3451;
+      transition: background-color 0.3s, transform 0.2s;
+      font-family: 'Beauty', cursive;
+      width: fit-content;
     }
-    .botao-interativo:hover {
-      background: #ff0066;
-      transform: scale(1.05);
+    .btn-romantico:hover {
+      background-color: #ff1e50;
+    }
+    .btn-romantico:active {
+      transform: scale(0.95);
+      box-shadow: 0 3px #a82c40;
     }
     #mensagem {
-      text-align: center;
-      font-size: 1.5em;
-      margin: 30px auto;
-      color: #b30059;
-      max-width: 700px;
+      margin-top: 30px;
+      font-size: 24px;
+      min-height: 80px;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+      font-weight: bold;
     }
-    audio {
+    #mensagem.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .datas-importantes {
+      margin: 40px auto;
+      padding: 10px;
+      max-width: 700px;
+      font-size: 1.3em;
+      font-family: 'Beauty', cursive;
+    }
+    .data {
+      margin: 10px 0;
+      padding: 10px;
+      background: #ffe4ec;
+      border-radius: 10px;
+      box-shadow: 0 0 6px #f080a0;
+    }
+    #poema {
+      margin: 40px auto;
+      max-width: 800px;
+      padding: 20px;
+      font-size: 1.2em;
+      background: #fff0f5;
+      border-radius: 10px;
       display: none;
+    }
+    #btnPoema {
+      margin-top: 30px;
+    }
+    #btnSom {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      padding: 12px 18px;
+      font-size: 16px;
+      border-radius: 10px;
+      background: #ff416c;
+      color: white;
+      border: none;
+      cursor: pointer;
+      z-index: 1000;
     }
   </style>
 </head>
 <body>
   <h1>Feliz dia dos namorados, meu Levi💗</h1>
+
   <div id="contador">Carregando tempo...</div>
 
-  <!-- Texto original da usuária -->
-  <div id="mensagem">
+  <div id="mensagemInicial">
     Marcos Levi, eu te desejo feliz dia dos namorados!🤍 Obrigada por ter entrado na minha vida,
     sou extremamente grata a Deus por ter feito nossos caminhos colidirem, obrigada por ser essa pessoa incrível
     do sorriso mais encantador, obrigada por me fazer feliz e me completar.
@@ -107,37 +162,49 @@
     viveremos e nos teremos juntos até Jesus voltar.🤍
   </div>
 
-  <!-- Datas com interações -->
-  <div class="data-evento">11/08/2024 - Primeiro Beijo 💋 <button class="botao-interativo" onclick="mostrarMensagem('Nunca esquecerei o dia em que nossos lábios se encontraram pela primeira vez. 💖')">Relembrar</button></div>
-  <div class="data-evento">18/01/2025 - Primeiro Date 🍓 <button class="botao-interativo" onclick="mostrarMensagem('Nosso primeiro date foi só o começo da nossa linda história. 💑')">Relembrar</button></div>
-  <div class="data-evento">01/02/2025 - Pedido de Namoro 💍 <button class="botao-interativo" onclick="mostrarMensagem('Aquele sim foi o mais fácil e mais certo da minha vida! ❤️')">Relembrar</button></div>
-  <div class="data-evento">02/03/2025 - Viagem ao sítio 🏞️ <button class="botao-interativo" onclick="mostrarMensagem('Foi tão especial compartilhar esse momento com você e minha família! 🥰')">Relembrar</button></div>
-  <div class="data-evento">01/04/2025 - Entrega das Alianças 💞 <button class="botao-interativo" onclick="mostrarMensagem('A entrega das alianças selou nosso compromisso eterno. 💘')">Relembrar</button></div>
+  <!-- Botões interativos ao topo -->
+  <button class="btn-romantico" onclick="mostrarMensagem('Você é a razão do meu sorriso todos os dias ❤️')">💌 Declaração 1</button>
+  <button class="btn-romantico" onclick="mostrarMensagem('Meu coração bate mais forte só de pensar em você 💖')">💌 Declaração 2</button>
+  <button class="btn-romantico" onclick="mostrarMensagem('Com você, encontrei o meu para sempre 💞')">💌 Declaração 3</button>
+  <div id="mensagem"></div>
 
-  <!-- Galeria com transições -->
+  <!-- Galeria de Fotos com Frases -->
   <div class="galeria">
-    <div>
-      <img src="imagens/foto1.jpg" alt="Foto 1" />
-      <div class="frase-foto">"Seu sorriso é meu lugar favorito."</div>
-    </div>
-    <div>
-      <img src="imagens/foto2.jpg" alt="Foto 2" />
-      <div class="frase-foto">"Com você, a vida é mais bonita."</div>
-    </div>
-    <!-- Repita para foto3 até foto14 -->
+    ${[...Array(14)].map((_, i) => `
+      <div>
+        <img src="imagens/foto${i + 1}.jpg" alt="Foto ${i + 1}" />
+        <div class="foto-frase">"${frasePorIndice(i)}"</div>
+      </div>
+    `).join('')}
   </div>
 
-  <!-- Botões interativos com declarações -->
-  <button class="botao-interativo" onclick="mostrarMensagem('Você é a razão do meu sorriso todos os dias ❤️')">Declaração 1</button>
-  <button class="botao-interativo" onclick="mostrarMensagem('Meu coração bate mais forte só de pensar em você 💖')">Declaração 2</button>
-  <button class="botao-interativo" onclick="mostrarMensagem('Com você, encontrei o meu para sempre 💞')">Declaração 3</button>
-  <button class="botao-interativo" onclick="mostrarMensagem('Cada segundo contigo é meu instante favorito 💘')">Declaração 4</button>
-  <button class="botao-interativo" onclick="mostrarMensagem('Você é meu sonho que virou realidade 💌')">Declaração 5</button>
+  <!-- Datas importantes -->
+  <div class="datas-importantes">
+    <div class="data"><strong>11/08/2024:</strong> Primeiro beijo 💋</div>
+    <div class="data"><strong>18/01/2025:</strong> Primeiro date 🥂</div>
+    <div class="data"><strong>01/02/2025:</strong> Pedido de namoro oficial 💍</div>
+    <div class="data"><strong>02/03/2025:</strong> Primeira viagem ao sítio com a família 🌄</div>
+    <div class="data"><strong>01/04/2025:</strong> Entrega das alianças 💑</div>
+  </div>
 
-  <!-- Música de fundo -->
+  <!-- Botão para exibir poema -->
+  <button class="btn-romantico" id="btnPoema" onclick="document.getElementById('poema').style.display = 'block'">💖 Clique aqui para ler um poema</button>
+  <div id="poema">
+    Amar você é acordar sorrindo,<br>
+    Dormir sonhando e viver sentindo.<br>
+    Em cada toque, em cada olhar,<br>
+    Eu encontro o meu lugar.<br><br>
+    Se o mundo acabasse agora,<br>
+    Ainda assim eu sorriria,<br>
+    Pois cada segundo ao seu lado,<br>
+    Foi uma doce poesia. 💘
+  </div>
+
   <audio id="musicaFundo" autoplay loop>
-    <source src="audio/all_of_me.mp3" type="audio/mpeg" />
+    <source src="audio/all_of_me.mp3" type="audio/mpeg">
+    Seu navegador não suporta áudio.
   </audio>
+  <button id="btnSom" onclick="toggleSom()">🔈 Pausar Música</button>
 
   <script>
     const inicio = new Date("2025-02-01T00:00:00");
@@ -154,9 +221,54 @@
     setInterval(atualizarContador, 1000);
     atualizarContador();
 
+    function criarCoracao() {
+      const coracao = document.createElement("div");
+      coracao.className = "coracao";
+      coracao.style.left = Math.random() * 100 + "vw";
+      coracao.textContent = "💖";
+      document.body.appendChild(coracao);
+      setTimeout(() => coracao.remove(), 6000);
+    }
+    setInterval(criarCoracao, 400);
+
     function mostrarMensagem(texto) {
       const divMensagem = document.getElementById('mensagem');
-      divMensagem.innerText = texto;
+      divMensagem.classList.remove('show');
+      void divMensagem.offsetWidth;
+      divMensagem.textContent = texto;
+      divMensagem.classList.add('show');
+    }
+
+    const musica = document.getElementById('musicaFundo');
+    const btnSom = document.getElementById('btnSom');
+    function toggleSom() {
+      if (musica.paused) {
+        musica.play();
+        btnSom.textContent = '🔈 Pausar Música';
+      } else {
+        musica.pause();
+        btnSom.textContent = '🔇 Tocar Música';
+      }
+    }
+
+    function frasePorIndice(i) {
+      const frases = [
+        "Cada sorriso seu ilumina meu mundo 🌟",
+        "Nossos momentos são eternos em meu coração 💕",
+        "Você é minha paz, meu abrigo 🌈",
+        "Nosso amor é o meu maior presente 🎁",
+        "Você transforma minha vida em poesia ✨",
+        "Em cada abraço seu, eu encontro o lar 🏡",
+        "Te amar é minha missão diária 💖",
+        "Ao seu lado, tudo faz sentido 🌹",
+        "Você é meu destino traçado por Deus 🙏",
+        "Nosso amor é forte como nunca imaginei 💘",
+        "Você é a melhor parte de mim 🫶",
+        "Nada se compara ao seu amor 💌",
+        "Você me faz querer ser melhor todos os dias 🌼",
+        "Pra sempre ao seu lado, meu amor eterno 💑"
+      ];
+      return frases[i] || "Te amo infinitamente 💞";
     }
   </script>
 </body>
