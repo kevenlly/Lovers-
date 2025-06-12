@@ -3,49 +3,187 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Nosso Amor</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Great+Vibes&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Open Sans', sans-serif;
+      background-color: #fff0f5;
+      color: #333;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+    header {
+      background: linear-gradient(to right, #ffb6c1, #ff69b4);
+      color: white;
+      padding: 1rem;
+      text-align: center;
+      font-family: 'Great Vibes', cursive;
+      font-size: 2.5rem;
+    }
+    nav {
+      display: flex;
+      justify-content: center;
+      background: #fff;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    nav a {
+      padding: 1rem;
+      text-decoration: none;
+      color: #ff1493;
+      font-weight: bold;
+    }
+    nav a:hover {
+      background-color: #ffe4e1;
+    }
+    section {
+      padding: 2rem;
+      text-align: center;
+    }
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+    .gallery img {
+      width: 100%;
+      border-radius: 1rem;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+    .gallery img:hover {
+      transform: scale(1.05);
+    }
+    .date-button {
+      margin: 1rem auto;
+      padding: 1rem 2rem;
+      border: none;
+      background-color: #ff69b4;
+      color: white;
+      border-radius: 2rem;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .date-button:hover {
+      background-color: #ff1493;
+    }
+    .popup {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: white;
+      padding: 2rem;
+      border-radius: 1rem;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+      z-index: 1000;
+    }
+    .popup.active {
+      display: block;
+    }
+    .overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      z-index: 999;
+    }
+    .overlay.active {
+      display: block;
+    }
+    .romantic-mode {
+      background: #1a1a1a;
+      color: #fff;
+    }
+    .floating-hearts {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 1;
+    }
+    .floating-hearts span {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: red;
+      transform: rotate(45deg);
+      animation: float 10s linear infinite;
+    }
+    @keyframes float {
+      0% { transform: translateY(100vh) rotate(45deg); }
+      100% { transform: translateY(-10vh) rotate(45deg); }
+    }
+  </style>
 </head>
 <body>
-  <audio id="bg-music" src="all_of_me.mp3" autoplay loop></audio>  <header class="hero">
-    <h1 class="romantic-title">Nosso Amor</h1>
-    <nav>
-      <ul>
-        <li><a href="#galeria">Galeria</a></li>
-        <li><a href="#historia">Nossa História</a></li>
-        <li><a href="#pagina-amor">Página de Amor</a></li>
-        <li><a href="#promessas">Promessas e Planos</a></li>
-      </ul>
-    </nav>
-  </header>  <main>
-    <section id="galeria" class="carousel-section">
-      <!-- Carrossel com 14 fotos e frases já incluído no código original -->
-    </section><section id="historia" class="fade-scroll">
-  <h2>Nossa História</h2>
-  <p>Do primeiro olhar ao primeiro beijo em 11/08/2024, começamos a escrever uma linda história. Cada data especial desde então nos uniu ainda mais, e cada momento tem sido inesquecível.</p>
-</section>
+  <header>Nosso Amor</header>
+  <nav>
+    <a href="#inicio">Início</a>
+    <a href="#historia">Nossa História</a>
+    <a href="#amor">Amor</a>
+    <a href="#planos">Promessas</a>
+    <a href="#galeria">Galeria</a>
+  </nav>  <section id="inicio">
+    <h2>Bem-vinda ao nosso cantinho do amor</h2>
+    <p>Aqui celebramos cada momento que vivemos juntos, com carinho e emoção.</p>
+  </section>  <section id="historia">
+    <h2>Nossa História</h2>
+    <p>Desde o nosso primeiro olhar, tudo mudou. Cada passo nosso tem sido uma aventura mágica.</p>
+  </section>  <section id="amor">
+    <h2>Página de Amor</h2>
+    <p>Palavras jamais serão suficientes para expressar o que sinto. Mas cada detalhe aqui tenta traduzir esse sentimento eterno.</p>
+  </section>  <section id="planos">
+    <h2>Promessas e Planos</h2>
+    <p>Prometo estar ao seu lado em todos os dias, planos e sonhos que ainda vamos construir juntos.</p>
+  </section>  <section id="galeria">
+    <h2>Galeria de Momentos</h2>
+    <div class="gallery">
+      <img src="foto1.jpg" alt="Foto 1" title="Você é meu sonho realizado." />
+      <img src="foto2.jpg" alt="Foto 2" title="Cada sorriso seu ilumina meu mundo." />
+      <!-- Repita até foto14.jpg com frases diferentes -->
+    </div>
+  </section>  <div class="floating-hearts">
+    <span style="left:10%; animation-delay: 0s;"></span>
+    <span style="left:30%; animation-delay: 2s;"></span>
+    <span style="left:50%; animation-delay: 4s;"></span>
+    <span style="left:70%; animation-delay: 6s;"></span>
+    <span style="left:90%; animation-delay: 8s;"></span>
+  </div>  <div class="overlay" id="overlay"></div>
+  <div class="popup" id="popup">
+    <p>Você é tudo pra mim ❤️</p>
+    <button onclick="fecharPopup()">Fechar</button>
+  </div><audio id="bg-music" src="all_of_me.mp3" autoplay loop></audio>
 
-<section id="pagina-amor" class="fade-scroll">
-  <h2>Página de Amor</h2>
-  <p>Nosso amor é feito de detalhes, sorrisos, abraços e sonhos compartilhados. Aqui celebramos tudo o que somos e o que estamos construindo juntos.</p>
-</section>
-
-<section id="promessas" class="fade-scroll">
-  <h2>Promessas e Planos</h2>
-  <p>Prometo estar ao seu lado em todos os dias bons e ruins. Nossos planos são sementes de um futuro brilhante que já estamos cultivando com muito amor e carinho.</p>
-</section>
-
-<!-- Outras seções do site original permanecem aqui -->
-
-<div id="surpresa-popup" class="popup">
-  <div class="popup-content">
-    <span class="close-btn" onclick="fecharPopup()">&times;</span>
-    <p>Você é meu sonho realizado. Te amo infinitamente! 💖</p>
-  </div>
-</div>
-
-  </main>  <script src="script.js"></script>
+  <script>
+    function abrirPopup(mensagem) {
+      document.getElementById('popup').querySelector('p').innerText = mensagem;
+      document.getElementById('popup').classList.add('active');
+      document.getElementById('overlay').classList.add('active');
+    }
+    function fecharPopup() {
+      document.getElementById('popup').classList.remove('active');
+      document.getElementById('overlay').classList.remove('active');
+    }
+    // Corações flutuantes contínuos
+    const container = document.querySelector('.floating-hearts');
+    setInterval(() => {
+      const heart = document.createElement('span');
+      heart.style.left = Math.random() * 100 + '%';
+      heart.style.animationDelay = Math.random() * 10 + 's';
+      container.appendChild(heart);
+      setTimeout(() => heart.remove(), 10000);
+    }, 1000);
+  </script>
 </body>
 </html>
