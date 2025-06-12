@@ -488,6 +488,140 @@
   setInterval(() => {
     mostrarPagina(paginaAtual +1);
   }, 12000);
+  <div class="contador" aria-live="polite">
+    <h3>Tempo desde o namoro</h3>
+    <span id="contadorNamoro">Carregando...</span>
+  </div>
+</section>
+
+<!-- Frase aleatória -->
+<section id="fraseAleatoria" class="pagina"></section>
+
+<!-- Controles -->
+<section id="controles" class="pagina">
+  <button onclick="mostrarFrase()">Me sinto assim por você...</button>
+  <button onclick="alternarModoNoite()">Modo Noite Romântica</button>
+  <button onclick="trocarMusica()">Trocar Trilha Sonora</button>
+</section>
+
+<!-- Pop-up do poema -->
+<div id="popupPoema" role="dialog" aria-modal="true" aria-labelledby="tituloPoema">
+  <div class="conteudo">
+    <button class="fechar" onclick="fecharPopup()" aria-label="Fechar poema">&times;</button>
+    <h2 id="tituloPoema">Título do Poema</h2>
+    <div id="conteudoPoema"></div>
+  </div>
+</div>
+
+<!-- Velas -->
+<div class="vela" style="left: 20px;"></div>
+<div class="vela" style="right: 20px;"></div>
+
+<!-- Música -->
+<audio id="musica" src="all_of_me.mp3" preload="auto" loop></audio>
+
+<script>
+  // Carrossel de fotos
+  const imagens = [
+    { src: 'foto1.jpg', frase: 'Você ilumina minha vida.' },
+    { src: 'foto2.jpg', frase: 'Te amar é meu destino.' },
+    { src: 'foto3.jpg', frase: 'Cada momento ao seu lado é único.' },
+    { src: 'foto4.jpg', frase: 'Você é meu lar.' },
+    { src: 'foto5.jpg', frase: 'Seu sorriso me dá paz.' },
+    { src: 'foto6.jpg', frase: 'Com você, tudo faz sentido.' },
+    { src: 'foto7.jpg', frase: 'Seu olhar me faz sonhar.' },
+    { src: 'foto8.jpg', frase: 'Te quero hoje e sempre.' },
+    { src: 'foto9.jpg', frase: 'Nosso amor é poesia viva.' },
+    { src: 'foto10.jpg', frase: 'Você é minha melhor escolha.' },
+    { src: 'foto11.jpg', frase: 'Juntos somos mais fortes.' },
+    { src: 'foto12.jpg', frase: 'Minha vida tem cor com você.' },
+    { src: 'foto13.jpg', frase: 'Você é meu sempre.' },
+    { src: 'foto14.jpg', frase: 'Amar você é tudo.' },
+  ];
+  let indice = 0;
+  const imagem = document.getElementById('imagemCarrossel');
+  const frase = document.getElementById('fraseCarrossel');
+  document.getElementById('btnPrev').onclick = () => mostrarImagem(-1);
+  document.getElementById('btnNext').onclick = () => mostrarImagem(1);
+
+  function mostrarImagem(direcao) {
+    imagem.style.opacity = 0;
+    frase.style.opacity = 0;
+    setTimeout(() => {
+      indice = (indice + direcao + imagens.length) % imagens.length;
+      imagem.src = imagens[indice].src;
+      imagem.alt = 'Foto do casal ' + (indice + 1);
+      frase.textContent = imagens[indice].frase;
+      imagem.style.opacity = 1;
+      frase.style.opacity = 1;
+    }, 400);
+  }
+
+  // Datas especiais - pop-up
+  document.querySelectorAll('.data-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.getElementById('tituloPoema').textContent = btn.dataset.titulo;
+      document.getElementById('conteudoPoema').textContent = btn.dataset.poema;
+      document.getElementById('popupPoema').style.display = 'flex';
+    });
+  });
+  function fecharPopup() {
+    document.getElementById('popupPoema').style.display = 'none';
+  }
+
+  // Contadores
+  function atualizarContador(id, dataInicial) {
+    const agora = new Date();
+    const inicio = new Date(dataInicial);
+    const diff = agora - inicio;
+    const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const horas = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const minutos = Math.floor((diff / (1000 * 60)) % 60);
+    const segundos = Math.floor((diff / 1000) % 60);
+    document.getElementById(id).textContent = `${dias}d ${horas}h ${minutos}min ${segundos}s`;
+  }
+  setInterval(() => {
+    atualizarContador('contadorBeijo', '2024-08-11');
+    atualizarContador('contadorNamoro', '2025-02-01');
+  }, 1000);
+
+  // Frases aleatórias
+  const frases = [
+    'Sinto borboletas só de ouvir sua voz.',
+    'Você é meu sonho mais bonito.',
+    'Tudo é melhor com você.',
+    'Você me completa de um jeito mágico.',
+    'Meu coração é seu.',
+    'Te amo mais a cada dia.',
+    'Com você, o mundo é mais doce.',
+    'Nosso amor é meu refúgio.',
+  ];
+  function mostrarFrase() {
+    const aleatoria = frases[Math.floor(Math.random() * frases.length)];
+    document.getElementById('fraseAleatoria').textContent = aleatoria;
+  }
+
+  // Modo noite romântica
+  function alternarModoNoite() {
+    document.body.classList.toggle('modo-noite');
+  }
+
+  // Música
+  const audio = document.getElementById('musica');
+  audio.play().catch(() => {
+    console.log("Música será iniciada manualmente.");
+  });
+  function trocarMusica() {
+    if (audio.src.includes('all_of_me.mp3')) {
+      audio.src = 'musica2.mp3';
+    } else {
+      audio.src = 'all_of_me.mp3';
+    }
+    audio.play();
+  }
+</script>
+</body>
+</html>
 
 </script>
 
