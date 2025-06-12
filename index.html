@@ -3,671 +3,481 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Nosso Amor 💖</title>
+<title>Site Romântico Completo</title>
 <style>
-  /* --- Fonte romântica --- */
-  @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@400;700&display=swap');
+  /* Reset básico */
+  * {
+    margin: 0; padding: 0; box-sizing: border-box;
+  }
   body {
-    margin: 0; padding: 0;
-    font-family: 'Montserrat', sans-serif;
-    background: #fff0f6;
-    color: #4b2e4a;
-    overflow-x: hidden;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #ffe6f0;
+    color: #4a0033;
+    min-height: 100vh;
+    padding: 20px;
+    transition: background-color 0.5s ease, color 0.5s ease;
   }
-  h1,h2,h3 {
-    font-family: 'Great Vibes', cursive;
-    text-align: center;
-    margin-top: 0.5em;
-  }
-  h1 { font-size: 3.5em; margin-bottom: 0; }
-  h2 { font-size: 2.5em; margin-bottom: 0.3em; }
-  h3 { font-size: 1.8em; margin-bottom: 0.2em; }
-
-  /* Container geral */
-  .container {
-    max-width: 960px;
-    margin: 1em auto 3em auto;
-    padding: 0 1em;
+  h1, h2, h3 {
+    font-weight: 700;
   }
 
   /* Carrossel */
   #carrossel {
     position: relative;
-    overflow: hidden;
-    border-radius: 12px;
-    box-shadow: 0 0 15px #eaa8b6;
-    background: #fff;
+    max-width: 500px;
+    margin: 20px auto 40px auto;
+    text-align: center;
   }
-  #carrossel img {
+  #imagemCarrossel {
     width: 100%;
-    display: block;
-    border-radius: 12px 12px 0 0;
+    max-height: 350px;
+    border-radius: 12px;
+    object-fit: cover;
+    opacity: 1;
+    transition: opacity 0.8s ease;
   }
   #fraseCarrossel {
-    background: #fce7f1;
-    color: #7a416f;
-    font-size: 1.2em;
+    margin-top: 12px;
     font-style: italic;
-    padding: 1em 1.5em;
-    text-align: center;
-    border-radius: 0 0 12px 12px;
-    min-height: 3.2em;
+    font-size: 1.1rem;
   }
-  /* Botões do carrossel */
-  .btnCarrossel {
+  #carrossel button {
     position: absolute;
     top: 50%;
-    transform: translateY(-50%);
-    background: rgba(255,192,203,0.8);
+    background-color: rgba(255,255,255,0.7);
     border: none;
     border-radius: 50%;
     width: 40px;
     height: 40px;
     cursor: pointer;
-    font-size: 1.8em;
-    color: #7a416f;
+    font-size: 1.5rem;
     user-select: none;
-    transition: background 0.3s ease;
-  }
-  .btnCarrossel:hover {
-    background: #ff9fc9;
+    transform: translateY(-50%);
+    transition: background-color 0.3s ease;
   }
   #btnPrev {
-    left: 15px;
+    left: -50px;
   }
   #btnNext {
-    right: 15px;
+    right: -50px;
   }
-
-  /* Datas especiais */
-  #datas {
-    margin-top: 3em;
-    text-align: center;
-  }
-  .datas-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 1em;
-    margin-top: 1em;
-  }
-  .data-btn {
-    background: #fcd9e8;
-    border: 2px solid #f58fb9;
-    color: #7a416f;
-    padding: 0.8em 1.3em;
-    border-radius: 12px;
-    font-size: 1.1em;
-    cursor: pointer;
-    box-shadow: 0 4px 6px rgba(245,143,185,0.4);
-    transition: all 0.3s ease;
-    width: 160px;
-    user-select: none;
-  }
-  .data-btn:hover, .data-btn:focus {
-    background: #f58fb9;
-    color: #fff;
-    outline: none;
-    box-shadow: 0 6px 8px rgba(245,143,185,0.8);
+  #carrossel button:hover {
+    background-color: rgba(255,255,255,0.9);
   }
 
   /* Contadores */
-  .contadores {
-    display: flex;
-    justify-content: center;
-    gap: 3em;
-    margin-top: 2em;
-    flex-wrap: wrap;
-  }
-  .contadores div {
+  #contadores {
+    max-width: 500px;
+    margin: 20px auto;
+    padding: 15px;
     background: #fff0f6;
-    border-radius: 12px;
-    padding: 1em 2em;
-    box-shadow: 0 0 10px #f9c6d1;
-    min-width: 230px;
+    border-radius: 10px;
+    box-shadow: 0 0 8px rgba(74,0,51,0.3);
+    display: flex;
+    justify-content: space-around;
+    font-weight: 600;
   }
-  .contadores h3 {
-    font-family: 'Montserrat', sans-serif;
+  #contadores div {
+    text-align: center;
+  }
+  #contadores div span {
+    display: block;
+    font-size: 1.4rem;
+    color: #b30047;
+    margin-top: 6px;
+  }
+
+  /* Botões datas especiais */
+  #datasEspeciais {
+    max-width: 500px;
+    margin: 30px auto 40px auto;
+    text-align: center;
+  }
+  #datasEspeciais button {
+    background: #ff4da6;
+    border: none;
+    color: white;
+    padding: 12px 22px;
+    margin: 6px;
+    border-radius: 30px;
     font-weight: 700;
-    color: #b1526e;
-    margin-bottom: 0.5em;
+    font-size: 1rem;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(255,77,166,0.6);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    user-select: none;
   }
-  .contadores p {
-    font-family: monospace;
-    font-size: 1.3em;
-    color: #80284d;
+  #datasEspeciais button:hover,
+  #datasEspeciais button:focus {
+    background: #e60073;
+    outline: none;
+    transform: scale(1.05);
   }
 
   /* Popup poema */
   #popupPoema {
+    display: none;
     position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(75,46,74,0.95);
-    display: flex;
+    top:0; left:0; width: 100vw; height: 100vh;
+    background: rgba(0,0,0,0.7);
     justify-content: center;
     align-items: center;
-    z-index: 1500;
+    z-index: 2000;
+    padding: 20px;
   }
-  .poema-conteudo {
+  #popupPoema .conteudo {
     background: #fff0f6;
-    color: #5d2f4a;
-    padding: 2em;
-    border-radius: 15px;
-    max-width: 450px;
-    text-align: center;
-    font-size: 1.3em;
+    border-radius: 14px;
+    padding: 25px 35px;
+    max-width: 400px;
+    max-height: 80vh;
+    overflow-y: auto;
     position: relative;
-    box-shadow: 0 8px 12px rgba(245,143,185,0.7);
+    box-shadow: 0 0 25px #b30047;
   }
-  .poema-conteudo .fechar {
-    position: absolute;
-    top: 10px; right: 15px;
-    font-size: 2em;
-    font-weight: bold;
-    color: #7a416f;
-    cursor: pointer;
-    user-select: none;
+  #popupPoema .conteudo h3 {
+    color: #b30047;
+    margin-bottom: 12px;
+    font-size: 1.5rem;
   }
-
-  /* Efeito digitação para poemas */
-  .efeito-digitacao {
-    font-family: 'Great Vibes', cursive;
+  #popupPoema .conteudo pre {
     white-space: pre-wrap;
-    line-height: 1.5;
-    min-height: 6em;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 1rem;
+    line-height: 1.4;
   }
-
-  /* Música */
-  #musica-container {
-    text-align: center;
-    margin: 2em 0 4em 0;
-  }
-  #btnPlayMusic, #btnTrocarMusica {
-    background: #f58fb9;
-    border: none;
-    padding: 0.6em 1.4em;
-    font-size: 1.1em;
-    border-radius: 25px;
-    color: white;
+  #popupPoema .fechar {
+    position: absolute;
+    top: 8px;
+    right: 12px;
+    font-size: 1.7rem;
+    font-weight: 700;
     cursor: pointer;
-    margin: 0 0.5em;
-    box-shadow: 0 5px 8px rgba(245,143,185,0.6);
-    transition: background 0.3s ease;
+    color: #b30047;
     user-select: none;
   }
-  #btnPlayMusic:hover, #btnTrocarMusica:hover {
-    background: #ff7db8;
+  #popupPoema .fechar:hover {
+    color: #ff4da6;
   }
 
-  /* Modo Noite Romântica */
-  body.noite {
-    background: #140e1e;
-    color: #e7d4e7;
+  /* Botões de controle */
+  #controles {
+    max-width: 500px;
+    margin: 0 auto 40px auto;
+    text-align: center;
   }
-  body.noite h1, body.noite h2, body.noite h3 {
-    color: #f7d6f7;
+  #controles button {
+    background: #b30047;
+    color: #fff0f6;
+    border: none;
+    padding: 10px 20px;
+    margin: 8px 6px;
+    border-radius: 25px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 3px 8px rgba(179,0,71,0.7);
+    transition: background-color 0.3s ease, transform 0.2s ease;
   }
-  body.noite .container {
-    background: transparent;
-  }
-  body.noite #carrossel {
-    box-shadow: 0 0 20px #e49bcd;
-  }
-  body.noite .data-btn {
-    background: #4b3a57;
-    border-color: #bb84c8;
-    color: #e7d4e7;
-    box-shadow: 0 4px 6px #9b79b7a0;
-  }
-  body.noite .data-btn:hover, body.noite .data-btn:focus {
-    background: #bb84c8;
-    color: #4b3a57;
-    box-shadow: 0 6px 8px #e7d4e7a0;
-  }
-  body.noite .contadores div {
-    background: #2f2340;
-    box-shadow: 0 0 10px #bb84c8a0;
-  }
-  body.noite .poema-conteudo {
-    background: #4b3a57;
-    color: #e7d4e7;
-    box-shadow: 0 8px 12px #bb84c8b0;
-  }
-  body.noite #musica-container button {
-    background: #bb84c8;
+  #controles button:hover,
+  #controles button:focus {
+    background: #ff4da6;
+    outline: none;
+    transform: scale(1.1);
   }
 
-  /* Velas animadas no fundo modo noite */
-  #velas-container {
-    position: fixed;
-    bottom: 0; left: 0; right: 0;
-    pointer-events: none;
-    z-index: 1000;
-    height: 150px;
-    display: flex;
-    justify-content: center;
-    gap: 40px;
-    opacity: 0.7;
+  /* Frase aleatória */
+  #fraseAleatoria {
+    max-width: 500px;
+    margin: 15px auto 40px auto;
+    text-align: center;
+    font-style: italic;
+    font-size: 1.2rem;
+    color: #b30047;
+    min-height: 40px;
   }
-  .vela {
-    width: 15px;
-    height: 60px;
-    background: #bb84c8;
-    border-radius: 6px 6px 3px 3px;
-    position: relative;
-    animation: chama 1.5s ease-in-out infinite alternate;
-    box-shadow: 0 0 20px 8px #d7b9f2;
+
+  /* Modo Noite */
+  body.modo-noite {
+    background-color: #120012;
+    color: #f5c8dc;
   }
-  .vela:nth-child(2) {
-    animation-delay: 0.3s;
+  body.modo-noite #carrossel button,
+  body.modo-noite #datasEspeciais button,
+  body.modo-noite #controles button {
+    background-color: #330026;
+    color: #f5c8dc;
+    box-shadow: 0 0 10px #ff85c1;
   }
-  .vela:nth-child(3) {
-    animation-delay: 0.6s;
+  body.modo-noite #datasEspeciais button:hover,
+  body.modo-noite #controles button:hover {
+    background-color: #ff85c1;
+    color: #330026;
   }
-  .vela:nth-child(4) {
-    animation-delay: 0.9s;
+  body.modo-noite #contadores {
+    background-color: #330026;
+    box-shadow: 0 0 10px #ff85c1;
   }
-  .vela:nth-child(5) {
-    animation-delay: 1.2s;
-  }
-  @keyframes chama {
-    0% { box-shadow: 0 0 12px 6px #d7b9f2; }
-    100% { box-shadow: 0 0 20px 8px #f7d6f7; }
+  body.modo-noite #fraseAleatoria {
+    color: #ff85c1;
   }
 
   /* Corações flutuantes */
   .coracao {
     position: fixed;
+    bottom: -50px;
     width: 25px;
     height: 25px;
-    background: #ff77aa;
+    background: #ff4da6;
+    clip-path: polygon(
+      50% 0%, 61% 13%, 75% 18%, 85% 28%, 90% 44%, 85% 60%, 75% 72%, 
+      61% 80%, 50% 100%, 39% 80%, 25% 72%, 15% 60%, 10% 44%, 15% 28%, 25% 18%, 39% 13%
+    );
     opacity: 0.7;
-    border-radius: 50% 50% 50% 50%;
-    animation: flutua 6s linear infinite;
-    filter: drop-shadow(0 0 2px #ff3b81);
-    z-index: 900;
+    animation: subirCoracao 7s linear infinite;
+    pointer-events: none;
+    z-index: 10;
   }
-  .coracao::before, .coracao::after {
-    content: "";
-    position: absolute;
-    width: 25px;
-    height: 25px;
-    background: #ff77aa;
-    border-radius: 50%;
+  @keyframes subirCoracao {
+    0% {
+      transform: translateY(0) scale(1);
+      opacity: 0.7;
+    }
+    100% {
+      transform: translateY(-110vh) scale(1.4);
+      opacity: 0;
+    }
   }
-  .coracao::before {
-    top: -12.5px;
-    left: 0;
-  }
-  .coracao::after {
-    left: 12.5px;
-    top: 0;
-  }
-  @keyframes flutua {
-    0% { transform: translateY(100vh) translateX(0) rotate(0deg); opacity:1; }
-    100% { transform: translateY(-10vh) translateX(30px) rotate(360deg); opacity: 0; }
-  }
+  /* Variar posições e delays */
+  .coracao:nth-child(1) { left: 10%; animation-delay: 0s;}
+  .coracao:nth-child(2) { left: 25%; animation-delay: 2s;}
+  .coracao:nth-child(3) { left: 40%; animation-delay: 4s;}
+  .coracao:nth-child(4) { left: 55%; animation-delay: 1s;}
+  .coracao:nth-child(5) { left: 70%; animation-delay: 3s;}
+  .coracao:nth-child(6) { left: 85%; animation-delay: 5s;}
+  .coracao:nth-child(7) { left: 60%; animation-delay: 6s;}
+  .coracao:nth-child(8) { left: 30%; animation-delay: 7s;}
 
-  /* Navegação e páginas extras */
-  nav {
-    background: #f58fb9;
-    text-align: center;
-    padding: 1em 0;
-    box-shadow: 0 3px 8px rgba(245,143,185,0.5);
-    margin-bottom: 1em;
-  }
-  nav a {
-    color: white;
-    font-weight: 700;
-    font-size: 1.2em;
-    margin: 0 1.5em;
-    text-decoration: none;
-    font-family: 'Montserrat', sans-serif;
-    transition: color 0.3s ease;
-  }
-  nav a:hover, nav a:focus {
-    color: #fff0f6;
-    text-decoration: underline;
-  }
-
-  /* Página extra (conteúdo das outras páginas) */
-  .pagina-extra {
-    max-width: 900px;
-    margin: 2em auto 5em auto;
-    background: #fff0f6;
-    border-radius: 15px;
-    padding: 2em 2.5em;
-    box-shadow: 0 0 20px #eaa8b6;
-    font-size: 1.3em;
-    line-height: 1.6em;
-  }
-  .pagina-extra h2 {
-    font-family: 'Great Vibes', cursive;
-    font-size: 3em;
-    margin-bottom: 0.5em;
-    text-align: center;
-    color: #a04178;
-  }
-
-  /* Animação suave ao rolar */
-  [data-animado] {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 1s ease, transform 1s ease;
-  }
-  [data-animado].ativo {
-    opacity: 1;
-    transform: translateY(0);
-  }
 </style>
 </head>
 <body>
 
-<nav>
-  <a href="#inicio" onclick="mostrarPagina('inicio')">Início</a>
-  <a href="#nossa-historia" onclick="mostrarPagina('nossa-historia')">Nossa História</a>
-  <a href="#pagina-amor" onclick="mostrarPagina('pagina-amor')">Página de Amor</a>
-  <a href="#promessas-planos" onclick="mostrarPagina('promessas-planos')">Promessas e Planos</a>
-</nav>
+<h1>Nosso Site Romântico</h1>
 
-<div class="container">
+<!-- Carrossel -->
+<section id="carrossel" aria-label="Galeria de fotos do casal">
+  <button id="btnPrev" aria-label="Foto anterior">&#10094;</button>
+  <img id="imagemCarrossel" src="foto1.jpg" alt="Foto do casal 1" />
+  <button id="btnNext" aria-label="Próxima foto">&#10095;</button>
+  <p id="fraseCarrossel" aria-live="polite" aria-atomic="true"></p>
+</section>
 
-  <!-- PÁGINA INICIAL -->
-  <section id="inicio" class="pagina" style="display:block;">
-    <h1 data-animado>Nosso Amor 💖</h1>
+<!-- Contadores -->
+<section id="contadores" aria-label="Contadores de tempo das datas especiais">
+  <div>
+    <strong>Desde o Primeiro Beijo</strong>
+    <span id="contadorBeijo" aria-live="polite">Calculando...</span>
+  </div>
+  <div>
+    <strong>Desde o Pedido de Namoro</strong>
+    <span id="contadorPedido" aria-live="polite">Calculando...</span>
+  </div>
+</section>
 
-    <!-- Carrossel -->
-    <div id="carrossel" data-animado>
-      <button id="btnPrev" class="btnCarrossel" aria-label="Imagem anterior">&#10094;</button>
-      <img src="foto1.jpg" alt="Foto do casal 1" id="imagemCarrossel" />
-      <button id="btnNext" class="btnCarrossel" aria-label="Próxima imagem">&#10095;</button>
-      <div id="fraseCarrossel">"Cada momento contigo é um sonho doce."</div>
-    </div>
+<!-- Datas especiais -->
+<section id="datasEspeciais" aria-label="Datas especiais com poemas e declarações">
+  <button class="data-btn" data-titulo="Primeiro Beijo" data-poema="Nosso primeiro beijo, doce e sincero,\nMarcou o início do amor verdadeiro.\nCada toque, cada olhar, a emoção do momento,\nÉ o começo do nosso lindo sentimento.">
+    11/08/2024 - Primeiro Beijo
+  </button>
+  <button class="data-btn" data-titulo="Primeiro Date" data-poema="No nosso primeiro encontro, a magia aconteceu,\nSorrisos e olhares que o coração acendeu. \18/01/2025 - Primeiro Date
+  </button>
+  <button class="data-btn" data-titulo="Pedido de Namoro" data-poema="Quando pedi você em namoro, meu amor,\nFoi o dia em que a felicidade ganhou cor.\nPromessas feitas com o coração aberto,\nNosso amor cresce forte e sempre por perto.">
+    01/02/2025 - Pedido de Namoro
+  </button>
+  <button class="data-btn" data-titulo="Primeira Viagem" data-poema="Nossa primeira viagem juntos, aventura e paz,\nMomentos que guardo como quem nunca mais.\nRisadas e histórias que só a gente tem,\nNo nosso sítio, só nós, além do além.">
+    02/03/2025 - Primeira Viagem
+  </button>
+  <button class="data-btn" data-titulo="Entrega das Alianças" data-poema="No dia das alianças, união e brilho no olhar,\nSímbolo do amor que vamos sempre celebrar.\nPromessas eternas, cumplicidade e calor,\nNosso laço sagrado, puro e cheio de amor.">
+    01/04/2025 - Entrega das Alianças
+  </button>
+</section>
 
-    <!-- Contadores -->
-    <div class="contadores" data-animado>
-      <div>
-        <h3>Desde nosso primeiro beijo</h3>
-        <p id="contadorBeijo">-- dias, -- horas, -- minutos, -- segundos</p>
-      </div>
-      <div>
-        <h3>Desde o pedido oficial</h3>
-        <p id="contadorPedido">-- dias, -- horas, -- minutos, -- segundos</p>
-      </div>
-    </div>
-
-    <!-- Datas especiais -->
-    <section id="datas" data-animado>
-      <h2>Nossas Datas Especiais</h2>
-      <div class="datas-container">
-        <button class="data-btn" data-data="11/08/2024" data-titulo="Primeiro Beijo" data-poema="Nosso beijo, sussurro doce,\nFez meu mundo inteiro brilhar,\nEm teus lábios encontrei a força,\nQue me ensina a amar e sonhar.">11/08/2024 - Primeiro Beijo</button>
-        <button class="data-btn" data-data="18/01/2025" data-titulo="Primeiro Date" data-poema="No primeiro encontro, o tempo parou,\nNo brilho dos teus olhos me perdi,\nUm começo lindo que o destino selou,\nCom você, amor, tudo floresceu e sorri.">18/01/2025 - Primeiro Date</button>
-        <button class="data-btn" data-data="01/02/2025" data-titulo="Pedido de Namoro" data-poema="Com o coração na mão, pedi tua mão,\nOficializamos o amor que floresceu,\nAgora juntos, em doce união,\nO nosso laço que o tempo fortaleceu.">01/02/2025 - Pedido de Namoro</button>
-        <button class="data-btn" data-data="02/03/2025" data-titulo="Viagem ao Sítio" data-poema="Na natureza e em família, rimos e sonhamos,\nPasseios e abraços, memórias guardadas,\nNossa história assim, feliz, caminhamos,\nEm cada instante, mãos entrelaçadas.">02/03/2025 - Viagem ao Sítio</button>
-        <button class="data-btn" data-data="01/04/2025" data-titulo="Entrega das Alianças" data-poema="Alianças que brilham como nosso amor,\nSímbolos eternos do nosso compromisso,\nPara sempre juntos, sem nenhum temor,\nUm caminho lindo, um doce paraíso.">01/04/2025 - Entrega das Alianças</button>
-      </div>
-    </section>
-
-    <!-- Música e botões -->
-    <div id="musica-container" data-animado>
-      <button id="btnPlayMusic" aria-label="Tocar ou pausar música">▶️ Tocar Música</button>
-      <button id="btnModoNoite" aria-label="Alternar modo noite romântico">🌙 Modo Noite</button>
-      <button id="btnFraseAleatoria" aria-label="Mostrar frase aleatória">💌 Me Sinto Assim Por Você</button>
-    </div>
-
-    <div id="fraseAleatoria" style="font-style: italic; text-align: center; font-size:1.2em; color:#b1526e; margin-top:0.8em; min-height:3em;"></div>
-
-  </section>
-
-  <!-- PÁGINA Nossa História -->
-  <section id="nossa-historia" class="pagina" style="display:none;">
-    <div class="pagina-extra" data-animado>
-      <h2>Nossa História</h2>
-      <p>
-        Desde o primeiro olhar, sentimos que algo especial estava nascendo. Cada encontro, cada sorriso, cada momento juntos construiu a linda história de amor que vivemos hoje. Caminhamos lado a lado, aprendendo e crescendo, transformando o ordinário em extraordinário com a magia do nosso amor.
-      </p>
-      <p>
-        Nos pequenos gestos do dia a dia, no apoio mútuo e na cumplicidade, encontramos a base para o nosso relacionamento sólido e cheio de carinho. Nossa história é feita de sonhos compartilhados e de um futuro brilhante que construímos com esperança e dedicação.
-      </p>
-    </div>
-  </section>
-
-  <!-- PÁGINA Página de Amor -->
-  <section id="pagina-amor" class="pagina" style="display:none;">
-    <div class="pagina-extra" data-animado>
-      <h2>Página de Amor</h2>
-      <p>
-        Você é minha inspiração diária, a luz que guia meus passos e a paz que acalma meu coração. Com você, aprendi que o amor é a mais linda aventura, feita de entrega, respeito e muita paixão.
-      </p>
-      <p>
-        Nesta página, celebro cada sentimento que você desperta em mim: alegria, gratidão, desejo e um amor imenso que cresce a cada dia. Que continuemos escrevendo juntos essa linda poesia que é a nossa vida.
-      </p>
-    </div>
-  </section>
-
-  <!-- PÁGINA Promessas e Planos -->
-  <section id="promessas-planos" class="pagina" style="display:none;">
-    <div class="pagina-extra" data-animado>
-      <h2>Promessas e Planos</h2>
-      <p>
-        Prometo estar ao seu lado nos dias bons e ruins, apoiar seus sonhos e construir com você um futuro cheio de amor e realizações. Que nosso caminho seja sempre iluminado pela esperança e pelo respeito mútuo.
-      </p>
-      <p>
-        Sonhamos juntos com viagens, uma família, momentos de alegria e superação. Com coragem e carinho, faremos cada plano virar realidade, sempre de mãos dadas e corações entrelaçados.
-      </p>
-    </div>
-  </section>
-
-</div>
-
-<!-- Popup poema -->
-<div id="popupPoema" style="display:none;" aria-modal="true" role="dialog" aria-labelledby="tituloPoema" aria-describedby="textoPoema">
-  <div class="poema-conteudo">
-    <span class="fechar"
-      onclick="fecharPopup()" aria-label="Fechar">&times;</span>
+<!-- Popup para mostrar poema -->
+<div id="popupPoema" role="dialog" aria-modal="true" aria-labelledby="tituloPoema" tabindex="-1">
+  <div class="conteudo">
+    <button class="fechar" aria-label="Fechar popup">&times;</button>
     <h3 id="tituloPoema"></h3>
     <pre id="textoPoema"></pre>
   </div>
 </div>
 
-<!-- Música de fundo -->
-<audio id="musicaFundo" loop>
-  <source src="all_of_me.mp3" type="audio/mpeg" />
-  Seu navegador não suporta áudio HTML5.
-</audio>
+<!-- Controles gerais -->
+<section id="controles" aria-label="Controles do site">
+  <button id="btnModoNoite" aria-pressed="false">Modo Noite</button>
+  <button id="btnFraseAleatoria">Frase Aleatória</button>
+</section>
 
-<!-- Corações flutuantes -->
-<div class="coracao"></div>
-<div class="coracao"></div>
-<div class="coracao"></div>
-<div class="coracao"></div>
-<div class="coracao"></div>
-<div class="coracao"></div>
-<div class="coracao"></div>
-<div class="coracao"></div>
+<!-- Frase aleatória -->
+<div id="fraseAleatoria" aria-live="polite" aria-atomic="true"></div>
 
 <script>
-  // Variáveis e dados
+  // Dados do carrossel
   const fotos = [
-    {src: 'foto1.jpg', frase: 'Cada momento contigo é um sonho doce.'},
-    {src: 'foto2.jpg', frase: 'Teu sorriso ilumina minha alma.'},
-    {src: 'foto3.jpg', frase: 'Nosso amor cresce a cada dia.'},
-    {src: 'foto4.jpg', frase: 'Juntos somos mais fortes e felizes.'},
-    {src: 'foto5.jpg', frase: 'Em teus olhos encontro meu lar.'},
-    {src: 'foto6.jpg', frase: 'Cada abraço seu é um porto seguro.'},
-    {src: 'foto7.jpg', frase: 'A vida ao teu lado é pura magia.'},
-    {src: 'foto8.jpg', frase: 'Te amar é a melhor decisão que tomei.'},
-    {src: 'foto9.jpg', frase: 'Somos poesia escrita pelo destino.'},
-    {src: 'foto10.jpg', frase: 'Contigo tudo faz mais sentido.'},
-    {src: 'foto11.jpg', frase: 'Amar você é respirar felicidade.'},
-    {src: 'foto12.jpg', frase: 'Nossa história é meu conto favorito.'},
-    {src: 'foto13.jpg', frase: 'No teu abraço, encontro paz eterna.'},
-    {src: 'foto14.jpg', frase: 'Para sempre, eu e você, juntos.'},
+    {src: 'foto1.jpg', frase: 'Você ilumina minha vida.'},
+    {src: 'foto2.jpg', frase: 'Nosso amor é infinito.'},
+    {src: 'foto3.jpg', frase: 'Cada momento ao seu lado é precioso.'},
+    {src: 'foto4.jpg', frase: 'Caminhando juntos, sempre.'},
+    {src: 'foto5.jpg', frase: 'Seu sorriso é meu lar.'},
+    {src: 'foto6.jpg', frase: 'Você é meu porto seguro.'},
+    {src: 'foto7.jpg', frase: 'Nossa história é linda.'},
+    {src: 'foto8.jpg', frase: 'Eu amo cada detalhe seu.'},
+    {src: 'foto9.jpg', frase: 'Você é minha inspiração diária.'},
+    {src: 'foto10.jpg', frase: 'Juntos somos mais fortes.'},
+    {src: 'foto11.jpg', frase: 'Meu coração é seu.'},
+    {src: 'foto12.jpg', frase: 'Cada abraço seu é mágico.'},
+    {src: 'foto13.jpg', frase: 'Obrigado por ser você.'},
+    {src: 'foto14.jpg', frase: 'Eu te amo, hoje e sempre.'}
   ];
 
-  // Elementos do DOM
-  const imagemCarrossel = document.getElementById('imagemCarrossel');
+  // Elementos do carrossel
+  const imgCarrossel = document.getElementById('imagemCarrossel');
   const fraseCarrossel = document.getElementById('fraseCarrossel');
   const btnPrev = document.getElementById('btnPrev');
   const btnNext = document.getElementById('btnNext');
-  const btnPlayMusic = document.getElementById('btnPlayMusic');
-  const btnModoNoite = document.getElementById('btnModoNoite');
-  const btnFraseAleatoria = document.getElementById('btnFraseAleatoria');
-  const fraseAleatoriaDiv = document.getElementById('fraseAleatoria');
-  const musicaFundo = document.getElementById('musicaFundo');
+
+  let indiceAtual = 0;
+
+  function mostrarFoto(indice) {
+    // efeito fade out e fade in
+    imgCarrossel.style.opacity = 0;
+    fraseCarrossel.style.opacity = 0;
+    setTimeout(() => {
+      imgCarrossel.src = fotos[indice].src;
+      imgCarrossel.alt = `Foto do casal ${indice + 1}`;
+      fraseCarrossel.textContent = fotos[indice].frase;
+      imgCarrossel.style.opacity = 1;
+      fraseCarrossel.style.opacity = 1;
+    }, 400);
+  }
+
+  btnPrev.addEventListener('click', () => {
+    indiceAtual = (indiceAtual - 1 + fotos.length) % fotos.length;
+    mostrarFoto(indiceAtual);
+  });
+  btnNext.addEventListener('click', () => {
+    indiceAtual = (indiceAtual + 1) % fotos.length;
+    mostrarFoto(indiceAtual);
+  });
+
+  mostrarFoto(indiceAtual);
+
+  // Função para cálculo do tempo decorrido em dias, horas, min, seg
+  function calculaTempo(dataInicial) {
+    const agora = new Date();
+    const diffMs = agora - dataInicial;
+    if(diffMs < 0) return null;
+    const segs = Math.floor(diffMs / 1000);
+    const mins = Math.floor(segs / 60);
+    const horas = Math.floor(mins / 60);
+    const dias = Math.floor(horas / 24);
+    return {
+      dias,
+      horas: horas % 24,
+      minutos: mins % 60,
+      segundos: segs % 60
+    };
+  }
+
+  // Atualiza contadores na tela
+  function atualizarContadores() {
+    const beijo = new Date('2024-08-11T00:00:00');
+    const pedido = new Date('2025-02-01T00:00:00');
+
+    const tempoBeijo = calculaTempo(beijo);
+    const tempoPedido = calculaTempo(pedido);
+
+    const contadorBeijo = document.getElementById('contadorBeijo');
+    const contadorPedido = document.getElementById('contadorPedido');
+
+    if(tempoBeijo){
+      contadorBeijo.textContent = `${tempoBeijo.dias}d ${tempoBeijo.horas}h ${tempoBeijo.minutos}m ${tempoBeijo.segundos}s`;
+    } else {
+      contadorBeijo.textContent = 'Data futura';
+    }
+    if(tempoPedido){
+      contadorPedido.textContent = `${tempoPedido.dias}d ${tempoPedido.horas}h ${tempoPedido.minutos}m ${tempoPedido.segundos}s`;
+    } else {
+      contadorPedido.textContent = 'Data futura';
+    }
+  }
+  atualizarContadores();
+  setInterval(atualizarContadores, 1000);
+
+  // Popup dos poemas das datas especiais
+  const botoesDatas = document.querySelectorAll('.data-btn');
   const popupPoema = document.getElementById('popupPoema');
   const tituloPoema = document.getElementById('tituloPoema');
   const textoPoema = document.getElementById('textoPoema');
-  const dataBtns = document.querySelectorAll('.data-btn');
-  const paginas = document.querySelectorAll('.pagina');
+  const btnFecharPopup = popupPoema.querySelector('.fechar');
 
-  let indiceAtual = 0;
-  let musicaTocando = false;
-  let modoNoiteAtivo = false;
-
-  // Função para atualizar o carrossel
-  function atualizarCarrossel() {
-    const foto = fotos[indiceAtual];
-    imagemCarrossel.src = foto.src;
-    imagemCarrossel.alt = `Foto do casal ${indiceAtual + 1}`;
-    fraseCarrossel.textContent = `"${foto.frase}"`;
-  }
-
-  // Eventos carrossel
-  btnPrev.addEventListener('click', () => {
-    indiceAtual = (indiceAtual - 1 + fotos.length) % fotos.length;
-    atualizarCarrossel();
-  });
-
-  btnNext.addEventListener('click', () => {
-    indiceAtual = (indiceAtual + 1) % fotos.length;
-    atualizarCarrossel();
-  });
-
-  // Atualizar carrossel ao iniciar
-  atualizarCarrossel();
-
-  // Função para calcular o tempo desde uma data
-  function calcularTempoDesde(dataStr) {
-    const dataInicio = new Date(dataStr.split('/').reverse().join('-') + 'T00:00:00');
-    const agora = new Date();
-    let diff = agora - dataInicio;
-
-    if (diff < 0) return "Ainda não chegou";
-
-    const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
-    diff -= dias * (1000 * 60 * 60 * 24);
-    const horas = Math.floor(diff / (1000 * 60 * 60));
-    diff -= horas * (1000 * 60 * 60);
-    const minutos = Math.floor(diff / (1000 * 60));
-    diff -= minutos * (1000 * 60);
-    const segundos = Math.floor(diff / 1000);
-
-    return `${dias} dias, ${horas} horas, ${minutos} minutos, ${segundos} segundos`;
-  }
-
-  // Atualizar contadores
-  function atualizarContadores() {
-    document.getElementById('contadorBeijo').textContent = calcularTempoDesde('11/08/2024');
-    document.getElementById('contadorPedido').textContent = calcularTempoDesde('01/02/2025');
-  }
-  setInterval(atualizarContadores, 1000);
-  atualizarContadores();
-
-  // Abrir popup do poema
-  function abrirPopup(titulo, poema) {
-    tituloPoema.textContent = titulo;
-    textoPoema.textContent = poema;
-    popupPoema.style.display = 'flex';
-  }
-
-  // Fechar popup
-  function fecharPopup() {
-    popupPoema.style.display = 'none';
-  }
-
-  // Eventos para botões das datas especiais
-  dataBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      abrirPopup(btn.getAttribute('data-titulo'), btn.getAttribute('data-poema'));
+  botoesDatas.forEach(botao => {
+    botao.addEventListener('click', () => {
+      tituloPoema.textContent = botao.dataset.titulo;
+      textoPoema.textContent = botao.dataset.poema;
+      popupPoema.style.display = 'flex';
+      popupPoema.focus();
     });
   });
 
-  // Música fundo controle
-  btnPlayMusic.addEventListener('click', () => {
-    if (musicaTocando) {
-      musicaFundo.pause();
-      btnPlayMusic.textContent = '▶️ Tocar Música';
-    } else {
-      musicaFundo.play();
-      btnPlayMusic.textContent = '⏸️ Pausar Música';
-    }
-    musicaTocando = !musicaTocando;
+  btnFecharPopup.addEventListener('click', () => {
+    popupPoema.style.display = 'none';
   });
 
-  // Modo noite toggle
+  popupPoema.addEventListener('click', (e) => {
+    if(e.target === popupPoema){
+      popupPoema.style.display = 'none';
+    }
+  });
+
+  // Controle do modo noite
+  const btnModoNoite = document.getElementById('btnModoNoite');
   btnModoNoite.addEventListener('click', () => {
-    modoNoiteAtivo = !modoNoiteAtivo;
-    if (modoNoiteAtivo) {
-      document.body.classList.add('modo-noite');
-      btnModoNoite.textContent = '☀️ Modo Dia';
-    } else {
-      document.body.classList.remove('modo-noite');
-      btnModoNoite.textContent = '🌙 Modo Noite';
-    }
+    document.body.classList.toggle('modo-noite');
+    const ativo = document.body.classList.contains('modo-noite');
+    btnModoNoite.setAttribute('aria-pressed', ativo);
   });
 
-  // Frases aleatórias para "Me sinto assim por você"
+  // Frases aleatórias
   const frasesAleatorias = [
-    'Você é minha alegria diária.',
-    'Com você, tudo faz sentido.',
-    'Meu coração bate só por você.',
-    'Cada instante contigo é mágico.',
-    'Você é meu porto seguro e minha paz.',
-    'Te amar é a minha maior felicidade.',
-    'Nosso amor é meu maior tesouro.',
-    'Amo você hoje e sempre.',
-    'Você é a razão do meu sorriso.',
-    'Sou completamente seu, sempre.',
+    'Você é minha maior alegria.',
+    'Cada dia ao seu lado é um presente.',
+    'Meu coração bate mais forte por você.',
+    'Com você tudo é mais bonito.',
+    'Nosso amor é a minha força.',
+    'Juntos somos invencíveis.',
+    'Você é meu sonho realizado.',
+    'Amar você é a melhor parte do meu dia.',
+    'Você é minha inspiração e motivação.',
+    'Nosso amor é para sempre.'
   ];
+  const divFraseAleatoria = document.getElementById('fraseAleatoria');
+  const btnFraseAleatoria = document.getElementById('btnFraseAleatoria');
 
   btnFraseAleatoria.addEventListener('click', () => {
     const indice = Math.floor(Math.random() * frasesAleatorias.length);
-    fraseAleatoriaDiv.textContent = frasesAleatorias[indice];
+    divFraseAleatoria.textContent = frasesAleatorias[indice];
   });
 
-  // Mostrar páginas extras (single page navigation)
-  function mostrarPagina(id) {
-    paginas.forEach(pagina => {
-      pagina.style.display = (pagina.id === id) ? 'block' : 'none';
-    });
-    // Scroll para o topo
-    window.scrollTo({top: 0, behavior: 'smooth'});
+  // Corações flutuantes (opcional, ativar aqui se quiser)
+  function criarCoracao() {
+    const coracao = document.createElement('div');
+    coracao.classList.add('coracao');
+    coracao.style.left = Math.random() * 90 + '%';
+    coracao.style.animationDuration = 6 + Math.random() * 4 + 's';
+    document.body.appendChild(coracao);
+    setTimeout(() => coracao.remove(), 10000);
   }
-
-  // Expor função para uso no HTML
-  window.mostrarPagina = mostrarPagina;
-
-  // Animação ao rolar (fade-in)
-  function animarScroll() {
-    const elementos = document.querySelectorAll('[data-animado]');
-    const janelaAltura = window.innerHeight;
-
-    elementos.forEach(el => {
-      const posicao = el.getBoundingClientRect().top;
-      if (posicao < janelaAltura - 100) {
-        el.classList.add('ativo');
-      }
-    });
-  }
-
-  window.addEventListener('scroll', animarScroll);
-  window.addEventListener('load', animarScroll);
-
-  // Fechar popup ao clicar fora do conteúdo
-  popupPoema.addEventListener('click', e => {
-    if (e.target === popupPoema) fecharPopup();
-  });
+  // Descomente para ativar corações flutuantes contínuos:
+  // setInterval(criarCoracao, 800);
 
 </script>
 
