@@ -33,45 +33,41 @@
     }
 
     .carousel {
-      display: flex;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      padding: 40px 0;
-      gap: 40px;
-      justify-content: center;
-    }
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding: 40px 20px;  /* menos padding horizontal */
+  gap: 20px;           /* menos espaço entre fotos */
+  justify-content: flex-start; /* Alinha no início para não cortar a primeira */
+}
 
-    .carousel::-webkit-scrollbar {
-      display: none;
-    }
+.polaroid {
+  background: white;
+  border: 5px solid #fff;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  scroll-snap-align: start;   /* ajustar para start, facilita o scroll */
+  flex: 0 0 auto;
+  width: 220px;       /* largura menor para caber mais */
+  height: 300px;      /* altura proporcional */
+  text-align: center;
+  border-radius: 12px;
+  transform: scale(1);
+  transition: transform 0.3s;
+  position: relative;
+  cursor: pointer;
+}
 
-    .polaroid {
-      background: white;
-      border: 5px solid #fff;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-      scroll-snap-align: center;
-      flex: 0 0 auto;
-      width: 250px;
-      height: 320px;
-      text-align: center;
-      border-radius: 12px;
-      transform: scale(1);
-      transition: transform 0.3s;
-      position: relative;
-      cursor: pointer;
-    }
+.polaroid:hover {
+  transform: scale(1.05);
+}
 
-    .polaroid:hover {
-      transform: scale(1.05);
-    }
-
-    .polaroid img {
-      width: 100%;
-      height: 260px;
-      object-fit: cover;
-      border-bottom: 3px solid #f0cce2;
-      border-radius: 10px 10px 0 0;
-    }
+.polaroid img {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  border-bottom: 3px solid #f0cce2;
+  border-radius: 10px 10px 0 0;
+}
 
     .caption {
       padding: 10px;
