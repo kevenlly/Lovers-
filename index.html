@@ -1,602 +1,394 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Nosso Amor - Site Romântico</title>
-<style>
-  /* Reset básico */
-  * {
-    margin: 0; padding: 0; box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  }
-  body {
-    background: #fff0f6;
-    color: #4a2c3c;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 1rem 1rem 3rem;
-    transition: background-color 0.5s, color 0.5s;
-  }
-  header {
-    margin-bottom: 1.5rem;
-    text-align: center;
-  }
-  header h1 {
-    font-family: 'Dancing Script', cursive;
-    font-size: 3rem;
-    color: #a6336a;
-    text-shadow: 1px 1px 4px #f3c6d2;
-  }
-  /* Contadores */
-  #contadores {
-    display: flex;
-    justify-content: center;
-    gap: 2.5rem;
-    margin-bottom: 2rem;
-    flex-wrap: wrap;
-  }
-  .contador {
-    background: #f7d8e3;
-    border-radius: 12px;
-    padding: 1rem 1.5rem;
-    box-shadow: 0 2px 6px rgba(166,50,95,0.3);
-    text-align: center;
-    min-width: 150px;
-  }
-  .contador span {
-    display: block;
-    font-weight: 700;
-    font-size: 2rem;
-    color: #6e1a46;
-  }
-  .contador small {
-    color: #7a4062;
-  }
-  /* Galeria */
-  #galeria {
-    max-width: 720px;
-    width: 100%;
-    display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
-    gap: 1rem;
-    margin-bottom: 2rem;
-  }
-  #galeria img {
-    width: 100%;
-    border-radius: 12px;
-    cursor: pointer;
-    box-shadow: 0 3px 8px rgba(166,50,95,0.3);
-    transition: transform 0.3s ease;
-  }
-  #galeria img:hover {
-    transform: scale(1.05);
-  }
-  /* Botões datas */
-  #datas-especiais {
-    margin-bottom: 2rem;
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  .btn-data {
-    background: #a6336a;
-    color: #fff;
-    border: none;
-    padding: 0.8rem 1.4rem;
-    border-radius: 30px;
-    font-weight: 600;
-    box-shadow: 0 4px 6px rgba(166,50,95,0.5);
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    min-width: 160px;
-    text-align: center;
-  }
-  .btn-data:hover {
-    background-color: #7d2550;
-  }
-  /* Modal */
-  .modal-overlay {
-    position: fixed;
-    top:0; left:0; right:0; bottom:0;
-    background: rgba(0,0,0,0.6);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1500;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.3s ease;
-  }
-  .modal-overlay.active {
-    opacity: 1;
-    pointer-events: auto;
-  }
-  .modal {
-    background: #fff0f6;
-    padding: 1.8rem 2rem;
-    border-radius: 14px;
-    max-width: 400px;
-    max-height: 80vh;
-    overflow-y: auto;
-    box-shadow: 0 8px 24px rgba(166,50,95,0.4);
-    position: relative;
-    font-size: 1.1rem;
-    color: #6e1a46;
-  }
-  .modal h3 {
-    font-family: 'Dancing Script', cursive;
-    font-size: 2rem;
-    margin-bottom: 1rem;
-    text-align: center;
-  }
-  .modal p {
-    margin-bottom: 1rem;
-    line-height: 1.5;
-  }
-  .modal button.close-btn {
-    position: absolute;
-    top: 8px; right: 12px;
-    background: transparent;
-    border: none;
-    font-size: 1.8rem;
-    color: #a6336a;
-    cursor: pointer;
-    transition: color 0.3s ease;
-  }
-  .modal button.close-btn:hover {
-    color: #7d2550;
-  }
-  /* Modal imagem zoom */
-  #modal-img img {
-    max-width: 100%;
-    border-radius: 12px;
-    display: block;
-    margin: 0 auto;
-  }
-  #modal-img .caption {
-    margin-top: 0.8rem;
-    color: #7d2550;
-    font-style: italic;
-    text-align: center;
-  }
-  /* Música e botões controle */
-  #controls {
-    margin-bottom: 2rem;
-    display: flex;
-    gap: 1.2rem;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-  button.control-btn {
-    background: #a6336a;
-    color: white;
-    border: none;
-    padding: 0.8rem 1.6rem;
-    border-radius: 30px;
-    font-weight: 700;
-    box-shadow: 0 4px 8px rgba(166,50,95,0.5);
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    min-width: 140px;
-    user-select: none;
-  }
-  button.control-btn:hover {
-    background-color: #7d2550;
-  }
-  /* Modo Noite */
-  body.noite {
-    background-color: #1b0a19;
-    color: #f1d4e7;
-  }
-  body.noite header h1 {
-    color: #ffb6c1;
-    text-shadow: 0 0 15px #ffb6c1;
-  }
-  body.noite .contador {
-    background: #4b2240;
-    box-shadow: 0 2px 8px #aa77aa;
-    color: #f2c6db;
-  }
-  body.noite .btn-data {
-    background: #bb5599;
-  }
-  body.noite .btn-data:hover {
-    background: #995577;
-  }
-  /* Velas animadas modo noite */
-  #velas {
-    position: fixed;
-    bottom: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 10px;
-    z-index: 1600;
-  }
-  .vela {
-    width: 12px;
-    height: 40px;
-    background: #e6c7ca;
-    border-radius: 6px 6px 2px 2px;
-    position: relative;
-    box-shadow: inset 0 -8px 10px #b07c82;
-  }
-  .chama {
-    position: absolute;
-    top: -14px;
-    left: 50%;
-    width: 12px;
-    height: 18px;
-    background: radial-gradient(ellipse at center, #ffd7d7 0%, #f3a1a1 60%, transparent 90%);
-    border-radius: 50% 50% 50% 50% / 70% 70% 30% 30%;
-    transform: translateX(-50%);
-    animation: chama-pulso 1.4s infinite ease-in-out;
-    filter: drop-shadow(0 0 2px #ffa7a7);
-  }
-  @keyframes chama-pulso {
-    0%, 100% { transform: translateX(-50%) scale(1); opacity: 1; }
-    50% { transform: translateX(-50%) scale(1.1); opacity: 0.7; }
-  }
-</style>
-<!-- Fonte Script para Google Fonts Dancing Script -->
-<link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nosso Amor 💖</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Quicksand', sans-serif;
+      background: linear-gradient(to bottom, #ffe6f0, #fff);
+      color: #5a2a49;
+      overflow-x: hidden;
+    }
+
+    header {
+      text-align: center;
+      padding: 30px 10px 10px;
+    }
+
+    header h1 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 3em;
+      margin: 0;
+      color: #d63384;
+    }
+
+    header p {
+      font-size: 1.2em;
+      color: #91466f;
+    }
+
+    .carousel {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      padding: 40px 0;
+      gap: 40px;
+      justify-content: center;
+    }
+
+    .carousel::-webkit-scrollbar {
+      display: none;
+    }
+
+    .polaroid {
+      background: white;
+      border: 5px solid #fff;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+      scroll-snap-align: center;
+      flex: 0 0 auto;
+      width: 250px;
+      height: 320px;
+      text-align: center;
+      border-radius: 12px;
+      transform: scale(1);
+      transition: transform 0.3s;
+      position: relative;
+      cursor: pointer;
+    }
+
+    .polaroid:hover {
+      transform: scale(1.05);
+    }
+
+    .polaroid img {
+      width: 100%;
+      height: 260px;
+      object-fit: cover;
+      border-bottom: 3px solid #f0cce2;
+      border-radius: 10px 10px 0 0;
+    }
+
+    .caption {
+      padding: 10px;
+      font-size: 1em;
+      color: #6e2f57;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 9999;
+      padding-top: 100px;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.8);
+    }
+
+    .modal-content {
+      background-color: #fff;
+      margin: auto;
+      padding: 30px;
+      border: 1px solid #888;
+      width: 90%;
+      max-width: 500px;
+      border-radius: 15px;
+      font-family: 'Great Vibes', cursive;
+      color: #c41c77;
+      font-size: 1.6em;
+      text-align: center;
+      line-height: 1.6;
+      position: relative;
+      animation: fadeIn 0.5s;
+    }
+
+    .close {
+      color: #aaa;
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .close:hover {
+      color: #c41c77;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+
+    .date-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+      margin: 30px auto;
+    }
+
+    .date-button {
+      background: #f4a7c1;
+      color: white;
+      font-weight: bold;
+      border: none;
+      padding: 15px 20px;
+      border-radius: 25px;
+      cursor: pointer;
+      font-size: 1em;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+      transition: transform 0.3s, background 0.3s;
+    }
+
+    .date-button:hover {
+      background: #e0659a;
+      transform: scale(1.1);
+    }
+
+    .contador {
+      text-align: center;
+      font-size: 1.1em;
+      margin-top: 40px;
+      color: #7b2d53;
+    }
+
+    .contador h3 {
+      font-size: 1.3em;
+      margin-bottom: 10px;
+      color: #a91e6f;
+    }
+  </style>
 </head>
+
 <body>
+  <header>
+    <h1>Nosso Amor 💖</h1>
+    <p>Uma jornada linda de momentos eternos</p>
+  </header>
 
-<header>
-  <h1>Nosso Amor</h1>
-</header>
+  <section class="carousel"><div class="polaroid" onclick="abrirModal('Você é o meu sonho mais bonito.')">
+      <img src="foto1.jpg" alt="Foto 1">
+      <div class="caption">Desde que te conheci, tudo ficou mais colorido.</div>
+    </div>
+    <div class="polaroid" onclick="abrirModal('Seu sorriso é meu lugar favorito.')">
+      <img src="foto2.jpg" alt="Foto 2">
+      <div class="caption">Seu sorriso muda o meu mundo.</div>
+    </div>
+    <div class="polaroid" onclick="abrirModal('Com você, até o silêncio tem poesia.')">
+      <img src="foto3.jpg" alt="Foto 3">
+      <div class="caption">Só você me faz sentir assim.</div>
+    </div>
+    <div class="polaroid" onclick="abrirModal('Eu te amarei até as estrelas se apagarem.')">
+      <img src="foto4.jpg" alt="Foto 4">
+      <div class="caption">Amor que transborda no olhar.</div>
+    </div>
+    <div class="polaroid" onclick="abrirModal('Você é a poesia que eu sempre procurei.')">
+      <img src="foto5.jpg" alt="Foto 5">
+      <div class="caption">Te amo em cada detalhe.</div>
+    </div>
+    <div class="polaroid" onclick="abrirModal('Meu coração é seu lar.')">
+      <img src="foto6.jpg" alt="Foto 6">
+      <div class="caption">Somos verso e melodia.</div>
+    </div>
+    <div class="polaroid" onclick="abrirModal('Com você, todos os dias são especiais.')">
+      <img src="foto7.jpg" alt="Foto 7">
+      <div class="caption">Nosso amor é infinito.</div>
+    </div>
+    <div class="polaroid" onclick="abrirModal('Você é a calma que minha alma precisava.')">
+      <img src="foto8.jpg" alt="Foto 8">
+      <div class="caption">Me perco no teu abraço.</div>
+    </div>
+    <div class="polaroid" onclick="abrirModal('Você é o meu melhor capítulo.')">
+      <img src="foto9.jpg" alt="Foto 9">
+      <div class="caption">Tudo faz sentido com você.</div>
+    </div>
+    <div class="polaroid" onclick="abrirModal('Juntos, somos poesia viva.')">
+      <img src="foto10.jpg" alt="Foto 10">
+      <div class="caption">Nosso amor é luz e cor.</div>
+    </div>
+    <div class="polaroid" onclick="abrirModal('Você é a razão do meu riso mais sincero.')">
+      <img src="foto11.jpg" alt="Foto 11">
+      <div class="caption">Cada dia contigo é presente.</div>
+    </div>
+    <div class="polaroid" onclick="abrirModal('Amar você é fácil como respirar.')">
+      <img src="foto12.jpg" alt="Foto 12">
+      <div class="caption">Meu amor cresce a cada segundo.</div>
+    </div>
+    <div class="polaroid" onclick="abrirModal('Nossos momentos são eternos no meu coração.')">
+      <img src="foto13.jpg" alt="Foto 13">
+      <div class="caption">Você me completa.</div>
+    </div>
+    <div class="polaroid" onclick="abrirModal('Meu coração escolheu você todos os dias.')">
+      <img src="foto14.jpg" alt="Foto 14">
+      <div class="caption">Te amo pra sempre.</div>
+    </div>
+  </section>
 
-<!-- Contadores -->
-<section id="contadores" aria-label="Contadores do tempo de namoro">
-  <div class="contador" aria-live="polite" aria-atomic="true">
-    <strong>Desde o Primeiro Beijo:</strong>
-    <span id="contador-beijo">0d 0h 0m 0s</span>
+  <!-- Modal Poema Personalizado -->
+  <div id="modalTexto" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="fecharModal()">&times;</span>
+      <p id="textoModal"></p>
+    </div>
   </div>
-  <div class="contador" aria-live="polite" aria-atomic="true">
-    <strong>Desde o Pedido Oficial:</strong>
-    <span id="contador-pedido">0d 0h 0m 0s</span>
+
+  <!-- Botões das Datas Especiais -->
+  <section class="date-buttons">
+    <button class="date-button" onclick="abrirModal('11/08/2024 – Nosso primeiro beijo... Inesquecível como a primeira vez que nossos corações se tocaram.')">💋 11/08/2024</button>
+    <button class="date-button" onclick="abrirModal('18/01/2025 – Nosso primeiro date... risos, nervosismo e um coração acelerado.')">🍷 18/01/2025</button>
+    <button class="date-button" onclick="abrirModal('01/02/2025 – Quando dissemos sim... Nosso namoro começou oficialmente e o amor só cresceu.')">💍 01/02/2025</button>
+    <button class="date-button" onclick="abrirModal('02/03/2025 – Primeira viagem ao sítio... Momentos leves, cheios de carinho.')">🏞️ 02/03/2025</button>
+    <button class="date-button" onclick="abrirModal('01/04/2025 – Entregamos as alianças e prometemos amor eterno.')">💖 01/04/2025</button>
+  </section>
+  <!-- Contadores de Tempo -->
+  <section class="contadores">
+    <h2>⏳ Tempo desde o nosso primeiro beijo:</h2>
+    <div id="contadorBeijo"></div>
+
+    <h2>💑 Tempo desde o nosso namoro:</h2>
+    <div id="contadorNamoro"></div>
+  </section>
+
+  <!-- Música de Fundo -->
+  <audio id="musica" src="all_of_me.mp3" loop></audio>
+  <button id="btnMusica" onclick="toggleMusica()">🎶 Tocar música</button>
+
+  <!-- Mensagem Final Surpresa -->
+  <section class="mensagem-final">
+    <button onclick="mostrarMensagemFinal()">🌟 Clique para a última surpresa</button>
+  </section>
+
+  <div id="popupFinal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="fecharMensagemFinal()">&times;</span>
+      <h2>🌌 Amor da minha vida...</h2>
+      <p>Obrigado por estar ao meu lado em todos os momentos. Eu te amo mais do que as palavras conseguem expressar. Que venham mais memórias, mais sorrisos, mais eternidades... 💖</p>
+    </div>
   </div>
-</section>
 
-<!-- Galeria -->
-<section id="galeria" aria-label="Galeria de fotos românticas">
-  <!-- As 14 fotos com legendas e frases -->
-  <img src="foto1.jpg" alt="Nosso primeiro beijo" data-frase="Aquele momento mágico do nosso primeiro beijo." />
-  <img src="foto2.jpg" alt="Primeiro passeio juntos" data-frase="Cada instante contigo é inesquecível." />
-  <img src="foto3.jpg" alt="Sorriso feliz" data-frase="Te ver sorrir é meu maior presente." />
-  <img src="foto4.jpg" alt="Mãos entrelaçadas" data-frase="Nossas mãos, nosso elo infinito." />
-  <img src="foto5.jpg" alt="Pôr do sol romântico" data-frase="O pôr do sol é mais lindo ao seu lado." />
-  <img src="foto6.jpg" alt="Jantar à luz de velas" data-frase="Momentos de amor e carinho juntos." />
-  <img src="foto7.jpg" alt="Nosso abraço" data-frase="Seu abraço é meu lugar favorito." />
-  <img src="foto8.jpg" alt="Viagem inesquecível" data-frase="Cada viagem, uma nova memória." />
-  <img src="foto9.jpg" alt="Risos compartilhados" data-frase="Rir contigo é minha alegria diária." />
-  <img src="foto10.jpg" alt="Nosso carinho" data-frase="Carinho que só você me dá." />
-  <img src="foto11.jpg" alt="Dia chuvoso juntos" data-frase="Até na chuva, somos felicidade." />
-  <img src="foto12.jpg" alt="Piquenique ao ar livre" data-frase="Simples momentos que valem ouro." />
-  <img src="foto13.jpg" alt="Noite estrelada" data-frase="Sob as estrelas, só nós dois." />
-  <img src="foto14.jpg" alt="Nosso sorriso eterno" data-frase="Sorriso que reflete nosso amor." />
-</section>
+  <!-- JavaScript -->
+  <script>
+    // Função Modal de Poema
+    function abrirModal(texto) {
+      document.getElementById('textoModal').innerText = texto;
+      document.getElementById('modalTexto').style.display = 'flex';
+    }
 
-<!-- Botões datas especiais -->
-<section id="datas-especiais" aria-label="Datas especiais">
-  <button class="btn-data" data-id="beijo">11/08/2024 - Primeiro Beijo</button>
-  <button class="btn-data" data-id="date">18/01/2025 - Primeiro Date</button>
-  <button class="btn-data" data-id="pedido">01/02/2025 - Pedido de Namoro</button>
-  <button class="btn-data" data-id="viagem">02/03/2025 - Viagem ao Sítio</button>
-  <button class="btn-data" data-id="aliancas">01/04/2025 - Entrega das Alianças</button>
-</section>
+    function fecharModal() {
+      document.getElementById('modalTexto').style.display = 'none';
+    }
 
-<!-- Controles da música e modo noite -->
-<section id="controls" aria-label="Controles">
-  <button id="btn-music-toggle" class="control-btn" aria-pressed="false">▶️ Tocar Música</button>
-  <button id="btn-night-toggle" class="control-btn" aria-pressed="false">🌙 Modo Noite</button>
-</section>
-
-<!-- Modal genérico para textos -->
-<div id="modal-text" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title" tabindex="-1" hidden>
-  <div class="modal">
-    <button class="close-btn" aria-label="Fechar modal">&times;</button>
-    <h3 id="modal-title"></h3>
-    <p id="modal-content"></p>
-  </div>
-</div>
-
-<!-- Modal para zoom de imagem -->
-<div id="modal-img" class="modal-overlay" role="dialog" aria-modal="true" tabindex="-1" hidden>
-  <div class="modal">
-    <button class="close-btn" aria-label="Fechar modal">&times;</button>
-    <img src="" alt="" />
-    <p class="caption"></p>
-  </div>
-</div>
-
-<!-- Música -->
-<audio id="musica" src="all_of_me.mp3" loop></audio>
-
-<!-- Velas animadas modo noite -->
-<div id="velas" aria-hidden="true" style="display:none;">
-  <div class="vela"><div class="chama"></div></div>
-  <div class="vela"><div class="chama"></div></div>
-  <div class="vela"><div class="chama"></div></div>
-  <div class="vela"><div class="chama"></div></div>
-  <div class="vela"><div class="chama"></div></div>
-</div>
-
-<script>
-  (() => {
-    // Datas especiais para contador e modais
-    const datas = {
-      beijo: {
-        data: new Date("2024-08-11T00:00:00"),
-        titulo: "Primeiro Beijo",
-        texto: "Aquele beijo inesquecível que marcou o começo da nossa história de amor, cheio de emoção e ternura.",
-      },
-      date: {
-        data: new Date("2025-01-18T00:00:00"),
-        titulo: "Primeiro Date",
-        texto: "Nosso primeiro encontro oficial, um dia cheio de risadas, descobertas e carinho mútuo.",
-      },
-      pedido: {
-        data: new Date("2025-02-01T00:00:00"),
-        titulo: "Pedido de Namoro",
-        texto: "O momento especial em que decidimos nos tornar parceiros para a vida, com muito amor e cumplicidade.",
-      },
-      viagem: {
-        data: new Date("2025-03-02T00:00:00"),
-        titulo: "Viagem ao Sítio",
-        texto: "Nossa primeira viagem juntos, cheia de aventuras, risos e momentos que guardaremos para sempre.",
-      },
-      aliancas: {
-        data: new Date("2025-04-01T00:00:00"),
-        titulo: "Entrega das Alianças",
-        texto: "Símbolo do nosso compromisso e amor eterno, a entrega das alianças é um marco inesquecível na nossa jornada.",
-      },
-    };
+    // Música
+    let tocando = false;
+    function toggleMusica() {
+      const musica = document.getElementById("musica");
+      const btn = document.getElementById("btnMusica");
+      if (!tocando) {
+        musica.play();
+        btn.innerText = "⏸️ Pausar música";
+        tocando = true;
+      } else {
+        musica.pause();
+        btn.innerText = "🎶 Tocar música";
+        tocando = false;
+      }
+    }
 
     // Contadores
-    const contBeijo = document.getElementById("contador-beijo");
-    const contPedido = document.getElementById("contador-pedido");
-
-    function atualizaContadores() {
+    function atualizarContador(id, dataInicial) {
       const agora = new Date();
-      function calcTempoPassado(data) {
-        let diff = agora - data;
-        if (diff < 0) diff = 0;
-        const d = Math.floor(diff / (1000 * 60 * 60 * 24));
-        diff -= d * 1000 * 60 * 60 * 24;
-        const h = Math.floor(diff / (1000 * 60 * 60));
-        diff -= h * 1000 * 60 * 60;
-        const m = Math.floor(diff / (1000 * 60));
-        diff -= m * 1000 * 60;
-        const s = Math.floor(diff / 1000);
-        return `${d}d ${h}h ${m}m ${s}s`;
-      }
-      contBeijo.textContent = calcTempoPassado(datas.beijo.data);
-      contPedido.textContent = calcTempoPassado(datas.pedido.data);
+      const inicio = new Date(dataInicial);
+      const diferenca = agora - inicio;
+
+      const dias = Math.floor(diferenca / (1000 * 60 * 60 * 24));
+      const horas = Math.floor((diferenca / (1000 * 60 * 60)) % 24);
+      const minutos = Math.floor((diferenca / (1000 * 60)) % 60);
+      const segundos = Math.floor((diferenca / 1000) % 60);
+
+      document.getElementById(id).innerText =
+        `${dias} dias, ${horas}h ${minutos}m ${segundos}s`;
     }
-    setInterval(atualizaContadores, 1000);
-    atualizaContadores();
 
-    // Modal texto
-    const modalText = document.getElementById("modal-text");
-    const modalTitle = modalText.querySelector("#modal-title");
-    const modalContent = modalText.querySelector("#modal-content");
-    const closeBtnText = modalText.querySelector(".close-btn");
+    setInterval(() => {
+      atualizarContador('contadorBeijo', '2024-08-11T00:00:00');
+      atualizarContador('contadorNamoro', '2025-02-01T00:00:00');
+    }, 1000);
 
-    // Modal imagem
-    const modalImg = document.getElementById("modal-img");
-    const modalImgTag = modalImg.querySelector("img");
-    const modalImgCaption = modalImg.querySelector(".caption");
-    const closeBtnImg = modalImg.querySelector(".close-btn");
-
-    // Abrir modal texto com título e texto
-    function abrirModalTexto(titulo, texto) {
-      modalTitle.textContent = titulo;
-      modalContent.textContent = texto;
-      modalText.hidden = false;
-      modalText.classList.add("active");
-      modalText.focus();
+    // Mensagem Final
+    function mostrarMensagemFinal() {
+      document.getElementById("popupFinal").style.display = "flex";
     }
-    // Fechar modal texto
-    function fecharModalTexto() {
-      modalText.classList.remove("active");
-      setTimeout(() => {
-        modalText.hidden = true;
-      }, 300);
+
+    function fecharMensagemFinal() {
+      document.getElementById("popupFinal").style.display = "none";
     }
-    closeBtnText.addEventListener("click", fecharModalTexto);
-    modalText.addEventListener("click", e => {
-      if (e.target === modalText) fecharModalTexto();
-    });
-    window.addEventListener("keydown", e => {
-      if ((e.key === "Escape" || e.key === "Esc") && !modalText.hidden) fecharModalTexto();
-    });
+  </script>
+  <!-- Modal para Texto de Poema Personalizado -->
+  <div id="modalTexto" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="fecharModal()">&times;</span>
+      <p id="textoModal"></p>
+    </div>
+  </div>
 
-    // Abrir modal imagem zoom
-    function abrirModalImagem(src, alt, caption) {
-      modalImgTag.src = src;
-      modalImgTag.alt = alt;
-      modalImgCaption.textContent = caption || "";
-      modalImg.hidden = false;
-      modalImg.classList.add("active");
-      modalImg.focus();
-      <script>
-  // Datas importantes em formato ISO (ano-mês-diaT00:00:00)
-  const datas = {
-    beijo: new Date('2024-08-11T00:00:00'),
-    date: new Date('2025-01-18T00:00:00'),
-    pedido: new Date('2025-02-01T00:00:00'),
-    viagem: new Date('2025-03-02T00:00:00'),
-    aliancas: new Date('2025-04-01T00:00:00'),
-  };
+  <!-- Efeito de Corações Flutuantes -->
+  <canvas id="coracoes"></canvas>
+  <script>
+    const canvas = document.getElementById("coracoes");
+    const ctx = canvas.getContext("2d");
+    let coracoes = [];
 
-  // Declarações e poemas das datas especiais
-  const textosDatas = {
-    beijo: {
-      titulo: 'Primeiro Beijo - 11/08/2024',
-      texto: `Foi ali, naquele instante, que o nosso mundo mudou para sempre.
-      Seu beijo foi a promessa doce de um amor sem fim.`,
-    },
-    date: {
-      titulo: 'Primeiro Date - 18/01/2025',
-      texto: `Nosso primeiro encontro foi um capítulo lindo,
-      cheio de risos, olhares e esperança.`,
-    },
-    pedido: {
-      titulo: 'Pedido de Namoro - 01/02/2025',
-      texto: `Quando você me pediu em namoro, o coração explodiu em alegria.
-      Um sim que selou nosso compromisso eterno.`,
-    },
-    viagem: {
-      titulo: 'Viagem ao Sítio - 02/03/2025',
-      texto: `Na calmaria do sítio, vivemos momentos únicos,
-      construindo memórias ao lado de quem amamos.`,
-    },
-    aliancas: {
-      titulo: 'Entrega das Alianças - 01/04/2025',
-      texto: `As alianças simbolizam nossa união, nossa fé,
-      e o desejo de caminharmos juntos para sempre.`,
-    },
-  };
-
-  // Função para formatar o tempo decorrido em dias, horas, minutos e segundos
-  function formatarTempo(ms) {
-    if (ms < 0) ms = 0;
-    const totalSegundos = Math.floor(ms / 1000);
-    const dias = Math.floor(totalSegundos / 86400);
-    const horas = Math.floor((totalSegundos % 86400) / 3600);
-    const minutos = Math.floor((totalSegundos % 3600) / 60);
-    const segundos = totalSegundos % 60;
-    return `${dias}d ${horas}h ${minutos}m ${segundos}s`;
-  }
-
-  // Atualizar contadores em tela
-  function atualizarContadores() {
-    const agora = new Date();
-
-    // Desde primeiro beijo
-    const msBeijo = agora - datas.beijo;
-    document.getElementById('contador-beijo').textContent = formatarTempo(msBeijo);
-
-    // Desde pedido namoro
-    const msPedido = agora - datas.pedido;
-    document.getElementById('contador-pedido').textContent = formatarTempo(msPedido);
-  }
-
-  setInterval(atualizarContadores, 1000);
-  atualizarContadores(); // chamada inicial
-
-  // Modal texto
-  const modalText = document.getElementById('modal-text');
-  const modalTextTitle = document.getElementById('modal-title');
-  const modalTextContent = document.getElementById('modal-content');
-  const btnFecharModalText = modalText.querySelector('.close-btn');
-
-  // Modal imagem
-  const modalImg = document.getElementById('modal-img');
-  const modalImgImg = modalImg.querySelector('img');
-  const modalImgCaption = modalImg.querySelector('.caption');
-  const btnFecharModalImg = modalImg.querySelector('.close-btn');
-
-  // Função abrir modal texto
-  function abrirModalTexto(titulo, texto) {
-    modalTextTitle.textContent = titulo;
-    modalTextContent.textContent = texto;
-    modalText.hidden = false;
-    modalText.classList.add('active');
-    modalText.focus();
-  }
-
-  // Fechar modal texto
-  btnFecharModalText.onclick = () => {
-    modalText.classList.remove('active');
-    setTimeout(() => modalText.hidden = true, 300);
-  };
-
-  // Fechar modal texto com ESC
-  modalText.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-      btnFecharModalText.click();
+    function redimensionarCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
     }
-  });
 
-  // Abrir modal imagem com zoom e legenda
-  function abrirModalImagem(src, alt, legenda) {
-    modalImgImg.src = src;
-    modalImgImg.alt = alt;
-    modalImgCaption.textContent = legenda;
-    modalImg.hidden = false;
-    modalImg.classList.add('active');
-    modalImg.focus();
-  }
+    window.addEventListener("resize", redimensionarCanvas);
+    redimensionarCanvas();
 
-  // Fechar modal imagem
-  btnFecharModalImg.onclick = () => {
-    modalImg.classList.remove('active');
-    setTimeout(() => {
-      modalImg.hidden = true;
-      modalImgImg.src = '';
-      modalImgImg.alt = '';
-      modalImgCaption.textContent = '';
-    }, 300);
-  };
-
-  modalImg.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-      btnFecharModalImg.click();
+    function criarCoracao() {
+      return {
+        x: Math.random() * canvas.width,
+        y: canvas.height + 20,
+        size: 15 + Math.random() * 10,
+        speed: 1 + Math.random() * 2,
+        opacity: 0.5 + Math.random() * 0.5
+      };
     }
-  });
 
-  // Abrir modais com clique nas datas especiais
-  document.querySelectorAll('.btn-data').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const id = btn.getAttribute('data-id');
-      if (textosDatas[id]) {
-        abrirModalTexto(textosDatas[id].titulo, textosDatas[id].texto);
-      }
-    });
-  });
-
-  // Zoom nas imagens da galeria ao clicar
-  document.querySelectorAll('#galeria img').forEach(img => {
-    img.addEventListener('click', () => {
-      const src = img.src;
-      const alt = img.alt || '';
-      const frase = img.dataset.frase || '';
-      abrirModalImagem(src, alt, frase);
-    });
-  });
-
-  // Controle da música
-  const musica = document.getElementById('musica');
-  const btnMusicToggle = document.getElementById('btn-music-toggle');
-
-  btnMusicToggle.addEventListener('click', () => {
-    if (musica.paused) {
-      musica.play();
-      btnMusicToggle.textContent = '⏸️ Pausar Música';
-      btnMusicToggle.setAttribute('aria-pressed', 'true');
-    } else {
-      musica.pause();
-      btnMusicToggle.textContent = '▶️ Tocar Música';
-      btnMusicToggle.setAttribute('aria-pressed', 'false');
+    function desenharCoracoes() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      coracoes.forEach((c, i) => {
+        ctx.fillStyle = `rgba(255, 105, 180, ${c.opacity})`;
+        ctx.beginPath();
+        ctx.moveTo(c.x, c.y);
+        ctx.bezierCurveTo(c.x - 10, c.y - 10, c.x - 10, c.y - 30, c.x, c.y - 20);
+        ctx.bezierCurveTo(c.x + 10, c.y - 30, c.x + 10, c.y - 10, c.x, c.y);
+        ctx.fill();
+        c.y -= c.speed;
+        if (c.y < -30) coracoes.splice(i, 1);
+      });
     }
-  });
 
-  // Modo noite com velas animadas
-  const btnNightToggle = document.getElementById('btn-night-toggle');
-  const velas = document.getElementById('velas');
+    setInterval(() => {
+      coracoes.push(criarCoracao());
+    }, 500);
 
-  btnNightToggle.addEventListener('click', () => {
-    const noiteAtivo = document.body.classList.toggle('noite');
-    btnNightToggle.setAttribute('aria-pressed', noiteAtivo ? 'true' : 'false');
-    velas.style.display = noiteAtivo ? 'flex' : 'none';
-  });
-</script>
+    function animar() {
+      desenharCoracoes();
+      requestAnimationFrame(animar);
+    }
+    animar();
+  </script>
+
+  <!-- Encerramento -->
 </body>
 </html>
