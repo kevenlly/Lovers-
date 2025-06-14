@@ -1,0 +1,208 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nosso Amor 💖</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Quicksand:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Quicksand', sans-serif;
+      background: #ffeef3;
+      color: #5c1a34;
+      overflow-x: hidden;
+    }
+    header {
+      text-align: center;
+      padding: 2rem 1rem 1rem;
+      background-color: #ffd6e8;
+    }
+    header h1 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 3rem;
+      color: #d6006f;
+    }
+    header p {
+      margin: 0;
+      font-size: 1.2rem;
+      color: #8d3459;
+    }
+
+    .musica {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      z-index: 10;
+    }
+
+    .galeria {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      padding: 2rem 1rem;
+      gap: 1rem;
+    }
+    .polaroid {
+      background: white;
+      padding: 10px;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      flex: 0 0 auto;
+      width: 250px;
+      scroll-snap-align: center;
+      text-align: center;
+    }
+    .polaroid img {
+      width: 100%;
+      border-radius: 10px;
+    }
+    .legenda {
+      margin-top: 0.5rem;
+      font-style: italic;
+      font-size: 0.95rem;
+    }
+
+    .datas {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.7rem;
+      margin: 2rem 1rem 1rem;
+    }
+    .datas button {
+      background: #f88fb2;
+      border: none;
+      color: white;
+      padding: 0.6rem 1rem;
+      border-radius: 25px;
+      font-size: 0.9rem;
+      box-shadow: 2px 2px 8px rgba(0,0,0,0.2);
+    }
+
+    .contador {
+      text-align: center;
+      font-size: 1.1rem;
+      margin-top: 2rem;
+    }
+
+    .surpresa {
+      margin-top: 1.5rem;
+      text-align: center;
+    }
+
+    .surpresa button {
+      background: #ffdeeb;
+      color: #d6006f;
+      border: 1px solid #d6006f;
+      padding: 0.5rem 1rem;
+      font-weight: bold;
+      border-radius: 15px;
+    }
+
+    .cora {
+      position: fixed;
+      width: 15px;
+      height: 15px;
+      background: pink;
+      border-radius: 50%;
+      animation: flutuar 10s linear infinite;
+    }
+
+    @keyframes flutuar {
+      0% {transform: translateY(0);}
+      100% {transform: translateY(-100vh);}
+    }
+  </style>
+</head>
+<body>
+  <audio class="musica" controls autoplay loop>
+    <source src="all_of_me.mp3" type="audio/mpeg">
+    Seu navegador não suporta áudio.
+  </audio>
+
+  <header>
+    <h1>Nosso Amor 💖</h1>
+    <p>Uma jornada linda de momentos eternos</p>
+  </header>
+
+  <div class="galeria">
+    <!-- As 14 imagens serão adicionadas aqui via script -->
+  </div>
+
+  <div class="datas">
+    <button>💋 11/08/2024</button>
+    <button>🍷 18/01/2025</button>
+    <button>💍 01/02/2025</button>
+    <button>🌄 02/03/2025</button>
+    <button>💖 01/04/2025</button>
+  </div>
+
+  <div class="contador">
+    <p>⏳ Tempo desde o nosso primeiro beijo:</p>
+    <p id="beijo"></p>
+    <p>👩‍❤️‍👨 Tempo desde o nosso namoro:</p>
+    <p id="namoro"></p>
+  </div>
+
+  <div class="surpresa">
+    <button onclick="alert('Você é meu amor pra sempre 💖')">🌟 Clique para a última surpresa</button>
+  </div>
+
+  <script>
+    const fotos = [
+      "Desde que te conheci, tudo ficou mais colorido.",
+      "Seu sorriso muda o mundo.",
+      "Com você, cada momento é eterno.",
+      "Seus olhos iluminam meu caminho.",
+      "Você é o meu lugar favorito no mundo.",
+      "Meu coração sorri quando te vê.",
+      "Te amar é a melhor parte do meu dia.",
+      "Nossos momentos são minhas melhores lembranças.",
+      "Você é poesia em forma de amor.",
+      "Nosso amor é minha maior certeza.",
+      "Você faz tudo valer a pena.",
+      "O tempo com você é sempre o melhor tempo.",
+      "Amar você é um presente diário.",
+      "Juntos, somos a definição de felicidade."
+    ];
+    const galeria = document.querySelector(".galeria");
+    for (let i = 1; i <= 14; i++) {
+      const div = document.createElement("div");
+      div.className = "polaroid";
+      div.innerHTML = `<img src="foto${i}.jpg" alt="foto${i}"><div class="legenda">${fotos[i-1]}</div>`;
+      galeria.appendChild(div);
+    }
+
+    function atualizarContador(id, data) {
+      const agora = new Date();
+      const inicio = new Date(data);
+      const diff = agora - inicio;
+      const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const horas = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutos = Math.floor((diff / (1000 * 60)) % 60);
+      const segundos = Math.floor((diff / 1000) % 60);
+      document.getElementById(id).textContent =
+        `${dias} dias, ${horas}h ${minutos}m ${segundos}s`;
+    }
+
+    setInterval(() => {
+      atualizarContador("beijo", "2024-08-11T00:00:00");
+      atualizarContador("namoro", "2025-02-01T00:00:00");
+    }, 1000);
+
+    // Corações flutuando
+    setInterval(() => {
+      const cora = document.createElement("div");
+      cora.className = "cora";
+      cora.style.left = Math.random() * window.innerWidth + "px";
+      cora.style.background = "pink";
+      cora.style.opacity = Math.random();
+      cora.style.animationDuration = (Math.random() * 5 + 5) + "s";
+      document.body.appendChild(cora);
+      setTimeout(() => cora.remove(), 10000);
+    }, 300);
+  </script>
+</body>
+</html>
