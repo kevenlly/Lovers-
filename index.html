@@ -5,482 +5,446 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Nosso Amor</title>
 <style>
+  @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Open+Sans&display=swap');
+
   /* Reset básico */
   * {
-    box-sizing: border-box;
+    margin: 0; padding: 0; box-sizing: border-box;
   }
 
   body {
-    font-family: 'Arial', sans-serif;
-    background: #fbe6e6;
-    margin: 0; padding: 0;
-    color: #333;
-    min-height: 100vh;
+    font-family: 'Open Sans', sans-serif;
+    background: #fff0f5;
+    color: #4b0033;
     display: flex;
     flex-direction: column;
-  }
-
-  header {
-    background: #f50057;
-    color: white;
-    padding: 15px 10px;
-    display: flex;
-    justify-content: center;
-    gap: 25px;
-    font-weight: bold;
-  }
-  header a {
-    color: white;
-    text-decoration: none;
-    font-size: 1.1em;
-    transition: color 0.3s ease;
-  }
-  header a:hover, header a:focus {
-    color: #ffd6e8;
-    outline: none;
+    align-items: center;
+    min-height: 100vh;
+    padding: 15px 10px 40px;
   }
 
   h1 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 2.8rem;
+    margin-bottom: 10px;
     text-align: center;
-    color: #f50057;
-    margin: 20px 0 0 0;
-    font-family: 'Georgia', serif;
+    color: #9b0040;
   }
 
-  .botao-musica {
-    position: fixed;
-    top: 20px;
-    left: 20px;
-    padding: 12px 16px;
-    background-color: #f50057;
-    color: white;
-    border: none;
-    border-radius: 50%;
-    font-size: 22px;
-    cursor: pointer;
-    box-shadow: 0 4px 10px rgb(245 0 87 / 0.7);
-    z-index: 1000;
-    transition: background-color 0.3s ease;
-  }
-  .botao-musica:hover, .botao-musica:focus {
-    background-color: #c50042;
-    outline: none;
-  }
-
-  main {
-    flex: 1;
-    max-width: 1200px;
-    margin: 90px auto 40px auto;
-    padding: 0 10px;
-  }
-
-  .carrossel-container {
+  /* Contadores */
+  #contadores {
     display: flex;
-    overflow-x: auto;
-    gap: 20px;
-    padding-bottom: 20px;
-    scroll-behavior: smooth;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-bottom: 25px;
+    max-width: 320px;
   }
-  .carrossel-container::-webkit-scrollbar {
-    height: 8px;
-  }
-  .carrossel-container::-webkit-scrollbar-thumb {
-    background-color: #f50057;
-    border-radius: 4px;
-  }
-
-  .polaroid {
-    background: white;
-    padding: 12px 12px 28px 12px;
-    border-radius: 8px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.18);
-    max-width: 230px;
-    min-width: 200px;
+  .contador {
+    background: #ffd6e7;
+    padding: 12px 18px;
+    border-radius: 14px;
+    box-shadow: 0 3px 8px rgba(155,0,64,0.3);
+    font-weight: 600;
+    font-size: 1rem;
+    color: #620033;
+    min-width: 140px;
     text-align: center;
-    position: relative;
-    transform: rotate(-5deg);
-    transition: transform 0.3s ease;
-    cursor: pointer;
-    flex-shrink: 0;
-  }
-  .polaroid:hover, .polaroid:focus {
-    transform: rotate(0deg) scale(1.05);
-    outline: none;
   }
 
-  .polaroid img {
-    max-width: 100%;
-    border-radius: 6px;
+  /* Carrossel centralizado estilo Polaroid */
+  #carrossel-container {
+    position: relative;
+    width: 320px;
+    max-width: 90vw;
+    margin-bottom: 40px;
+    perspective: 1200px;
+  }
+
+  #carrossel {
+    overflow: hidden;
+    border-radius: 16px;
+  }
+
+  .slides-wrapper {
+    display: flex;
+    transition: transform 0.5s ease;
+  }
+
+  .slide {
+    flex: 0 0 280px;
+    margin: 0 10px;
+    background: white;
+    border: 12px solid white;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(155,0,64,0.4);
     user-select: none;
-    pointer-events: none;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .slide img {
+    width: 100%;
+    border-radius: 6px;
   }
 
   .frase {
-    margin-top: 12px;
-    font-size: 1.15em;
-    color: #f50057;
+    font-family: 'Great Vibes', cursive;
+    font-size: 1rem;
     font-style: italic;
-    min-height: 44px;
-  }
-
-  .datas-especiais {
     text-align: center;
-    margin-top: 40px;
-  }
-  .data-button {
-    margin: 10px 8px;
-    padding: 12px 24px;
-    font-size: 18px;
-    background-color: #f50057;
-    color: white;
-    border: none;
-    border-radius: 25px;
-    cursor: pointer;
-    box-shadow: 0 3px 8px rgb(245 0 87 / 0.6);
-    transition: background-color 0.3s ease;
-  }
-  .data-button:hover, .data-button:focus {
-    background-color: #c50042;
-    outline: none;
+    color: #a3004d;
+    padding: 10px 15px 15px;
   }
 
-  .contador-container {
+  /* Botões Navegação */
+  #prev, #next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #9b0040cc;
+    border: none;
+    color: white;
+    font-size: 1.8rem;
+    padding: 8px 14px;
+    border-radius: 50%;
+    cursor: pointer;
+    user-select: none;
+    box-shadow: 0 2px 10px #9b0040cc;
+    transition: background 0.3s;
+    z-index: 10;
+  }
+  #prev:hover, #next:hover {
+    background: #620033cc;
+  }
+  #prev {
+    left: -40px;
+  }
+  #next {
+    right: -40px;
+  }
+
+  /* Botão música */
+  #btn-musica {
+    background: #9b0040;
+    color: #fff;
+    border: none;
+    padding: 12px 22px;
+    border-radius: 25px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    box-shadow: 0 4px 12px #9b0040cc;
+    cursor: pointer;
+    user-select: none;
+    margin-bottom: 25px;
+    transition: background 0.3s;
+  }
+  #btn-musica:hover {
+    background: #620033;
+  }
+
+  /* Botões datas especiais */
+  #datas-especiais {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 25px;
-    margin-top: 35px;
+    gap: 12px;
+    margin-bottom: 30px;
+    max-width: 320px;
   }
-  .contador {
-    background-color: rgba(255 255 255 / 0.9);
-    padding: 14px 24px;
-    border-radius: 12px;
-    font-weight: bold;
-    color: #f50057;
-    font-size: 1.15em;
-    box-shadow: 0 2px 8px rgb(245 0 87 / 0.4);
-    min-width: 250px;
+  .btn-data {
+    background: #a2004b;
+    border: none;
+    color: white;
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 10px 18px;
+    border-radius: 22px;
+    box-shadow: 0 3px 14px #a2004bcc;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.3s;
+    flex: 1 1 140px;
     text-align: center;
+  }
+  .btn-data:hover {
+    background: #610034;
   }
 
-  /* Modal */
-  .modal {
-    position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background-color: rgba(0,0,0,0.6);
+  /* Modal Poema */
+  #modal-poema {
     display: none;
+    position: fixed;
+    z-index: 1001;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.65);
     justify-content: center;
     align-items: center;
-    z-index: 2000;
-    padding: 20px;
+    padding: 25px;
   }
-  .modal.active {
+  #modal-poema.show {
     display: flex;
   }
-  .modal-content {
-    background: white;
-    max-width: 450px;
-    width: 100%;
-    border-radius: 12px;
-    padding: 25px 30px;
+  #modal-conteudo {
+    background: #fff0f5;
+    border-radius: 15px;
+    max-width: 90vw;
+    max-height: 85vh;
+    overflow-y: auto;
+    box-shadow: 0 6px 20px rgba(155,0,64,0.7);
+    padding: 25px 20px 35px;
+    font-family: 'Great Vibes', cursive;
+    font-size: 1.4rem;
+    color: #800040;
     text-align: center;
     position: relative;
-    font-family: 'Georgia', serif;
-    color: #f50057;
-    box-shadow: 0 8px 25px rgba(245,0,87,0.3);
   }
-  .modal-content h2 {
-    margin-top: 0;
-    font-size: 1.8em;
-    margin-bottom: 15px;
-  }
-  .modal-content p {
-    font-size: 1.15em;
-    line-height: 1.5;
-    margin-bottom: 30px;
-  }
-  .modal-close {
+  #btn-fechar {
     position: absolute;
-    top: 10px;
-    right: 14px;
-    background: none;
+    top: 10px; right: 12px;
+    background: transparent;
     border: none;
-    font-size: 26px;
-    color: #f50057;
+    font-size: 1.8rem;
+    color: #9b0040;
     cursor: pointer;
-    font-weight: bold;
+    font-weight: 900;
   }
-  .modal-close:hover, .modal-close:focus {
-    color: #c50042;
-    outline: none;
+  #btn-fechar:hover {
+    color: #620033;
   }
 
   /* Botão surpresa final */
-  .botao-surpresa {
-    display: block;
-    margin: 50px auto 100px auto;
-    padding: 18px 40px;
-    font-size: 22px;
-    font-weight: 700;
-    background: linear-gradient(45deg, #f50057, #ff4081);
+  #btn-surpresa {
+    background: #9b0040;
+    color: #fff;
     border: none;
-    border-radius: 50px;
-    color: white;
+    padding: 14px 28px;
+    border-radius: 28px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    box-shadow: 0 6px 18px #9b0040cc;
     cursor: pointer;
-    box-shadow: 0 6px 20px rgb(245 0 87 / 0.8);
-    transition: background 0.4s ease;
+    user-select: none;
+    transition: background 0.3s;
+    margin-top: 15px;
   }
-  .botao-surpresa:hover, .botao-surpresa:focus {
-    background: linear-gradient(45deg, #c50042, #f06292);
-    outline: none;
+  #btn-surpresa:hover {
+    background: #620033;
   }
 
-  @media (max-width: 600px) {
-    .carrossel-container {
-      padding-bottom: 15px;
-      gap: 12px;
+  /* Responsividade */
+  @media (max-width: 400px) {
+    #carrossel-container {
+      width: 90vw;
     }
-    .polaroid {
-      max-width: 160px;
-      min-width: 140px;
-      padding-bottom: 20px;
-      transform: rotate(-3deg);
+    .slide {
+      flex: 0 0 85vw;
+      margin: 0 5vw;
+      border-width: 10px;
     }
-    .frase {
-      font-size: 1em;
-      min-height: 36px;
+    #prev {
+      left: -30px;
     }
-    .data-button {
-      font-size: 16px;
+    #next {
+      right: -30px;
+    }
+    #btn-musica {
+      font-size: 1rem;
       padding: 10px 18px;
     }
-    .contador {
-      min-width: 200px;
-      font-size: 1em;
-      padding: 12px 20px;
+    #btn-surpresa {
+      width: 90vw;
+      padding: 14px;
+      font-size: 1.1rem;
     }
   }
 </style>
 </head>
 <body>
 
-<header>
-  <a href="index.html" tabindex="1">Home</a>
-  <a href="nossa-historia.html" tabindex="2">Nossa História</a>
-  <a href="pagina-de-amor.html" tabindex="3">Página de Amor</a>
-  <a href="promessas-e-planos.html" tabindex="4">Promessas e Planos</a>
-</header>
-
 <h1>Nosso Amor</h1>
 
-<button class="botao-musica" aria-label="Tocar ou pausar música" tabindex="5">🎵</button>
-<audio id="musica" loop>
-  <source src="all_of_me.mp3" type="audio/mp3" />
-  Seu navegador não suporta áudio.
-</audio>
+<div id="contadores" role="region" aria-label="Contadores de datas especiais">
+  <div class="contador" id="contador-beijo" tabindex="0">Dias desde o Primeiro Beijo: <span>0</span></div>
+  <div class="contador" id="contador-namoro" tabindex="0">Dias desde o Pedido de Namoro: <span>0</span></div>
+</div>
 
-<main>
+<!-- Botão música -->
+<button id="btn-musica" aria-pressed="false" aria-label="Tocar ou pausar música discreta de fundo">Tocar Música</button>
+<audio id="musica" src="all_of_me.mp3" preload="auto"></audio>
 
-  <section aria-label="Galeria de fotos">
-    <div class="carrossel-container" tabindex="0" aria-roledescription="carousel" aria-label="Fotos do nosso amor">
-      <article class="polaroid" tabindex="6" aria-describedby="frase1" role="group">
-        <img src="foto1.jpg" alt="Nosso primeiro beijo" />
-        <div class="frase" id="frase1">"Nosso primeiro beijo, o início de tudo!"</div>
-      </article>
-      <article class="polaroid" tabindex="7" aria-describedby="frase2" role="group">
-        <img src="foto2.jpg" alt="Descobrindo o mundo juntos" />
-        <div class="frase" id="frase2">"Juntos, descobrindo o mundo."</div>
-      </article>
-      <article class="polaroid" tabindex="8" aria-describedby="frase3" role="group">
-        <img src="foto3.jpg" alt="Momentos de bênçãos" />
-        <div class="frase" id="frase3">"Cada dia ao seu lado é uma benção."</div>
-      </article>
-      <article class="polaroid" tabindex="9" aria-describedby="frase4" role="group">
-        <img src="foto4.jpg" alt="Nosso amor é nossa força" />
-        <div class="frase" id="frase4">"O nosso amor é nossa força."</div>
-      </article>
-      <article class="polaroid" tabindex="10" aria-describedby="frase5" role="group">
-        <img src="foto5.jpg" alt="Sorrisos que nos unem" />
-        <div class="frase" id="frase5">"Em cada risada, um novo motivo para amar."</div>
-      </article>
-      <article class="polaroid" tabindex="11" aria-describedby="frase6" role="group">
-        <img src="foto6.jpg" alt="Momentos e beijos" />
-        <div class="frase" id="frase6">"A cada momento, a cada beijo."</div>
-      </article>
-      <article class="polaroid" tabindex="12" aria-describedby="frase7" role="group">
-        <img src="foto7.jpg" alt="Tudo fica mais bonito juntos" />
-        <div class="frase" id="frase7">"Juntos, tudo fica mais bonito."</div>
-      </article>
-      <article class="polaroid" tabindex="13" aria-describedby="frase8" role="group">
-        <img src="foto8.jpg" alt="Momentos guardados no coração" />
-        <div class="frase" id="frase8">"Momentos únicos que guardamos no coração."</div>
-      </article>
-      <article class="polaroid" tabindex="14" aria-describedby="frase9" role="group">
-        <img src="foto9.jpg" alt="Você me completa" />
-        <div class="frase" id="frase9">"Você me completa de uma forma única."</div>
-      </article>
-      <article class="polaroid" tabindex="15" aria-describedby="frase10" role="group">
-        <img src="foto10.jpg" alt="Pequenos gestos de amor" />
-        <div class="frase" id="frase10">"A beleza do amor está nos pequenos gestos."</div>
-      </article>
-      <article class="polaroid" tabindex="16" aria-describedby="frase11" role="group">
-        <img src="foto11.jpg" alt="Aventura diária juntos" />
-        <div class="frase" id="frase11">"Cada dia ao seu lado é uma nova aventura."</div>
-      </article>
-      <article class="polaroid" tabindex="17" aria-describedby="frase12" role="group">
-        <img src="foto12.jpg" alt="Lar nos seus olhos" />
-        <div class="frase" id="frase12">"Em seus olhos, encontrei meu lar."</div>
-      </article>
-      <article class="polaroid" tabindex="18" aria-describedby="frase13" role="group">
-        <img src="foto13.jpg" alt="Amor inexplicável" />
-        <div class="frase" id="frase13">"Te amo de uma forma que palavras não podem explicar."</div>
-      </article>
-      <article class="polaroid" tabindex="19" aria-describedby="frase14" role="group">
-        <img src="foto14.jpg" alt="Amor crescendo" />
-        <div class="frase" id="frase14">"E o nosso amor só cresce a cada dia!"</div>
-      </article>
+<!-- Carrossel fotos -->
+<div id="carrossel-container" aria-label="Carrossel de fotos românticas">
+  <button id="prev" aria-label="Foto anterior">&#10094;</button>
+  <div id="carrossel">
+    <div class="slides-wrapper" tabindex="0" aria-live="polite" aria-atomic="true">
+      <!-- Slides serão inseridos via JS -->
     </div>
-  </section>
+  </div>
+  <button id="next" aria-label="Próxima foto">&#10095;</button>
+</div>
 
-  <section class="datas-especiais" aria-label="Datas especiais">
-    <button class="data-button" onclick="openModal(1)" tabindex="20">11/08/2024 - Primeiro Beijo</button>
-    <button class="data-button" onclick="openModal(2)" tabindex="21">18/01/2025 - Primeiro Date</button>
-    <button class="data-button" onclick="openModal(3)" tabindex="22">01/02/2025 - Pedido de Namoro</button>
-    <button class="data-button" onclick="openModal(4)" tabindex="23">02/03/2025 - Viagem ao Sítio</button>
-    <button class="data-button" onclick="openModal(5)" tabindex="24">01/04/2025 - Entrega das Alianças</button>
-  </section>
+<!-- Datas Especiais -->
+<div id="datas-especiais" aria-label="Datas especiais com poemas">
+  <button class="btn-data" data-poema="Nosso primeiro beijo, doce e sincero... (11/08/2024)">11/08/2024 - Primeiro Beijo</button>
+  <button class="btn-data" data-poema="Nosso primeiro encontro cheio de esperança... (18/01/2025)">18/01/2025 - Primeiro Date</button>
+  <button class="btn-data" data-poema="O pedido oficial que mudou tudo... (01/02/2025)">01/02/2025 - Pedido de Namoro</button>
+  <button class="btn-data" data-poema="Nossa primeira viagem, momentos eternos... (02/03/2025)">02/03/2025 - Viagem ao Sítio</button>
+  <button class="btn-data" data-poema="Entrega das alianças, união perfeita... (01/04/2025)">01/04/2025 - Alianças</button>
+</div>
 
-  <section class="contador-container" aria-label="Contadores de datas especiais">
-    <div class="contador" aria-live="polite" aria-atomic="true">
-      <div><strong>Desde o primeiro beijo:</strong></div>
-      <div id="contador1">Calculando...</div>
-    </div>
-    <div class="contador" aria-live="polite" aria-atomic="true">
-      <div><strong>Desde o primeiro date:</strong></div>
-      <div id="contador2">Calculando...</div>
-    </div>
-    <div class="contador" aria-live="polite" aria-atomic="true">
-      <div><strong>Desde o pedido de namoro:</strong></div>
-      <div id="contador3">Calculando...</div>
-    </div>
-    <div class="contador" aria-live="polite" aria-atomic="true">
-      <div><strong>Desde a viagem ao sítio:</strong></div>
-      <div id="contador4">Calculando...</div>
-    </div>
-    <div class="contador" aria-live="polite" aria-atomic="true">
-      <div><strong>Desde a entrega das alianças:</strong></div>
-      <div id="contador5">Calculando...</div>
-    </div>
-  </section>
-
-  <button class="botao-surpresa" onclick="openSurpriseModal()" tabindex="25" aria-label="Mensagem surpresa final">
-    Clique aqui para uma surpresa
-  </button>
-
-</main>
-
-<!-- Modal para datas especiais -->
-<div id="modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-describedby="modal-desc">
-  <div class="modal-content">
-    <button class="modal-close" aria-label="Fechar modal" onclick="closeModal()">&times;</button>
-    <h2 id="modal-title"></h2>
-    <p id="modal-desc"></p>
+<!-- Modal Poema -->
+<div id="modal-poema" role="dialog" aria-modal="true" aria-labelledby="modal-title" tabindex="-1">
+  <div id="modal-conteudo">
+    <button id="btn-fechar" aria-label="Fechar poema">&times;</button>
+    <div id="modal-texto"></div>
   </div>
 </div>
 
-<!-- Modal surpresa final -->
-<div id="modal-surpresa" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-surpresa-title" aria-describedby="modal-surpresa-desc">
-  <div class="modal-content">
-    <button class="modal-close" aria-label="Fechar modal" onclick="closeSurpriseModal()">&times;</button>
-    <h2 id="modal-surpresa-title">Mensagem Especial</h2>
-    <p id="modal-surpresa-desc">Meu amor, você é o presente mais lindo que a vida me deu. Te amo infinitamente!</p>
-  </div>
-</div>
+<!-- Botão surpresa final -->
+<button id="btn-surpresa" aria-label="Mostrar frase surpresa final">Clique aqui para uma surpresa especial 💖</button>
 
 <script>
-  // Música - controle do botão
-  const musica = document.getElementById('musica');
-  const botaoMusica = document.querySelector('.botao-musica');
-  botaoMusica.addEventListener('click', () => {
-    if (musica.paused) {
-      musica.play();
-      botaoMusica.textContent = '🔈';
-    } else {
-      musica.pause();
-      botaoMusica.textContent = '🎵';
-    }
-  });
-
-  // Dados das datas especiais para modal e contadores
-  const datas = [
-    {data: new Date('2024-08-11T00:00:00'), titulo: '11/08/2024 - Primeiro Beijo', poema: 'Primeiro beijo, um momento mágico que mudou tudo! Nosso amor nasceu ali, para sempre.'},
-    {data: new Date('2025-01-18T00:00:00'), titulo: '18/01/2025 - Primeiro Date', poema: 'Nosso primeiro date, cheio de risos e lembranças. Um marco doce que guardamos para sempre.'},
-    {data: new Date('2025-02-01T00:00:00'), titulo: '01/02/2025 - Pedido de Namoro', poema: 'O pedido de namoro que selou nosso compromisso eterno, meu coração é todo seu.'},
-    {data: new Date('2025-03-02T00:00:00'), titulo: '02/03/2025 - Viagem ao Sítio', poema: 'Nossa primeira viagem ao sítio, momentos de paz, amor e muita alegria em família.'},
-    {data: new Date('2025-04-01T00:00:00'), titulo: '01/04/2025 - Entrega das Alianças', poema: 'A entrega das alianças, símbolo do nosso amor, um compromisso que nunca vai acabar.'}
+  // Dados das fotos e frases para carrossel
+  const fotos = [
+    {src:"foto1.jpg", frase:'"Desde o primeiro olhar, sou seu."'},
+    {src:"foto2.jpg", frase:'"Nosso amor cresce a cada dia."'},
+    {src:"foto3.jpg", frase:'"Te amo mais do que palavras."'},
+    {src:"foto4.jpg", frase:'"Juntos, somos invencíveis."'},
+    {src:"foto5.jpg", frase:'"Cada momento contigo é mágico."'},
+    {src:"foto6.jpg", frase:'"Você é meu sorriso diário."'},
+    {src:"foto7.jpg", frase:'"A felicidade tem seu nome."'},
+    {src:"foto8.jpg", frase:'"Caminhando lado a lado, sempre."'},
+    {src:"foto9.jpg", frase:'"Nosso amor é infinito."'},
+    {src:"foto10.jpg", frase:'"Você é meu lar e meu mundo."'},
+    {src:"foto11.jpg", frase:'"Nossa história é meu livro favorito."'},
+    {src:"foto12.jpg", frase:'"Amar você é a minha poesia."'},
+    {src:"foto13.jpg", frase:'"Tudo faz sentido com você."'},
+    {src:"foto14.jpg", frase:'"Para sempre seu, para sempre meu."'}
   ];
 
-  // Modal elements
-  const modal = document.getElementById('modal');
-  const modalTitle = document.getElementById('modal-title');
-  const modalDesc = document.getElementById('modal-desc');
+  // Carrossel funcional
+  const slidesWrapper = document.querySelector('.slides-wrapper');
 
-  // Função para abrir modal de data especial
-  function openModal(index) {
-    const d = datas[index - 1];
-    modalTitle.textContent = d.titulo;
-    modalDesc.textContent = d.poema;
-    modal.classList.add('active');
-    modal.focus();
-  }
+  // Cria os slides no DOM
+  fotos.forEach(foto => {
+    const slideDiv = document.createElement('div');
+    slideDiv.classList.add('slide');
+    slideDiv.tabIndex = 0;
 
-  // Função para fechar modal
-  function closeModal() {
-    modal.classList.remove('active');
-  }
+    const img = document.createElement('img');
+    img.src = foto.src;
+    img.alt = 'Foto romântica';
 
-  // Modal surpresa final
-  const modalSurpresa = document.getElementById('modal-surpresa');
-  function openSurpriseModal() {
-    modalSurpresa.classList.add('active');
-    modalSurpresa.focus();
-  }
-  function closeSurpriseModal() {
-    modalSurpresa.classList.remove('active');
-  }
+    const fraseDiv = document.createElement('div');
+    fraseDiv.className = 'frase';
+    fraseDiv.textContent = foto.frase;
 
-  // Fechar modais com tecla Esc
-  document.addEventListener('keydown', (e) => {
-    if(e.key === "Escape") {
-      if(modal.classList.contains('active')) closeModal();
-      if(modalSurpresa.classList.contains('active')) closeSurpriseModal();
+    slideDiv.appendChild(img);
+    slideDiv.appendChild(fraseDiv);
+    slidesWrapper.appendChild(slideDiv);
+  });
+
+  const slideWidth = 300; // largura + margem aproximada do slide
+  let posicaoAtual = 0;
+
+  const btnPrev = document.getElementById('prev');
+  const btnNext = document.getElementById('next');
+
+  btnPrev.addEventListener('click', () => {
+    if (posicaoAtual < 0) {
+      posicaoAtual += slideWidth;
+      atualizarPosicao();
+    }
+  });
+  btnNext.addEventListener('click', () => {
+    const maxPosicao = -(slideWidth * (fotos.length - 1));
+    if (posicaoAtual > maxPosicao) {
+      posicaoAtual -= slideWidth;
+      atualizarPosicao();
     }
   });
 
-  // Função para atualizar contadores
-  function atualizarContadores() {
-    const now = new Date();
-    datas.forEach((item, i) => {
-      const diff = now - item.data;
-      if(diff < 0) {
-        document.getElementById('contador'+(i+1)).textContent = 'Ainda não chegou!';
-        return;
-      }
-      let segundos = Math.floor(diff / 1000);
-      let minutos = Math.floor(segundos / 60);
-      let horas = Math.floor(minutos / 60);
-      let dias = Math.floor(horas / 24);
-      horas = horas % 24;
-      minutos = minutos % 60;
-      segundos = segundos % 60;
-      document.getElementById('contador'+(i+1)).textContent = 
-        `${dias} dias, ${horas}h ${minutos}m ${segundos}s`;
-    });
+  function atualizarPosicao() {
+    slidesWrapper.style.transform = `translateX(${posicaoAtual}px)`;
   }
 
-  setInterval(atualizarContadores, 1000);
+  // Inicializa no slide 0
+  atualizarPosicao();
+
+  // Música
+  const btnMusica = document.getElementById('btn-musica');
+  const musica = document.getElementById('musica');
+  let tocando = false;
+
+  btnMusica.addEventListener('click', () => {
+    if(!tocando){
+      musica.play();
+      btnMusica.textContent = "Pausar Música";
+      btnMusica.setAttribute('aria-pressed', 'true');
+      tocando = true;
+    } else {
+      musica.pause();
+      btnMusica.textContent = "Tocar Música";
+      btnMusica.setAttribute('aria-pressed', 'false');
+      tocando = false;
+    }
+  });
+
+  musica.addEventListener('ended', () => {
+    btnMusica.textContent = "Tocar Música";
+    btnMusica.setAttribute('aria-pressed', 'false');
+    tocando = false;
+  });
+
+  // Modal poemas datas especiais
+  const btnsData = document.querySelectorAll('.btn-data');
+  const modal = document.getElementById('modal-poema');
+  const modalTexto = document.getElementById('modal-texto');
+  const btnFechar = document.getElementById('btn-fechar');
+
+  btnsData.forEach(botao => {
+    botao.addEventListener('click', () => {
+      const poema = botao.getAttribute('data-poema');
+      modalTexto.textContent = poema;
+      modal.classList.add('show');
+      modal.focus();
+    });
+  });
+
+  btnFechar.addEventListener('click', () => {
+    modal.classList.remove('show');
+  });
+
+  modal.addEventListener('click', e => {
+    if(e.target === modal) {
+      modal.classList.remove('show');
+    }
+  });
+
+  // Contadores de tempo
+  function calcDiasDesde(dataString) {
+    const agora = new Date();
+    const data = new Date(dataString + 'T00:00:00');
+    const diff = agora - data;
+    return Math.floor(diff / (1000*60*60*24));
+  }
+
+  function atualizarContadores() {
+    document.querySelector('#contador-beijo span').textContent = calcDiasDesde('2024-08-11');
+    document.querySelector('#contador-namoro span').textContent = calcDiasDesde('2025-02-01');
+  }
   atualizarContadores();
 
+  setInterval(atualizarContadores, 60 * 1000);
+
+  // Botão surpresa final
+  const btnSurpresa = document.getElementById('btn-surpresa');
+  btnSurpresa.addEventListener('click', () => {
+    alert("Você é meu eterno amor, minha alegria e minha vida. Te amo infinitamente! 💖");
+  });
 </script>
 
 </body>
