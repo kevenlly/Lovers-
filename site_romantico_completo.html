@@ -1,208 +1,264 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Nosso Amor 💖</title>
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Quicksand:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
       font-family: 'Quicksand', sans-serif;
-      background: #ffeef3;
-      color: #5c1a34;
+      background: #ffe6f0;
+      color: #5e155d;
       overflow-x: hidden;
     }
+
     header {
       text-align: center;
-      padding: 2rem 1rem 1rem;
-      background-color: #ffd6e8;
+      padding: 40px 10px 10px;
     }
+
     header h1 {
       font-family: 'Great Vibes', cursive;
-      font-size: 3rem;
-      color: #d6006f;
+      font-size: 3em;
+      color: #d63384;
+      margin-bottom: 0.2em;
     }
+
     header p {
-      margin: 0;
-      font-size: 1.2rem;
-      color: #8d3459;
+      font-size: 1.2em;
+      color: #6e1a58;
     }
 
-    .musica {
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      z-index: 10;
+    .audio-btn {
+      position: fixed;
+      top: 15px;
+      left: 15px;
+      background: rgba(255,255,255,0.8);
+      padding: 6px 10px;
+      border-radius: 20px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.2);
+      font-size: 0.9em;
+      cursor: pointer;
+      z-index: 999;
     }
 
-    .galeria {
+    .carrossel {
       display: flex;
       overflow-x: auto;
       scroll-snap-type: x mandatory;
-      padding: 2rem 1rem;
-      gap: 1rem;
-    }
-    .polaroid {
-      background: white;
-      padding: 10px;
-      border-radius: 15px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-      flex: 0 0 auto;
-      width: 250px;
-      scroll-snap-align: center;
-      text-align: center;
-    }
-    .polaroid img {
-      width: 100%;
-      border-radius: 10px;
-    }
-    .legenda {
-      margin-top: 0.5rem;
-      font-style: italic;
-      font-size: 0.95rem;
+      padding: 20px;
+      gap: 20px;
+      justify-content: center;
     }
 
-    .datas {
+    .foto {
+      scroll-snap-align: center;
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      flex: 0 0 auto;
+      width: 250px;
+      text-align: center;
+      padding: 10px;
+      position: relative;
+    }
+
+    .foto img {
+      width: 100%;
+      border-radius: 15px;
+    }
+
+    .foto p {
+      margin-top: 10px;
+      font-weight: bold;
+      font-size: 0.95em;
+      color: #90216a;
+    }
+
+    .botoes-datas {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 0.7rem;
-      margin: 2rem 1rem 1rem;
+      gap: 15px;
+      margin: 30px 10px;
     }
-    .datas button {
-      background: #f88fb2;
-      border: none;
+
+    .botoes-datas button {
+      background: #f48fb1;
       color: white;
-      padding: 0.6rem 1rem;
-      border-radius: 25px;
-      font-size: 0.9rem;
-      box-shadow: 2px 2px 8px rgba(0,0,0,0.2);
+      border: none;
+      padding: 10px 18px;
+      border-radius: 20px;
+      font-size: 0.95em;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+      cursor: pointer;
+      transition: transform 0.2s;
     }
 
-    .contador {
-      text-align: center;
-      font-size: 1.1rem;
-      margin-top: 2rem;
-    }
-
-    .surpresa {
-      margin-top: 1.5rem;
-      text-align: center;
-    }
-
-    .surpresa button {
-      background: #ffdeeb;
-      color: #d6006f;
-      border: 1px solid #d6006f;
-      padding: 0.5rem 1rem;
-      font-weight: bold;
-      border-radius: 15px;
-    }
-
-    .cora {
-      position: fixed;
-      width: 15px;
-      height: 15px;
-      background: pink;
-      border-radius: 50%;
-      animation: flutuar 10s linear infinite;
-    }
-
-    @keyframes flutuar {
-      0% {transform: translateY(0);}
-      100% {transform: translateY(-100vh);}
+    .botoes-datas button:hover {
+      transform: scale(1.05);
+      background: #f06292;
     }
   </style>
 </head>
 <body>
-  <audio class="musica" controls autoplay loop>
-    <source src="all_of_me.mp3" type="audio/mpeg">
-    Seu navegador não suporta áudio.
-  </audio>
+  <div class="audio-btn" onclick="toggleMusic()">
+    🎵 Tocar música
+  </div>
+  <audio id="musica" src="all_of_me.mp3" loop></audio>
 
   <header>
     <h1>Nosso Amor 💖</h1>
     <p>Uma jornada linda de momentos eternos</p>
   </header>
 
-  <div class="galeria">
-    <!-- As 14 imagens serão adicionadas aqui via script -->
+  <div class="carrossel">
+    <div class="foto"><img src="foto1.jpg" alt=""><p>Desde que te conheci, tudo ficou mais colorido.</p></div>
+    <div class="foto"><img src="foto2.jpg" alt=""><p>Seu sorriso muda o meu mundo.</p></div>
+    <div class="foto"><img src="foto3.jpg" alt=""><p>Te olhar é como respirar alívio.</p></div>
+    <div class="foto"><img src="foto4.jpg" alt=""><p>Nosso amor é meu lugar favorito.</p></div>
+    <div class="foto"><img src="foto5.jpg" alt=""><p>Te amo com todas as letras do coração.</p></div>
+    <div class="foto"><img src="foto6.jpg" alt=""><p>Com você, a vida é mais bonita.</p></div>
+    <div class="foto"><img src="foto7.jpg" alt=""><p>Você é o meu melhor sentimento.</p></div>
   </div>
 
-  <div class="datas">
-    <button>💋 11/08/2024</button>
-    <button>🍷 18/01/2025</button>
-    <button>💍 01/02/2025</button>
-    <button>🌄 02/03/2025</button>
-    <button>💖 01/04/2025</button>
+  <div class="carrossel">
+    <div class="foto"><img src="foto8.jpg" alt=""><p>O amor que tenho por você só cresce.</p></div>
+    <div class="foto"><img src="foto9.jpg" alt=""><p>Cada dia com você é único.</p></div>
+    <div class="foto"><img src="foto10.jpg" alt=""><p>Nosso laço é eterno.</p></div>
+    <div class="foto"><img src="foto11.jpg" alt=""><p>Você me faz acreditar no amor.</p></div>
+    <div class="foto"><img src="foto12.jpg" alt=""><p>O tempo com você voa… e vale a pena.</p></div>
+    <div class="foto"><img src="foto13.jpg" alt=""><p>Juntos, somos poesia.</p></div>
+    <div class="foto"><img src="foto14.jpg" alt=""><p>Te amo mais a cada batida do meu coração.</p></div>
+  </div>
+  <div class="botoes-datas">
+    <button onclick="mostrarData('11/08/2024', 'Primeiro beijo', 'O começo de tudo... nossos lábios se tocaram e o universo sorriu.')">💋 11/08/2024</button>
+    <button onclick="mostrarData('18/01/2025', 'Primeiro date', 'Nosso encontro foi mágico, como se o tempo parasse para nós dois.')">🍓 18/01/2025</button>
+    <button onclick="mostrarData('01/02/2025', 'Namoro oficial', 'Ali começava nossa história escrita com carinho e verdade.')">💍 01/02/2025</button>
+    <button onclick="mostrarData('02/03/2025', 'Viagem no sítio', 'Risos, paz e amor – um fim de semana que ficou no coração.')">🏡 02/03/2025</button>
+    <button onclick="mostrarData('01/04/2025', 'Entrega das alianças', 'Prometemos estar um ao lado do outro, sempre.')">🔗 01/04/2025</button>
   </div>
 
-  <div class="contador">
-    <p>⏳ Tempo desde o nosso primeiro beijo:</p>
-    <p id="beijo"></p>
-    <p>👩‍❤️‍👨 Tempo desde o nosso namoro:</p>
-    <p id="namoro"></p>
+  <div style="text-align:center; margin: 40px 20px;">
+    <h2>⏳ Desde o nosso primeiro beijo:</h2>
+    <p id="contadorBeijo" style="font-size:1.2em;"></p>
+
+    <h2>❤️ Desde que começamos a namorar:</h2>
+    <p id="contadorNamoro" style="font-size:1.2em;"></p>
+
+    <button onclick="fraseAleatoria()" style="margin-top:20px; background:#ff69b4; color:white; border:none; padding:10px 15px; border-radius:15px;">💌 Me sinto assim por você...</button>
+    <p id="fraseAleatoria" style="font-style:italic; margin-top:10px;"></p>
   </div>
 
-  <div class="surpresa">
-    <button onclick="alert('Você é meu amor pra sempre 💖')">🌟 Clique para a última surpresa</button>
+  <div id="popupPoema" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(255,255,255,0.95); padding:30px; z-index:1000; text-align:center;">
+    <h2 id="tituloData"></h2>
+    <p id="textoData" style="font-size:1.1em;"></p>
+    <button onclick="fecharPopup()" style="margin-top:20px; padding:10px 20px; background:#ff1493; color:white; border:none; border-radius:15px;">Fechar 💗</button>
   </div>
+
+  <!-- Corações flutuantes -->
+  <style>
+    .coracao {
+      position: fixed;
+      width: 20px;
+      height: 20px;
+      background: pink;
+      transform: rotate(45deg);
+      animation: flutuar 6s linear infinite;
+      z-index: 0;
+    }
+
+    .coracao::before, .coracao::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: pink;
+      border-radius: 50%;
+    }
+
+    .coracao::before {
+      top: -10px;
+      left: 0;
+    }
+
+    .coracao::after {
+      left: -10px;
+      top: 0;
+    }
+
+    @keyframes flutuar {
+      0% { transform: translateY(0) rotate(45deg); opacity: 1; }
+      100% { transform: translateY(-100vh) rotate(45deg); opacity: 0; }
+    }
+  </style>
 
   <script>
-    const fotos = [
-      "Desde que te conheci, tudo ficou mais colorido.",
-      "Seu sorriso muda o mundo.",
-      "Com você, cada momento é eterno.",
-      "Seus olhos iluminam meu caminho.",
-      "Você é o meu lugar favorito no mundo.",
-      "Meu coração sorri quando te vê.",
-      "Te amar é a melhor parte do meu dia.",
-      "Nossos momentos são minhas melhores lembranças.",
-      "Você é poesia em forma de amor.",
-      "Nosso amor é minha maior certeza.",
-      "Você faz tudo valer a pena.",
-      "O tempo com você é sempre o melhor tempo.",
-      "Amar você é um presente diário.",
-      "Juntos, somos a definição de felicidade."
+    const frases = [
+      "Você é meu sonho real.",
+      "Com você tudo faz sentido.",
+      "O amor da minha vida tem seu nome.",
+      "Te amar é meu melhor hábito.",
+      "Você é minha paz em forma de pessoa.",
+      "Nosso amor é a minha certeza.",
+      "Cada dia com você é um presente.",
+      "Você é minha poesia favorita.",
+      "Nada se compara ao que sinto por você.",
+      "Te tenho no meu coração, sempre."
     ];
-    const galeria = document.querySelector(".galeria");
-    for (let i = 1; i <= 14; i++) {
-      const div = document.createElement("div");
-      div.className = "polaroid";
-      div.innerHTML = `<img src="foto${i}.jpg" alt="foto${i}"><div class="legenda">${fotos[i-1]}</div>`;
-      galeria.appendChild(div);
+
+    function toggleMusic() {
+      const music = document.getElementById("musica");
+      if (music.paused) {
+        music.play();
+      } else {
+        music.pause();
+      }
     }
 
-    function atualizarContador(id, data) {
-      const agora = new Date();
-      const inicio = new Date(data);
-      const diff = agora - inicio;
-      const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const horas = Math.floor((diff / (1000 * 60 * 60)) % 24);
-      const minutos = Math.floor((diff / (1000 * 60)) % 60);
-      const segundos = Math.floor((diff / 1000) % 60);
-      document.getElementById(id).textContent =
-        `${dias} dias, ${horas}h ${minutos}m ${segundos}s`;
+    function fraseAleatoria() {
+      const f = frases[Math.floor(Math.random() * frases.length)];
+      document.getElementById("fraseAleatoria").innerText = f;
     }
 
-    setInterval(() => {
-      atualizarContador("beijo", "2024-08-11T00:00:00");
-      atualizarContador("namoro", "2025-02-01T00:00:00");
-    }, 1000);
+    function mostrarData(data, titulo, texto) {
+      document.getElementById("tituloData").innerText = `${titulo} - ${data}`;
+      document.getElementById("textoData").innerText = texto;
+      document.getElementById("popupPoema").style.display = "block";
+    }
 
-    // Corações flutuando
-    setInterval(() => {
-      const cora = document.createElement("div");
-      cora.className = "cora";
-      cora.style.left = Math.random() * window.innerWidth + "px";
-      cora.style.background = "pink";
-      cora.style.opacity = Math.random();
-      cora.style.animationDuration = (Math.random() * 5 + 5) + "s";
-      document.body.appendChild(cora);
-      setTimeout(() => cora.remove(), 10000);
-    }, 300);
+    function fecharPopup() {
+      document.getElementById("popupPoema").style.display = "none";
+    }
+
+    function iniciarContador(id, dataInicio) {
+      const destino = document.getElementById(id);
+      setInterval(() => {
+        const inicio = new Date(dataInicio).getTime();
+        const agora = new Date().getTime();
+        const diff = agora - inicio;
+        const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const horas = Math.floor((diff / (1000 * 60 * 60)) % 24);
+        const minutos = Math.floor((diff / (1000 * 60)) % 60);
+        const segundos = Math.floor((diff / 1000) % 60);
+        destino.innerText = `${dias} dias, ${horas}h ${minutos}min ${segundos}s`;
+      }, 1000);
+    }
+
+    iniciarContador("contadorBeijo", "2024-08-11T00:00:00");
+    iniciarContador("contadorNamoro", "2025-02-01T00:00:00");
+
+    function criarCoracao() {
+      const coracao = document.createElement('div');
+      coracao.classList.add('coracao');
+      coracao.style.left = Math.random() * window.innerWidth + 'px';
+      document.body.appendChild(coracao);
+      setTimeout(() => coracao.remove(), 6000);
+    }
+
+    setInterval(criarCoracao, 800);
   </script>
 </body>
 </html>
