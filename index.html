@@ -1,273 +1,218 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Nosso Amor</title>
-  <style>
-    /* Fonte personalizada */
-    @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Quicksand:wght@400;600&display=swap');
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nosso Amor</title>
+    <style>
+        /* Estilos gerais */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #fbe6e6;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
 
-    body {
-      margin: 0;
-      font-family: 'Quicksand', sans-serif;
-      background: #ffe0f0;
-      color: #5a005a;
-      overflow-x: hidden;
-    }
+        h1 {
+            text-align: center;
+            color: #f50057;
+            margin-top: 20px;
+        }
 
-    header {
-      text-align: center;
-      padding: 20px;
-      font-family: 'Great Vibes', cursive;
-      font-size: 2.5em;
-      color: #c2185b;
-    }
+        .carrossel-container {
+            display: flex;
+            overflow: hidden;
+            justify-content: center;
+            margin: 30px 0;
+        }
 
-    .carrossel {
-      display: flex;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      padding: 20px;
-      gap: 20px;
-    }
+        .polaroid {
+            margin: 0 10px;
+            display: inline-block;
+            transform: rotate(-5deg);
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+            background-color: white;
+            padding: 10px;
+            text-align: center;
+            position: relative;
+            max-width: 250px;
+            min-width: 200px;
+            box-sizing: border-box;
+        }
 
-    .foto-container {
-      flex: 0 0 auto;
-      width: 260px;
-      scroll-snap-align: center;
-      background: white;
-      border-radius: 16px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-      padding: 10px;
-      text-align: center;
-    }
+        .polaroid img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
 
-    .foto-container img {
-      width: 100%;
-      border-radius: 12px;
-    }
+        .polaroid .frase {
+            font-size: 1.2em;
+            margin-top: 10px;
+            color: #f50057;
+        }
 
-    .foto-container p {
-      margin-top: 10px;
-      font-size: 1em;
-      color: #880e4f;
-    }
+        .botao-musica {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            padding: 10px;
+            background-color: #f50057;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 10;
+        }
 
-    .datas-especiais {
-      text-align: center;
-      margin: 30px 10px;
-    }
+        .contador {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            font-size: 18px;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 10px;
+            border-radius: 5px;
+            color: #333;
+        }
 
-    .datas-especiais button {
-      background-color: #f48fb1;
-      color: white;
-      border: none;
-      border-radius: 30px;
-      padding: 10px 20px;
-      margin: 5px;
-      font-size: 1em;
-      font-weight: bold;
-      box-shadow: 2px 2px 8px rgba(0,0,0,0.2);
-      transition: transform 0.2s;
-    }
+        .datas-especiais {
+            margin-top: 50px;
+            text-align: center;
+        }
 
-    .datas-especiais button:hover {
-      transform: scale(1.05);
-      cursor: pointer;
-    }
+        .data-button {
+            padding: 10px 20px;
+            background-color: #f50057;
+            color: white;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px;
+        }
 
-    .contador {
-      text-align: center;
-      margin: 40px auto;
-      max-width: 90%;
-      background: #ffffffaa;
-      padding: 20px;
-      border-radius: 16px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    }
-
-    .contador h3 {
-      font-size: 1.5em;
-      margin-bottom: 10px;
-      color: #ad1457;
-    }
-
-    .contador span {
-      display: block;
-      font-size: 1.2em;
-      margin-top: 5px;
-      color: #6a1b9a;
-    }
-
-    .btn-aleatorio {
-      display: block;
-      margin: 30px auto;
-      background: #f06292;
-      color: white;
-      font-size: 1em;
-      padding: 12px 24px;
-      border: none;
-      border-radius: 25px;
-      cursor: pointer;
-      font-weight: bold;
-      box-shadow: 2px 2px 8px rgba(0,0,0,0.2);
-    }
-
-    .popup {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.6);
-      display: none;
-      justify-content: center;
-      align-items: center;
-      z-index: 10;
-    }
-
-    .popup-content {
-      background: #fff0f5;
-      padding: 30px;
-      border-radius: 20px;
-      max-width: 90%;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-      text-align: center;
-      font-size: 1.2em;
-      color: #880e4f;
-    }
-
-    .fechar {
-      margin-top: 20px;
-      padding: 8px 16px;
-      border: none;
-      border-radius: 10px;
-      background: #ec407a;
-      color: white;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    .botao-musica {
-      position: fixed;
-      top: 10px;
-      left: 10px;
-      background: #f8bbd0;
-      color: #4a148c;
-      padding: 10px 16px;
-      border-radius: 30px;
-      border: none;
-      font-size: 1em;
-      z-index: 10;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-    }
-  </style>
+        .data-button:hover {
+            background-color: #c50042;
+        }
+    </style>
 </head>
 <body>
+    <h1>Nosso Amor</h1>
+    <button class="botao-musica" onclick="toggleMusic()">🎵</button>
+    <audio id="musica" loop>
+        <source src="all_of_me.mp3" type="audio/mp3">
+        Seu navegador não suporta a tag de áudio.
+    </audio>
 
-  <header>Nosso Amor 💖</header>
-
-  <button class="botao-musica" onclick="tocarMusica()">🎵 Tocar música</button>
-
-  <div class="carrossel" id="galeria">
-    <!-- As imagens devem estar nomeadas de foto1.jpg a foto14.jpg -->
-    <!-- Exemplo com 3 imagens (adicione até 14): -->
-    <div class="foto-container" onclick="mostrarPoema('Você é o motivo do meu sorriso diário.')">
-      <img src="foto1.jpg" alt="Foto 1" />
-      <p>Você me faz acreditar no amor.</p>
+    <div class="carrossel-container">
+        <!-- Carrossel de fotos -->
+        <div class="polaroid">
+            <img src="foto1.jpg" alt="Foto 1">
+            <div class="frase">"Nosso primeiro beijo, o início de tudo!"</div>
+        </div>
+        <div class="polaroid">
+            <img src="foto2.jpg" alt="Foto 2">
+            <div class="frase">"Juntos, descobrindo o mundo." </div>
+        </div>
+        <div class="polaroid">
+            <img src="foto3.jpg" alt="Foto 3">
+            <div class="frase">"Cada dia ao seu lado é uma benção."</div>
+        </div>
+        <div class="polaroid">
+            <img src="foto4.jpg" alt="Foto 4">
+            <div class="frase">"O nosso amor é nossa força."</div>
+        </div>
+        <div class="polaroid">
+            <img src="foto5.jpg" alt="Foto 5">
+            <div class="frase">"Em cada risada, um novo motivo para amar."</div>
+        </div>
+        <div class="polaroid">
+            <img src="foto6.jpg" alt="Foto 6">
+            <div class="frase">"A cada momento, a cada beijo." </div>
+        </div>
+        <div class="polaroid">
+            <img src="foto7.jpg" alt="Foto 7">
+            <div class="frase">"Juntos, tudo fica mais bonito."</div>
+        </div>
+        <div class="polaroid">
+            <img src="foto8.jpg" alt="Foto 8">
+            <div class="frase">"Momentos únicos que guardamos no coração."</div>
+        </div>
+        <div class="polaroid">
+            <img src="foto9.jpg" alt="Foto 9">
+            <div class="frase">"Você me completa de uma forma única."</div>
+        </div>
+        <div class="polaroid">
+            <img src="foto10.jpg" alt="Foto 10">
+            <div class="frase">"A beleza do amor está nos pequenos gestos."</div>
+        </div>
+        <div class="polaroid">
+            <img src="foto11.jpg" alt="Foto 11">
+            <div class="frase">"Cada dia ao seu lado é uma nova aventura."</div>
+        </div>
+        <div class="polaroid">
+            <img src="foto12.jpg" alt="Foto 12">
+            <div class="frase">"Em seus olhos, encontrei meu lar."</div>
+        </div>
+        <div class="polaroid">
+            <img src="foto13.jpg" alt="Foto 13">
+            <div class="frase">"Te amo de uma forma que palavras não podem explicar."</div>
+        </div>
+        <div class="polaroid">
+            <img src="foto14.jpg" alt="Foto 14">
+            <div class="frase">"E o nosso amor só cresce a cada dia!"</div>
+        </div>
     </div>
-    <div class="foto-container" onclick="mostrarPoema('Nosso amor floresce em cada estação.')">
-      <img src="foto2.jpg" alt="Foto 2" />
-      <p>Nosso amor é meu lugar favorito.</p>
+
+    <div class="datas-especiais">
+        <button class="data-button" onclick="showDateDetails(1)">11/08/2024 - Primeiro Beijo</button>
+        <button class="data-button" onclick="showDateDetails(2)">18/01/2025 - Primeiro Date</button>
+        <button class="data-button" onclick="showDateDetails(3)">01/02/2025 - Pedido de Namoro</button>
+        <button class="data-button" onclick="showDateDetails(4)">02/03/2025 - Viagem ao Sítio</button>
+        <button class="data-button" onclick="showDateDetails(5)">01/04/2025 - Entrega das Alianças</button>
     </div>
-    <div class="foto-container" onclick="mostrarPoema('Contigo, a vida é poesia.')">
-      <img src="foto3.jpg" alt="Foto 3" />
-      <p>Te amarei sempre.</p>
+
+    <div class="contador" id="contador">
+        Contador de tempo desde o primeiro beijo: <span id="tempo"></span>
     </div>
-    <!-- Continue até foto14.jpg -->
-  </div>
 
-  <div class="datas-especiais">
-    <button onclick="mostrarPoema('Foi nesse dia que nossos lábios se encontraram pela primeira vez. 💋')">💋 11/08/2024</button>
-    <button onclick="mostrarPoema('Nosso primeiro date foi o início de uma linda jornada. 🍓')">🍓 18/01/2025</button>
-    <button onclick="mostrarPoema('Você disse sim e o mundo brilhou. 💍')">💍 01/02/2025</button>
-    <button onclick="mostrarPoema('Nossa primeira viagem juntinhos com a família. 🏡')">🏡 02/03/2025</button>
-    <button onclick="mostrarPoema('As alianças selaram nosso compromisso eterno. 🔗')">🔗 01/04/2025</button>
-  </div>
+    <script>
+        // Função para alternar a música
+        function toggleMusic() {
+            const audio = document.getElementById('musica');
+            if (audio.paused) {
+                audio.play();
+            } else {
+                audio.pause();
+            }
+        }
 
-  <div class="contador">
-    <h3>⏳ Desde o nosso primeiro beijo:</h3>
-    <span id="beijo"></span>
+        // Contador de tempo desde o primeiro beijo
+        const primeiroBeijo = new Date("2024-08-11T00:00:00");
+        function updateCounter() {
+            const agora = new Date();
+            const diferenca = agora - primeiroBeijo;
+            const dias = Math.floor(diferenca / (1000 * 60 * 60 * 24));
+            const horas = Math.floor((diferenca % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutos = Math.floor((diferenca % (1000 * 60 * 60)) / (1000 * 60));
+            const segundos = Math.floor((diferenca % (1000 * 60)) / 1000);
+            document.getElementById("tempo").innerText = `${dias}d ${horas}h ${minutos}m ${segundos}s`;
+        }
+        setInterval(updateCounter, 1000);
 
-    <h3>❤️ Desde que começamos a namorar:</h3>
-    <span id="namoro"></span>
-  </div>
-
-  <button class="btn-aleatorio" onclick="fraseAleatoria()">💌 Me sinto assim por você...</button>
-
-  <div class="popup" id="popup">
-    <div class="popup-content" id="popupMensagem">
-      <!-- Conteúdo do poema/frase aqui -->
-    </div>
-    <button class="fechar" onclick="fecharPoema()">Fechar</button>
-  </div>
-
-  <audio id="musica" src="all_of_me.mp3"></audio>
-
-  <script>
-    function tocarMusica() {
-      const musica = document.getElementById('musica');
-      musica.play();
-    }
-
-    function mostrarPoema(texto) {
-      document.getElementById('popupMensagem').innerText = texto;
-      document.getElementById('popup').style.display = 'flex';
-    }
-
-    function fecharPoema() {
-      document.getElementById('popup').style.display = 'none';
-    }
-
-    function fraseAleatoria() {
-      const frases = [
-        "Você é meu lar.",
-        "Seu abraço é meu porto seguro.",
-        "Com você, tudo é mais bonito.",
-        "Você me completa.",
-        "Te amo mais do que ontem e menos do que amanhã.",
-        "O tempo para quando estou com você.",
-        "Meu coração sorri quando te vê.",
-        "Você é meu sonho real.",
-        "Amar você é tão natural quanto respirar.",
-        "Você é minha pessoa favorita."
-      ];
-      const aleatoria = frases[Math.floor(Math.random() * frases.length)];
-      mostrarPoema(aleatoria);
-    }
-
-    function atualizarContadores() {
-      const agora = new Date();
-
-      const beijo = new Date("2024-08-11T00:00:00");
-      const namoro = new Date("2025-02-01T00:00:00");
-
-      const msBeijo = agora - beijo;
-      const msNamoro = agora - namoro;
-
-      const dias = ms => Math.floor(ms / (1000 * 60 * 60 * 24));
-      const horas = ms => Math.floor((ms / (1000 * 60 * 60)) % 24);
-      const minutos = ms => Math.floor((ms / (1000 * 60)) % 60);
-      const segundos = ms => Math.floor((ms / 1000) % 60);
-
-      document.getElementById('beijo').innerText =
-        `${dias(msBeijo)} dias, ${horas(msBeijo)}h ${minutos(msBeijo)}min ${segundos(msBeijo)}s`;
-
-      document.getElementById('namoro').innerText =
-        `${dias(msNamoro)} dias, ${horas(msNamoro)}h ${minutos(msNamoro)}min ${segundos(msNamoro)}s`;
-    }
-
-    setInterval(atualizarContadores, 1000);
-    atualizarContadores();
-  </script>
+        // Mostrar detalhes das datas especiais
+        function showDateDetails(num) {
+            const datas = [
+                "Primeiro beijo, um momento mágico que mudou tudo!",
+                "Nosso primeiro date, cheio de risos e lembranças.",
+                "Pedido de namoro oficial, o começo de nossa jornada juntos.",
+                "Nossa primeira viagem ao sítio, criando memórias inesquecíveis.",
+                "Entrega das alianças, selando nosso amor com um compromisso eterno."
+            ];
+            alert(datas[num - 1]);
+        }
+    </script>
 </body>
 </html>
