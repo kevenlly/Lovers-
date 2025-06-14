@@ -1,218 +1,318 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nosso Amor</title>
-    <style>
-        /* Estilos gerais */
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #fbe6e6;
-            margin: 0;
-            padding: 0;
-            color: #333;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Nosso Amor</title>
+  <style>
+    /* Estilos gerais */
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #fbe6e6;
+      margin: 0;
+      padding: 0;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
 
-        h1 {
-            text-align: center;
-            color: #f50057;
-            margin-top: 20px;
-        }
+    h1 {
+      text-align: center;
+      color: #f50057;
+      margin: 20px 0 10px 0;
+      font-size: 2.8rem;
+      user-select: none;
+    }
 
-        .carrossel-container {
-            display: flex;
-            overflow: hidden;
-            justify-content: center;
-            margin: 30px 0;
-        }
+    /* Botão da música fixo no topo esquerdo */
+    .botao-musica {
+      position: fixed;
+      top: 15px;
+      left: 15px;
+      padding: 12px 14px;
+      background-color: #f50057;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 1.4rem;
+      z-index: 1000;
+      box-shadow: 0 0 8px rgba(245, 0, 87, 0.8);
+      transition: background-color 0.3s ease;
+      user-select: none;
+    }
+    .botao-musica:hover {
+      background-color: #c50042;
+    }
+    .botao-musica.playing {
+      background-color: #00c853; /* Verde para indicar tocando */
+      box-shadow: 0 0 12px rgba(0, 200, 83, 0.9);
+    }
 
-        .polaroid {
-            margin: 0 10px;
-            display: inline-block;
-            transform: rotate(-5deg);
-            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
-            background-color: white;
-            padding: 10px;
-            text-align: center;
-            position: relative;
-            max-width: 250px;
-            min-width: 200px;
-            box-sizing: border-box;
-        }
+    /* Carrossel */
+    .carrossel-container {
+      display: flex;
+      overflow-x: auto;
+      padding: 20px 10px;
+      gap: 15px;
+      scroll-behavior: smooth;
+      max-width: 100%;
+      justify-content: center;
+      user-select: none;
+    }
+    /* Hide scrollbar */
+    .carrossel-container::-webkit-scrollbar {
+      display: none;
+    }
+    .carrossel-container {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
 
-        .polaroid img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 5px;
-        }
+    .polaroid {
+      background-color: white;
+      padding: 12px 15px 25px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+      border-radius: 10px;
+      min-width: 220px;
+      max-width: 260px;
+      text-align: center;
+      position: relative;
+      transform: rotate(-2deg);
+      transition: transform 0.3s ease;
+      cursor: pointer;
+      user-select: none;
+      flex-shrink: 0;
+    }
+    .polaroid:hover {
+      transform: rotate(0deg) scale(1.05);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+      z-index: 10;
+    }
 
-        .polaroid .frase {
-            font-size: 1.2em;
-            margin-top: 10px;
-            color: #f50057;
-        }
+    .polaroid img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+      user-select: none;
+    }
 
-        .botao-musica {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            padding: 10px;
-            background-color: #f50057;
-            color: white;
-            border: none;
-            border-radius: 50%;
-            cursor: pointer;
-            z-index: 10;
-        }
+    .polaroid .frase {
+      margin-top: 12px;
+      font-size: 1.1rem;
+      color: #f50057;
+      font-style: italic;
+      user-select: text;
+    }
 
-        .contador {
-            position: fixed;
-            top: 10px;
-            right: 10px;
-            font-size: 18px;
-            background-color: rgba(255, 255, 255, 0.8);
-            padding: 10px;
-            border-radius: 5px;
-            color: #333;
-        }
+    /* Contador fixo no topo direito */
+    .contador {
+      position: fixed;
+      top: 15px;
+      right: 15px;
+      background-color: rgba(255, 255, 255, 0.9);
+      padding: 12px 18px;
+      border-radius: 8px;
+      font-size: 1rem;
+      color: #f50057;
+      font-weight: 600;
+      box-shadow: 0 0 10px rgba(245, 0, 87, 0.6);
+      user-select: none;
+      z-index: 999;
+      max-width: 320px;
+      text-align: center;
+    }
 
-        .datas-especiais {
-            margin-top: 50px;
-            text-align: center;
-        }
+    /* Datas especiais */
+    .datas-especiais {
+      margin: 60px 0 40px;
+      text-align: center;
+      width: 90%;
+      max-width: 700px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+    }
 
-        .data-button {
-            padding: 10px 20px;
-            background-color: #f50057;
-            color: white;
-            font-size: 18px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            margin: 10px;
-        }
-
-        .data-button:hover {
-            background-color: #c50042;
-        }
-    </style>
+    .data-button {
+      padding: 14px 22px;
+      background-color: #f50057;
+      color: white;
+      font-size: 1.15rem;
+      font-weight: 600;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      user-select: none;
+      min-width: 220px;
+      box-shadow: 0 4px 10px rgba(245, 0, 87, 0.5);
+    }
+    .data-button:hover,
+    .data-button:focus {
+      background-color: #c50042;
+      transform: scale(1.05);
+      outline: none;
+      box-shadow: 0 6px 14px rgba(197, 0, 66, 0.8);
+    }
+  </style>
 </head>
 <body>
-    <h1>Nosso Amor</h1>
-    <button class="botao-musica" onclick="toggleMusic()">🎵</button>
-    <audio id="musica" loop>
-        <source src="all_of_me.mp3" type="audio/mp3">
-        Seu navegador não suporta a tag de áudio.
-    </audio>
+  <h1>Nosso Amor</h1>
 
-    <div class="carrossel-container">
-        <!-- Carrossel de fotos -->
-        <div class="polaroid">
-            <img src="foto1.jpg" alt="Foto 1">
-            <div class="frase">"Nosso primeiro beijo, o início de tudo!"</div>
-        </div>
-        <div class="polaroid">
-            <img src="foto2.jpg" alt="Foto 2">
-            <div class="frase">"Juntos, descobrindo o mundo." </div>
-        </div>
-        <div class="polaroid">
-            <img src="foto3.jpg" alt="Foto 3">
-            <div class="frase">"Cada dia ao seu lado é uma benção."</div>
-        </div>
-        <div class="polaroid">
-            <img src="foto4.jpg" alt="Foto 4">
-            <div class="frase">"O nosso amor é nossa força."</div>
-        </div>
-        <div class="polaroid">
-            <img src="foto5.jpg" alt="Foto 5">
-            <div class="frase">"Em cada risada, um novo motivo para amar."</div>
-        </div>
-        <div class="polaroid">
-            <img src="foto6.jpg" alt="Foto 6">
-            <div class="frase">"A cada momento, a cada beijo." </div>
-        </div>
-        <div class="polaroid">
-            <img src="foto7.jpg" alt="Foto 7">
-            <div class="frase">"Juntos, tudo fica mais bonito."</div>
-        </div>
-        <div class="polaroid">
-            <img src="foto8.jpg" alt="Foto 8">
-            <div class="frase">"Momentos únicos que guardamos no coração."</div>
-        </div>
-        <div class="polaroid">
-            <img src="foto9.jpg" alt="Foto 9">
-            <div class="frase">"Você me completa de uma forma única."</div>
-        </div>
-        <div class="polaroid">
-            <img src="foto10.jpg" alt="Foto 10">
-            <div class="frase">"A beleza do amor está nos pequenos gestos."</div>
-        </div>
-        <div class="polaroid">
-            <img src="foto11.jpg" alt="Foto 11">
-            <div class="frase">"Cada dia ao seu lado é uma nova aventura."</div>
-        </div>
-        <div class="polaroid">
-            <img src="foto12.jpg" alt="Foto 12">
-            <div class="frase">"Em seus olhos, encontrei meu lar."</div>
-        </div>
-        <div class="polaroid">
-            <img src="foto13.jpg" alt="Foto 13">
-            <div class="frase">"Te amo de uma forma que palavras não podem explicar."</div>
-        </div>
-        <div class="polaroid">
-            <img src="foto14.jpg" alt="Foto 14">
-            <div class="frase">"E o nosso amor só cresce a cada dia!"</div>
-        </div>
+  <button
+    class="botao-musica"
+    aria-label="Tocar ou pausar música"
+    id="botao-musica"
+    onclick="toggleMusic()"
+    title="Tocar/Pausar música"
+  >🎵</button>
+
+  <audio id="musica" loop>
+    <source src="all_of_me.mp3" type="audio/mp3" />
+    Seu navegador não suporta a tag de áudio.
+  </audio>
+
+  <div class="carrossel-container" aria-label="Galeria de fotos românticas">
+    <!-- Carrossel de fotos -->
+    <div class="polaroid" tabindex="0" aria-describedby="desc-foto1">
+      <img src="foto1.jpg" alt="Nosso primeiro beijo" />
+      <div class="frase" id="desc-foto1">
+        "Nosso primeiro beijo, o início de tudo!"
+      </div>
     </div>
-
-    <div class="datas-especiais">
-        <button class="data-button" onclick="showDateDetails(1)">11/08/2024 - Primeiro Beijo</button>
-        <button class="data-button" onclick="showDateDetails(2)">18/01/2025 - Primeiro Date</button>
-        <button class="data-button" onclick="showDateDetails(3)">01/02/2025 - Pedido de Namoro</button>
-        <button class="data-button" onclick="showDateDetails(4)">02/03/2025 - Viagem ao Sítio</button>
-        <button class="data-button" onclick="showDateDetails(5)">01/04/2025 - Entrega das Alianças</button>
+    <div class="polaroid" tabindex="0" aria-describedby="desc-foto2">
+      <img src="foto2.jpg" alt="Descobrindo o mundo juntos" />
+      <div class="frase" id="desc-foto2">"Juntos, descobrindo o mundo."</div>
     </div>
-
-    <div class="contador" id="contador">
-        Contador de tempo desde o primeiro beijo: <span id="tempo"></span>
+    <div class="polaroid" tabindex="0" aria-describedby="desc-foto3">
+      <img src="foto3.jpg" alt="Dia ao seu lado" />
+      <div class="frase" id="desc-foto3">"Cada dia ao seu lado é uma benção."</div>
     </div>
+    <div class="polaroid" tabindex="0" aria-describedby="desc-foto4">
+      <img src="foto4.jpg" alt="Força do nosso amor" />
+      <div class="frase" id="desc-foto4">"O nosso amor é nossa força."</div>
+    </div>
+    <div class="polaroid" tabindex="0" aria-describedby="desc-foto5">
+      <img src="foto5.jpg" alt="Risadas e amor" />
+      <div class="frase" id="desc-foto5">"Em cada risada, um novo motivo para amar."</div>
+    </div>
+    <div class="polaroid" tabindex="0" aria-describedby="desc-foto6">
+      <img src="foto6.jpg" alt="Momentos e beijos" />
+      <div class="frase" id="desc-foto6">"A cada momento, a cada beijo."</div>
+    </div>
+    <div class="polaroid" tabindex="0" aria-describedby="desc-foto7">
+      <img src="foto7.jpg" alt="Tudo fica mais bonito juntos" />
+      <div class="frase" id="desc-foto7">"Juntos, tudo fica mais bonito."</div>
+    </div>
+    <div class="polaroid" tabindex="0" aria-describedby="desc-foto8">
+      <img src="foto8.jpg" alt="Momentos únicos no coração" />
+      <div class="frase" id="desc-foto8">"Momentos únicos que guardamos no coração."</div>
+    </div>
+    <div class="polaroid" tabindex="0" aria-describedby="desc-foto9">
+      <img src="foto9.jpg" alt="Você me completa" />
+      <div class="frase" id="desc-foto9">"Você me completa de uma forma única."</div>
+    </div>
+    <div class="polaroid" tabindex="0" aria-describedby="desc-foto10">
+      <img src="foto10.jpg" alt="Pequenos gestos" />
+      <div class="frase" id="desc-foto10">"A beleza do amor está nos pequenos gestos."</div>
+    </div>
+    <div class="polaroid" tabindex="0" aria-describedby="desc-foto11">
+      <img src="foto11.jpg" alt="Nova aventura" />
+      <div class="frase" id="desc-foto11">"Cada dia ao seu lado é uma nova aventura."</div>
+    </div>
+    <div class="polaroid" tabindex="0" aria-describedby="desc-foto12">
+      <img src="foto12.jpg" alt="Encontrei meu lar" />
+      <div class="frase" id="desc-foto12">"Em seus olhos, encontrei meu lar."</div>
+    </div>
+    <div class="polaroid" tabindex="0" aria-describedby="desc-foto13">
+      <img src="foto13.jpg" alt="Amor indescritível" />
+      <div class="frase" id="desc-foto13">"Te amo de uma forma que palavras não podem explicar."</div>
+    </div>
+    <div class="polaroid" tabindex="0" aria-describedby="desc-foto14">
+      <img src="foto14.jpg" alt="Amor que cresce" />
+      <div class="frase" id="desc-foto14">"E o nosso amor só cresce a cada dia!"</div>
+    </div>
+  </div>
 
-    <script>
-        // Função para alternar a música
-        function toggleMusic() {
-            const audio = document.getElementById('musica');
-            if (audio.paused) {
-                audio.play();
-            } else {
-                audio.pause();
-            }
-        }
+  <section class="datas-especiais" aria-label="Datas especiais">
+    <button class="data-button" onclick="showDateDetails(1)" aria-describedby="desc-data1" tabindex="0">
+      11/08/2024 - Primeiro Beijo
+    </button>
+    <button class="data-button" onclick="showDateDetails(2)" aria-describedby="desc-data2" tabindex="0">
+      18/01/2025 - Primeiro Date
+    </button>
+    <button class="data-button" onclick="showDateDetails(3)" aria-describedby="desc-data3" tabindex="0">
+      01/02/2025 - Pedido de Namoro
+    </button>
+    <button class="data-button" onclick="showDateDetails(4)" aria-describedby="desc-data4" tabindex="0">
+      02/03/2025 - Viagem ao Sítio
+    </button>
+    <button class="data-button" onclick="showDateDetails(5)" aria-describedby="desc-data5" tabindex="0">
+      01/04/2025 - Entrega das Alianças
+    </button>
+  </section>
 
-        // Contador de tempo desde o primeiro beijo
-        const primeiroBeijo = new Date("2024-08-11T00:00:00");
-        function updateCounter() {
-            const agora = new Date();
-            const diferenca = agora - primeiroBeijo;
-            const dias = Math.floor(diferenca / (1000 * 60 * 60 * 24));
-            const horas = Math.floor((diferenca % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutos = Math.floor((diferenca % (1000 * 60 * 60)) / (1000 * 60));
-            const segundos = Math.floor((diferenca % (1000 * 60)) / 1000);
-            document.getElementById("tempo").innerText = `${dias}d ${horas}h ${minutos}m ${segundos}s`;
-        }
-        setInterval(updateCounter, 1000);
+  <div class="contador" role="region" aria-live="polite" aria-atomic="true">
+    Contador de tempo desde o primeiro beijo: <span id="tempo">--</span>
+  </div>
 
-        // Mostrar detalhes das datas especiais
-        function showDateDetails(num) {
-            const datas = [
-                "Primeiro beijo, um momento mágico que mudou tudo!",
-                "Nosso primeiro date, cheio de risos e lembranças.",
-                "Pedido de namoro oficial, o começo de nossa jornada juntos.",
-                "Nossa primeira viagem ao sítio, criando memórias inesquecíveis.",
-                "Entrega das alianças, selando nosso amor com um compromisso eterno."
-            ];
-            alert(datas[num - 1]);
-        }
-    </script>
+  <script>
+    // Alternar música e mudar estilo do botão
+    function toggleMusic() {
+      const audio = document.getElementById('musica');
+      const botao = document.getElementById('botao-musica');
+
+      if (audio.paused) {
+        audio.play();
+        botao.classList.add('playing');
+      } else {
+        audio.pause();
+        botao.classList.remove('playing');
+      }
+    }
+
+    // Atualizar contador
+    const primeiroBeijo = new Date('2024-08-11T00:00:00');
+
+    function updateCounter() {
+      const agora = new Date();
+      let diferenca = agora - primeiroBeijo;
+
+      if (diferenca < 0) {
+        document.getElementById('tempo').innerText = 'Ainda não chegou!';
+        return;
+      }
+
+      const dias = Math.floor(diferenca / (1000 * 60 * 60 * 24));
+      diferenca %= 1000 * 60 * 60 * 24;
+      const horas = Math.floor(diferenca / (1000 * 60 * 60));
+      diferenca %= 1000 * 60 * 60;
+      const minutos = Math.floor(diferenca / (1000 * 60));
+      diferenca %= 1000 * 60;
+      const segundos = Math.floor(diferenca / 1000);
+
+      document.getElementById('tempo').innerText = `${dias}d ${horas}h ${minutos}m ${segundos}s`;
+    }
+
+    setInterval(updateCounter, 1000);
+    updateCounter(); // Atualiza imediatamente no carregamento
+
+    // Mostrar detalhes das datas especiais
+    function showDateDetails(num) {
+      const datas = [
+        'Primeiro beijo, um momento mágico que mudou tudo!',
+        'Nosso primeiro date, cheio de risos e lembranças.',
+        'Pedido de namoro oficial, o começo de nossa jornada juntos.',
+        'Nossa primeira viagem ao sítio, criando memórias inesquecíveis.',
+        'Entrega das alianças, selando nosso amor com um compromisso eterno.',
+      ];
+      alert(datas[num - 1]);
+    }
+  </script>
 </body>
 </html>
